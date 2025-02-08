@@ -7,3 +7,36 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+puts "Clearing users..."
+User.destroy_all
+puts "Clearing users..."
+
+user1 = User.create(email: "zzz@gmail.com", password: "123123", username: "Rayz")
+puts "Creating user1..."
+user2 = User.create!(email: "yzyz@gmail.com", password: "321321", username: "Amy")
+puts "Creating user2..."
+user3 = User.create!(email: "wwyy@gmail.com", password: "123321", username: "Ruben")
+puts "Creating user3..."
+
+# Create a desk
+
+puts "Clearing desks..."
+Desk.destroy_all
+
+desk1 = Desk.create!(user: user1, title: "Rayz's Desk", points: 100)
+desk2 = Desk.create!(user: user2, title: "Amy's Desk", points: 200)
+desk3 = Desk.create!(user: user3, title: "Ruben's Desk", points: 300)
+
+# Create an event
+
+puts "Clearing events..."
+Event.destroy_all
+
+event1 = Event.create!(title: "Meeting", start_time: DateTime.new(2021, 10, 1, 10, 0, 0), end_time: DateTime.new(2021, 10, 1, 11, 0, 0), desk: desk1)
+
+event2 = Event.create!(title: "Lunch", start_time: DateTime.new(2021, 10, 1, 12, 0, 0), end_time: DateTime.new(2021, 10, 1, 13, 0, 0), desk: desk1)
+
+event3 = Event.create!(title: "Sleeping", start_time: DateTime.new(2021, 10, 1, 14, 0, 0), end_time: DateTime.new(2021, 10, 1, 15, 0, 0), desk: desk1)
+
+event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2021, 10, 1, 10, 0, 0), end_time: DateTime.new(2021, 10, 1, 11, 0, 0), desk: desk1)
