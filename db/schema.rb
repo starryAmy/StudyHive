@@ -10,9 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_08_092614) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_08_094031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "desks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_desks_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "title"
+    t.bigint "desk_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["desk_id"], name: "index_events_on_desk_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.boolean "public"
+    t.boolean "locked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.bigint "desk_id", null: false
+    t.bigint "room_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["desk_id"], name: "index_spots_on_desk_id"
+    t.index ["room_id"], name: "index_spots_on_room_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +65,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_08_092614) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "desks", "users"
+  add_foreign_key "events", "desks"
+  add_foreign_key "rooms", "users"
+  add_foreign_key "spots", "desks"
+  add_foreign_key "spots", "rooms"
 end
