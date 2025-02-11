@@ -2,14 +2,23 @@ body {
   background-color: #f0c539;
 }
 
+.show-desk-bg {
+  // margin-top: 100px;
+  // width: 800px;
+  // height: 770px;
+  // background-color: #f0c539;
+  position: relative;
+}
+
 .desk-img {
   background-image: image-url("desk2.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
-  width: 900px;
-  height: 800px;
-  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  // margin: 0 auto;
 }
 
 .calendar {
