@@ -1,7 +1,17 @@
 <div class="card w-50">
   <div class="card-body">
-    <h5 class="card-title">desk.name</h5>
-    <p class="card-text">desk.points</p>
+    <h5 class="card-title"><%=desk.title%></h5>
+    <p class="card-text"><%=desk.points%></p>
     <a href="#" class="btn btn-primary">Check Out More</a>
+    <div>
+          <%= calendar(number_of_days: 1, events: desk.events) do |date, events| %>
+            <%= date.day %>
+            <% events.each do |event| %>
+              <div>
+                <%= event.title %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
   </div>
 </div>
