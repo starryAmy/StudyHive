@@ -30,16 +30,15 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-<<<<<<< HEAD
-  private
-
-  def rooms_params
-    params.require(:room).permit(:title, :locked, :public)
-=======
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
     redirect_to rooms_path
->>>>>>> master
   end
+  private
+
+  def rooms_params
+    params.require(:room).permit(:title, :locked, :public)
+  end
+
 end
