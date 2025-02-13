@@ -1,6 +1,6 @@
 <div class="container show-desk-bg">
   <div class="row justify-content-center">
-    <div class="col-8 text-center">
+    <div class="col text-center">
       <h1><%= @desk.title %></h1>
       <h2><%= @user.username %></h2>
       <br>
@@ -11,7 +11,27 @@
             <%= date.day %>
           <% end %>
         </div>
+        <div class="time-assets" data-controller="clock" data-clock-end-time-value="2025-02-13T20:47:00">
+          <div class="timer border border-4 border-dark rounded bg-light display-inline">
+            <h2>
+              <i class="fa-solid fa-hourglass-end"></i> <span data-clock-target="countdown">00:00:00</span>
+            </h2>
+          </div>
+          <div class="clock">
+            <h2><i class="fa-solid fa-clock"></i> <span data-clock-target="time">00:00:00</span>
+            </h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<%# The code below is just for reference, it is not part of the project. %>
+<%# <script>
+setInterval(myTimer, 1000);
+
+function myTimer() {
+  const d = new Date();
+  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+}
+</script> %>
