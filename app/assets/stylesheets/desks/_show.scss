@@ -2,14 +2,23 @@ body {
   background-color: #f0c539;
 }
 
+.show-desk-bg {
+  // margin-top: 100px;
+  // width: 800px;
+  // height: 770px;
+  // background-color: #f0c539;
+  position: relative;
+}
+
 .desk-img {
   background-image: image-url("desk2.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
-  width: 900px;
-  height: 800px;
-  margin: 0 auto;
+  // width: 200px;
+  height: 900px;
+  // margin: 0 auto;
 }
 
 .calendar {
@@ -18,9 +27,43 @@ body {
   right: 180px;
   margin-top: 20px;
   margin-left: 20px;
-  width: 180px;
-  height: 180px;
+  // width: 180px;
+  // height: 180px;
+  width: 25%;
+  height: 25%;
   border: 4px solid black;
   background-color: white;
   display: inline-block;
+}
+
+.timer {
+  position: absolute;
+  top: 40px;
+  right: 180px;
+  margin-top: 20px;
+  margin-left: 20px;
+  // width: 180px;
+  // height: 180px;
+  width: 25%;
+  // height: 25%;
+  border: 4px solid black;
+  background-color: white;
+  display: inline-block;
+  padding: 10px;
+}
+
+.clock {
+  position: absolute;
+  top: 360px;
+  right: 180px;
+  margin-top: 20px;
+  margin-left: 20px;
+  // width: 180px;
+  // height: 180px;
+  width: 25%;
+  // height: 25%;
+  border: 4px solid black;
+  background-color: white;
+  display: inline-block;
+  padding: 10px;
 }
