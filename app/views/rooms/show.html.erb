@@ -22,4 +22,6 @@
       CHAT
     </div>
   </div>
+  <%= button_to "Delete", @room, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
 </div>
