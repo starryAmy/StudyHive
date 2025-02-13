@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_one :desk, dependent: :destroy
   has_many :messages
+  has_many :spots
 end

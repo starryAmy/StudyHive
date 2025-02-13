@@ -11,12 +11,12 @@
           <a class="nav-link navbar-text" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navbar-text" href="#">Rooms</a>
+          <%=link_to "Rooms", rooms_path, class: "nav-link navbar-text"%>
         </li>
       </ul>
     </div>
     <div class="home-sign-up">
-      <% if current_user && false %>
+      <% if current_user %>
         <div class="home-welcome">
           <p class="navbar-word-welcome">Welcome back, <%= current_user.username %>! 🦸</p>
         </div>

@@ -46,3 +46,10 @@ event2 = Event.create!(title: "Lunch", start_time: DateTime.new(2025, 2, 11, 11,
 event3 = Event.create!(title: "Sleeping", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
 
 event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
+
+puts "Clearing rooms..."
+Room.destroy_all
+
+room1 = Room.create!(title: "Meeting", user: user1, public: true, locked: false)
+room2 = Room.create!(title: "Movie", user: user2, public: true, locked: false)
+room3 = Room.create!(title: "Algorithm", user: user3, public: true, locked: false)
