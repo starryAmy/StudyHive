@@ -1,0 +1,12 @@
+.message-form{
+  position: absolute;
+  background: white;
+  z-index: 10;
+  width: 300px; /* 設定固定寬度 */
+  padding: 15px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.index-card{
+  position: relative;
+}

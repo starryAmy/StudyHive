@@ -1,11 +1,11 @@
 
-<div class="container">
+<div class="container mt-4" id="index-container">
   <div class="row" id="desk-room-container">
     <%@desks.each do |desk| %>
       <%=render "shared/card", desk: desk%>
     <%end%>
   </div>
-   <% if @all_desks.count > 2 %>
+  <% if @all_desks.count > 2 %>
       <button id="load-more" data-page="1" class="btn btn-primary">Load More</button>
     <% end %>
 </div>

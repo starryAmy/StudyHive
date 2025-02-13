@@ -17,3 +17,14 @@ document.addEventListener("DOMContentLoaded", function() {
     })
   }
 })
+
+// sending message
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("index-container").addEventListener("click", function(e){
+    if (e.target.classList.contains("message-btn")){
+        let deskID = e.target.dataset.deskId;
+        let form = document.getElementById(`message-form-${deskID}`);
+        form.style.display = form.style.display == "none" ? "block" : "none";
+    }
+  })
+  })
