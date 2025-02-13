@@ -1,4 +1,5 @@
 class SpotsController < ApplicationController
+<<<<<<< HEAD
   def index
     @room = Room.find(params[:room_id])
   end
@@ -12,5 +13,11 @@ class SpotsController < ApplicationController
     else
       puts @spot.errors.full_messages
     end
+=======
+  def update
+    @spot = Spot.find(params[:id])
+    @spot.status = params[:status]
+    @spot.save
+>>>>>>> master
   end
 end

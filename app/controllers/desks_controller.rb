@@ -20,5 +20,6 @@ class DesksController < ApplicationController
   def show
     @desk = Desk.find(params[:id])
     @user = User.find(@desk.user_id)
+    # raise
   end
 end

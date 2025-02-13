@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Applications</h1>
+  <% @room.spots.each do |spot|  %>
+    <% if spot.status == :pending %>
+      <p>Tile: <%= spot.title %>. Desk: <%= spot.desk.title %></p>
+      <%= button_to "Accept", edit_room_path(spot, status: :accepted), class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+      <%= button_to "Reject", edit_room_path(spot, status: :rejected), class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% end %>
+  <% end %>
+</div>
