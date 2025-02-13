@@ -1,7 +1,26 @@
-<div class="card w-50">
+<div class="card col-md-6 index-card">
   <div class="card-body">
-    <h5 class="card-title">desk.name</h5>
-    <p class="card-text">desk.points</p>
-    <a href="#" class="btn btn-primary">Check Out More</a>
+    <h5 class="card-title"><%=desk.title%></h5>
+    <p class="card-text"><%=desk.points%></p>
+    <button href="#" class="btn btn-primary message-btn" data-desk-id="<%= desk.id %>">Send Message</button>
+      <div class="message-form" id="message-form-<%= desk.id %>" style="display:none;">
+      <%= simple_form_for Message.new, url: desk_messages_path(desk), method: :post, local: true do |f|%>
+         <div>
+            <%= f.input :date, as: :date, label: "Date" %>
+          </div>
+          <div>
+            <%= f.input :text, as: :text, label: "Messages" %>
+          </div>
+          <%= f.submit "送出", class: "btn btn-primary" %>
+      <%end%>
+    </div>
+          <%= calendar(number_of_days: 1, events: desk.events) do |date, events| %>
+            <%= date.day %>
+            <% events.each do |event| %>
+              <div>
+                <%= event.title %>
+              </div>
+            <% end %>
+          <% end %>
   </div>
 </div>

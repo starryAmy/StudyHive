@@ -18,6 +18,10 @@ user2 = User.create!(email: "yzyz@gmail.com", password: "321321", username: "Amy
 puts "Creating user2..."
 user3 = User.create!(email: "wwyy@gmail.com", password: "123321", username: "Ruben")
 puts "Creating user3..."
+user4 = User.create!(email: "abc@gmail.com", password: "123321", username: "Sarah")
+puts "Creating user4..."
+user5 = User.create!(email: "cba@gmail.com", password: "123321", username: "Alex")
+puts "Creating user5..."
 
 # Create a desk
 
@@ -27,16 +31,18 @@ Desk.destroy_all
 desk1 = Desk.create!(user: user1, title: "Rayz's Desk", points: 100)
 desk2 = Desk.create!(user: user2, title: "Amy's Desk", points: 200)
 desk3 = Desk.create!(user: user3, title: "Ruben's Desk", points: 300)
+desk4 = Desk.create!(user: user4, title: "Sarah's Desk", points: 300)
+desk5 = Desk.create!(user: user5, title: "Alex's Desk", points: 300)
 
 # Create an event
 
 puts "Clearing events..."
 Event.destroy_all
 
-event1 = Event.create!(title: "Meeting", start_time: DateTime.new(2021, 10, 1, 10, 0, 0), end_time: DateTime.new(2021, 10, 1, 11, 0, 0), desk: desk1)
+event1 = Event.create!(title: "Meeting", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
 
-event2 = Event.create!(title: "Lunch", start_time: DateTime.new(2021, 10, 1, 12, 0, 0), end_time: DateTime.new(2021, 10, 1, 13, 0, 0), desk: desk1)
+event2 = Event.create!(title: "Lunch", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
 
-event3 = Event.create!(title: "Sleeping", start_time: DateTime.new(2021, 10, 1, 14, 0, 0), end_time: DateTime.new(2021, 10, 1, 15, 0, 0), desk: desk1)
+event3 = Event.create!(title: "Sleeping", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
 
-event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2021, 10, 1, 10, 0, 0), end_time: DateTime.new(2021, 10, 1, 11, 0, 0), desk: desk1)
+event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
