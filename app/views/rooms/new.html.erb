@@ -1,0 +1,12 @@
+<%= simple_form_for Room.new, url: rooms_path, method: :post, local: true do |f|%>
+  <div>
+    <%= f.input :title, label: "Title" %>
+  </div>
+  <div>
+    <%= f.input :locked, as: :boolean, label: "Locked?" %>
+  </div>
+  <div>
+    <%= f.input :public, as: :boolean, label: "Public?" %>
+  </div>
+  <%= f.submit "送出", class: "btn btn-primary" %>
+<%end%>

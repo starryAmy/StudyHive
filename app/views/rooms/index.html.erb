@@ -1,1 +1,8 @@
-rooms index page
+<%=link_to "Open a new room", new_room_path %>
+<div class="container mt-4">
+  <div class="row">
+    <%@rooms.each do |room| %>
+      <%=render "shared/roomcard", room: room%>
+    <%end%>
+  </div>
+</div>

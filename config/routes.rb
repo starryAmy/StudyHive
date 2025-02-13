@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :desks do
     resources :messages, only: [:new, :create]
   end
-  resources :rooms
+  resources :rooms do
+    resources :spots
+  end
 end
