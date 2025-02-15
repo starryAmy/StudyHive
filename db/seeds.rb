@@ -53,3 +53,10 @@ Room.destroy_all
 room1 = Room.create!(title: "Meeting", user: user1, public: true, locked: false)
 room2 = Room.create!(title: "Movie", user: user2, public: true, locked: false)
 room3 = Room.create!(title: "Algorithm", user: user3, public: true, locked: false)
+
+puts "Clearing spots..."
+Spot.destroy_all
+
+spot1 = Spot.create!(status: "pending", room: room1, user: user2)
+spot2 = Spot.create!(status: "pending", room: room2, user: user3)
+spot3 = Spot.create!(status: "pending", room: room3, user: user1)
