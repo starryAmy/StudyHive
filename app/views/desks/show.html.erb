@@ -22,6 +22,19 @@
             </h2>
           </div>
         </div>
+        <div data-controller="toggle-form" class="clickable-div">
+          <!-- Clickable Div to Show Form -->
+          <div class="p-3 border" data-action="click->toggle-form#showForm">
+            Click to Send a Message
+          </div>
+          <!-- Hidden Form -->
+          <div class="form-container d-none" data-toggle-form-target="form">
+            <%= simple_form_for [@desk, @message], method: :post, data: { action: "submit->toggle-form#hideForm" } do |f| %>
+              <%= f.input :text, as: :text, input_html: { maxlength: 400, data: { toggle_form_target: "textarea" } } %>
+              <%= f.submit "Send Message", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

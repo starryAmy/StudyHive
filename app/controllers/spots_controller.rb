@@ -19,3 +19,4 @@ class SpotsController < ApplicationController
     @spot.status = params[:status]
     @spot.save
   end
+end
