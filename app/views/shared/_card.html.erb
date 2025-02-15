@@ -1,9 +1,9 @@
-<div class="card col-md-6 index-card">
+<div class="card col-md-6 index-card" data-controller="message">
   <div class="card-body">
     <h5 class="card-title"><%=desk.title%></h5>
     <p class="card-text"><%=desk.points%></p>
-    <button href="#" class="btn btn-primary message-btn" data-desk-id="<%= desk.id %>">Send Message</button>
-      <div class="message-form" id="message-form-<%= desk.id %>" style="display:none;">
+    <button href="#" class="btn btn-primary message-btn" data-action="click->message#toggle" data-desk-id="<%= desk.id %>">Send Message</button>
+      <div class="message-form" data-message-target="form" data-desk-id="<%= desk.id %>" id="message-form-<%= desk.id %>" style="display:none;">
       <%= simple_form_for Message.new, url: desk_messages_path(desk), method: :post, local: true do |f|%>
          <div>
             <%= f.input :date, as: :date, label: "Date" %>
