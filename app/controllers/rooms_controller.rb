@@ -30,6 +30,14 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def update
+    @spot = Spot.find(params[:id])
+    @spot.status = params[:status]
+    @spot.save
+    redirect_to request.referer
+  end
+
+
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
