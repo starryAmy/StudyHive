@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
     @message.desk = @desk
     @message.user = current_user ? current_user : User.where.not(id: @desk.user_id).sample
     if @message.save
-      redirect_to desks_path, notice: "Message sent successfully!"
+      redirect_to desk_path(@desk), notice: "Message sent successfully!"
     else
-      redirect_to desks_path, alert: "Failed sending message"
+      redirect_to desk_path(@desk), alert: "Failed sending message"
     end
 
 

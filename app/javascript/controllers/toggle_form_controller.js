@@ -8,12 +8,8 @@ export default class extends Controller {
     this.formTarget.classList.add("d-none");
   }
 
-  showForm() {
-    this.formTarget.classList.remove("d-none");
+  showHideForm() {
+    this.formTarget.classList.toggle("d-none");
     this.textareaTarget.focus();
-  }
-
-  hideForm() {
-    this.formTarget.classList.add("d-none");
   }
 }
