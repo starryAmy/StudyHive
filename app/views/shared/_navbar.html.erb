@@ -1,11 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top">
   <div class="container">
-    <a class="navbar-brand navbar-text" href="#">StudyHive</a>
+    <%=link_to "StudyHive", desks_path, class: "navbar-brand nav-link navbar-text"%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <%=link_to "My Desk", desk_path(@desk), class: "nav-link navbar-text"%>
+        </li>
         <li class="nav-item active">
           <a class="nav-link navbar-text" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
@@ -23,7 +26,6 @@
         <div class="d-flex justify-items-center">
           <%= link_to "Sign Up", new_user_registration_path, class: "btn home-custom-sign-btn navbar-text" %>
           <%= link_to "Log In", new_user_session_path, class: "btn home-custom-sign-btn navbar-text me-3" %>
-
         </div>
       <% end %>
     </div>
