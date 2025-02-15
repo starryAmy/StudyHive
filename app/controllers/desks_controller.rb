@@ -1,6 +1,6 @@
 class DesksController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_desk_and_user, only: [:index, :show]
+  before_action :set_desk_and_user, only: [:show]
 
   def index
     # get the page params
