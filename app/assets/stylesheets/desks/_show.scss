@@ -68,10 +68,9 @@ body {
   padding: 10px;
 }
 
-.clickable-div {
-  cursor: pointer;
+.messages-main {
   position: absolute;
-  top: 360px;
+  top: 40px;
   left: 180px;
   margin-top: 20px;
   margin-left: 20px;
@@ -83,4 +82,28 @@ body {
   background-color: white;
   display: inline-block;
   padding: 10px;
+}
+
+.messages-div {
+  cursor: pointer;
+}
+
+.clickable-div {
+  // position: absolute;
+  // top: 360px;
+  // left: 180px;
+  // margin-top: 20px;
+  // margin-left: 20px;
+  // width: 180px;
+  // height: 180px;
+  // width: 25%;
+  // height: 10%;
+  border: 4px solid black;
+  background-color: white;
+  display: inline-block;
+  // padding: 10px;
+}
+
+.clickable-div:hover {
+  cursor: pointer;
 }

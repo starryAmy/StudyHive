@@ -24,7 +24,8 @@ export default class extends Controller {
   }
 
   startCountdown() {
-    const endTime = new Date(this.endTimeValue); // Read from data attribute
+    const endTime = new Date(new Date().getTime() + 70000); // Set countdown to 1 min from now
+
     this.countdownTimer = setInterval(() => {
       const now = new Date();
       const remaining = endTime - now;
