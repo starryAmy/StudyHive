@@ -7,8 +7,13 @@
       <br>
       <div class="desk-img">
         <div class="calendar">
-          <%= calendar(number_of_days: 1) do |date| %>
+          <%= calendar(number_of_days: 1, events: @desk.events) do |date, events| %>
             <%= date.day %>
+            <% events.each do |event| %>
+              <div>
+                <%= event.title %>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <div class="time-assets" data-controller="clock" data-clock-end-time-value="2025-02-13T20:47:00">
