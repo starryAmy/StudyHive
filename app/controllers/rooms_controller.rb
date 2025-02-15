@@ -19,6 +19,7 @@ class RoomsController < ApplicationController
   end
   def index
     @rooms = Room.all
+    @desk = current_user.desk
   end
 
   def show
