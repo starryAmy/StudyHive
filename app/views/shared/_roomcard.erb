@@ -1,13 +1,13 @@
-<div class="card col-md-6 index-card">
+<div class="card col-sm-6 col-md-4 index-card">
   <div class="card-body">
     <h5 class="card-title"><%=room.title%></h5>
     <p class="card-text"><%=room.user_id%></p>
     <%if room.public == true && room.locked == false%>
-    <%=link_to "Enter the room", room_path(room)%>
+      <%=link_to "Enter the room", room_path(room)%>
     <%elsif room.public == false && room.locked == false%>
-    <%=button_to "Ask for Permissions", room_spots_path(room)%>
+      <%=button_to "Ask for Permissions", room_spots_path(room)%>
     <%elsif room.locked == true%>
-    <p>Sorry this room is locked.</p>
+      <p>Sorry this room is locked.</p>
     <%end%>
   </div>
 </div>
