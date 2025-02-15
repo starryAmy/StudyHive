@@ -1,13 +1,8 @@
 class DesksController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_desk_and_user, only: [:index, :show]
+
   def index
-    # @desk = current_user.desk
-    if params[:id].nil?
-      @desk = current_user.desk
-    else
-      @desk = Desk.find(params[:id])
-    end
-      @user = User.find(@desk.user_id)
     # get the page params
     @page = params[:page].to_i
     if @page == 0
@@ -25,13 +20,19 @@ class DesksController < ApplicationController
     end
   end
   def show
-    if params[:id].nil?
-      @desk = current_user.desk
-    else
-      @desk = Desk.find(params[:id])
-    end
-      @user = User.find(@desk.user_id)
-    @message = @desk.messages.new
+    @message = Message.new
     # raise
+  end
+
+  private
+
+  def set_desk_and_user
+    if Desk.exists?(id: params[:id])
+      @desk = Desk.find(params[:id])
+      @user = @desk.user
+    else
+      @desk = current_user.desk
+      @user = current_user
+    end
   end
 end
