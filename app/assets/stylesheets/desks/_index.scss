@@ -1,3 +1,6 @@
+body{
+  background-color: $color-third;
+}
 #index-container {
   padding: 0 80px;
 }
@@ -11,9 +14,7 @@
   border: 1px solid #ddd;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-.index-card {
-  position: relative;
-}
+
 
 .blackboard-img {
   width: 100%;

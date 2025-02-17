@@ -9,7 +9,7 @@ class DesksController < ApplicationController
       @page = 1
     end
     # everytime we press the button, there will be ten more new data
-    per_page = 2
+    per_page = 4
     @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
     @all_desks = Desk.all
 
