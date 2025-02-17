@@ -1,0 +1,11 @@
+<div class="container mt-4" id="index-container" data-controller="load-more">
+  <%= image_tag "blackboard1.png", class: "blackboard-img" %>
+  <div class="row d-flex flex-wrap justify-content-center" data-load-more-target="container">
+    <%@desks.each do |desk| %>
+      <%=render "shared/card", desk: desk%>
+    <%end%>
+  </div>
+  <% if @all_desks.count > 4 %>
+    <button id="load-more" data-page="1" class="btn btn-primary" data-action="click->load-more#loadMore" data-page="1" data-load-more-target="button">Load More</button>
+  <% end %>
+</div>

@@ -1,0 +1,61 @@
+// Specific CSS for your home-page
+.home-background{
+  background-image: image-url("homepage.jpg");
+  // background-size: cover;
+  background-attachment: fixed;
+  height: 50vh;
+  width: 100vw;
+  z-index: -2;
+  position: relative;
+}
+.home-words {
+  position: fixed;
+  background-attachment: fixed;
+  left: 800px;
+  top: 100px;
+}
+.home-background2{
+  display: flex;
+  height: 50vh;
+  width: 100vw;
+  position: relative;
+  background: white;
+
+}
+
+.home-background2-1 {
+  flex: 1;
+  background-color: transparent;
+  background-color: $color-third;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+.home-blackboard{
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.home-blackboard-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 80%;
+}
+.home-background2-2 {
+  flex: 1;
+}
+
+.home-background3{
+  background-color: $color-first;
+  height: 50vh;
+  width: 100vw;
+}
