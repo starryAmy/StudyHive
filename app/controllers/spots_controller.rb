@@ -14,9 +14,11 @@ class SpotsController < ApplicationController
       puts @spot.errors.full_messages
     end
   end
+
   def update
     @spot = Spot.find(params[:id])
     @spot.status = params[:status]
     @spot.save
+    redirect_to request.referer
   end
 end

@@ -32,9 +32,8 @@ class RoomsController < ApplicationController
   end
 
   def update
-    @spot = Spot.find(params[:id])
-    @spot.status = params[:status]
-    @spot.save
+    @room = Room.find(params[:id])
+    @room.update(rooms_params)
     redirect_to request.referer
   end
 
