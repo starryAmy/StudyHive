@@ -1,14 +1,28 @@
 // Specific CSS for your home-page
 .home-background{
-  background-image: image-url("homepage.jpg");
+  background-image: image-url("learning.jpg");
   // background-size: cover;
   background-attachment: fixed;
-  height: 50vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
   width: 100vw;
   z-index: -2;
   position: relative;
 }
+.home-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(38, 70, 83, 0.65);
+  z-index: -1;
+}
 .home-words {
+  color: white;
   position: fixed;
   background-attachment: fixed;
   left: 800px;
