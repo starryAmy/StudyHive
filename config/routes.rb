@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :rooms do
     resources :spots
+    resources :chatmessages, only: :create
   end
 
 end

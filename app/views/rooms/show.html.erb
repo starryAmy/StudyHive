@@ -22,14 +22,35 @@
   </div>
 
   <div class="row">
-    <div class="col-8 border">
+    <div class="col-6 border">
       <% @room.spots.each do |spot|  %>
         <p>Desk: <%= spot.user.desk.title %>. Status: <%= spot.status %></p>
       <% end %>
     </div>
-    <div class="ms-auto col-3 border">
-      CHAT
+
+    <div class="col-6 chatbox border">
+      <h1>Chat</h1>
+
+      <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+      <div id="chatmessages">
+        <% @room.chatmessages.each do |chatmessage| %>
+          <%= render "chatmessages/chatmessage", chatmessage: chatmessage %>
+        <% end %>
+      </div>
+
+      <%= simple_form_for [@room, @chatmessage], html: {class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
+        <%=
+          f.input :content,
+          label: false,
+          placeholder: "Message from #{current_user.username}",
+          wrapper_html: {class: "flex-grow-1"}
+        %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <% end %>
+
     </div>
   </div>
+
+
 
 </div>

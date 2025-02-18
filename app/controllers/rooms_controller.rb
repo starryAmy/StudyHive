@@ -17,6 +17,7 @@ class RoomsController < ApplicationController
       render "new", alert: "Failed sending message"
     end
   end
+
   def index
     @rooms = Room.all
     @desk = current_user.desk
@@ -24,7 +25,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-
+    @chatmessage = Chatmessage.new
   end
 
   def edit
