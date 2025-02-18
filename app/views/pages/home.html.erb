@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="home-background">
+  <div class="home-words">
+    <h3>Having difficulty studying alone?</h3>
+    <h3>Want to meet more friends with same learning goals?</h3>
+  </div>
+</div>
+<div class="home-background2">
+  <div class="home-background2-1">
+    <div>
+      <%= image_tag "blackboard1" ,class: "home-blackboard"%>
+      <h3 class="home-blackboard-text">In studyHive, you can have your own desks!</h3>
+    </div>
+  </div>
+  <div class="home-background2-2">
+  </div>
+</div>
+<div class="home-background3">
+  <%= link_to "Welcome to our webiste", desks_path, class:"btn btn-secondary" %>
+</div>

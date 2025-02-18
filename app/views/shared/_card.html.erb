@@ -1,26 +1,3 @@
-<div class="card col-md-6 index-card" data-controller="message">
-  <div class="card-body">
-    <h5 class="card-title"><%=desk.title%></h5>
-    <p class="card-text"><%=desk.points%></p>
-    <button href="#" class="btn btn-primary message-btn" data-action="click->message#toggle" data-desk-id="<%= desk.id %>">Send Message</button>
-      <div class="message-form" data-message-target="form" data-desk-id="<%= desk.id %>" id="message-form-<%= desk.id %>" style="display:none;">
-      <%= simple_form_for Message.new, url: desk_messages_path(desk), method: :post, local: true do |f|%>
-         <div>
-            <%= f.input :date, as: :date, label: "Date" %>
-          </div>
-          <div>
-            <%= f.input :text, as: :text, label: "Messages" %>
-          </div>
-          <%= f.submit "送出", class: "btn btn-primary" %>
-      <%end%>
-    </div>
-          <%= calendar(number_of_days: 1, events: desk.events) do |date, events| %>
-            <%= date.day %>
-            <% events.each do |event| %>
-              <div>
-                <%= event.title %>
-              </div>
-            <% end %>
-          <% end %>
-  </div>
+<div class="index-card col-md-3" data-controller="message" style="background-image: url('<%= asset_path("desk2.png")%>');">
+  <div><%= link_to desk.title, desk_path(desk) %> | <%=desk.points%> points</div>
 </div>

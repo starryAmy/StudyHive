@@ -5,6 +5,7 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv::Rails.load if Rails.env.development? || Rails.env.test?
 
 module StudyHive
   class Application < Rails::Application
