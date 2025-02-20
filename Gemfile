@@ -5,7 +5,7 @@ gem "ostruct"
 # line login
 gem 'omniauth-line'
 gem 'dotenv-rails', groups: [:development, :test]
-
+# ! We have the above gem twice in this gemfile. We need to remove one of them.
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
@@ -58,6 +58,8 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "simple_calendar"
+
+gem 'youtube_rails'
 
 group :development, :test do
   gem "dotenv-rails"
