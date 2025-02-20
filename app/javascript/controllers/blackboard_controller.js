@@ -47,8 +47,7 @@ export default class extends Controller {
   }
 
   drawDeskTitles(ctx, cols, paddingUp, paddingLeft, cellWidth, cellHeight, maxLineWidth, lineHeight){
-    const titles = ["Math", "Science", "History", "Coding", "Music", "English", "Physics", "Art", "Chemistry", "Biology",
-                    "Philosophy and Programming", "Geography", "Literature", "Economics", "Business", "Psychology", "Law", "Astronomy", "Engineering", "Medicine"];
+    const titles = JSON.parse(this.element.dataset.blackboardTitles);
 
     const selectedTitles = titles.sort(() => 0.5 - Math.random()).slice(0, 16);
 

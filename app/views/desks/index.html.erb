@@ -1,5 +1,5 @@
 <div class="container mt-4" id="index-container" data-controller="load-more">
-  <canvas data-controller="blackboard" data-blackboard-target="canvas" class="blackboard-img" data-blackboard-image-url="<%= asset_path('blackboard1.png') %>"></canvas>
+  <canvas data-controller="blackboard" data-blackboard-target="canvas" class="blackboard-img" data-blackboard-image-url="<%= asset_path('blackboard1.png') %>" data-blackboard-titles = "<%= @desk_titles.to_json%>"></canvas>
 
 
   <div class="search-container">
