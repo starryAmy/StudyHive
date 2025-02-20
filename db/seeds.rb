@@ -28,11 +28,11 @@ puts "Creating user5..."
 puts "Clearing desks..."
 Desk.destroy_all
 
-desk1 = Desk.create!(user: user1, title: "Rayz's Desk", points: 100)
-desk2 = Desk.create!(user: user2, title: "Amy's Desk", points: 200)
-desk3 = Desk.create!(user: user3, title: "Ruben's Desk", points: 300)
-desk4 = Desk.create!(user: user4, title: "Sarah's Desk", points: 300)
-desk5 = Desk.create!(user: user5, title: "Alex's Desk", points: 300)
+desk1 = Desk.create!(user: user1, title: "Making Games!!!Rock", points: 100)
+desk2 = Desk.create!(user: user2, title: "Preparing Interview", points: 200)
+desk3 = Desk.create!(user: user3, title: "Dating tips", points: 300)
+desk4 = Desk.create!(user: user4, title: "Programming", points: 300)
+desk5 = Desk.create!(user: user5, title: "Programming", points: 300)
 
 # Create an event
 
