@@ -56,12 +56,12 @@ export default class extends Controller {
     ctx.textAlign = "left";
 
     selectedTitles.forEach((title, index) => {
-      const col = index % cols; // 計算列數
-      const row = Math.floor(index / cols); // 計算行數
+      const col = index % cols; // calculate column number
+      const row = Math.floor(index / cols); // calculate row number
 
       let x = paddingLeft + col * cellWidth + cellWidth / 2; // horizontal center
       let y = paddingUp + row * cellHeight + cellHeight / 2; // vertical center
-      // **處理過長標題，自動換行**
+      // if too many words, wrap the text
       this.wrapText(ctx, title, x, y, maxLineWidth, lineHeight);
     });
   }
