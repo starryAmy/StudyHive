@@ -3,6 +3,12 @@ class DesksController < ApplicationController
   before_action :set_desk_and_user, only: [:show]
 
   def index
+    # get titles for blackboard
+    if Desk.all.count < 16
+      @desk_titles = Desk.order("RANDOM()").pluck(:title)
+    else
+      @desk_titles = Desk.order("RANDOM()").limit(16).pluck(:title)
+    end
     # get the page params
     @page = params[:page].to_i
     if @page == 0
