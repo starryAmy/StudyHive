@@ -10,8 +10,19 @@ class DesksController < ApplicationController
     end
     # everytime we press the button, there will be ten more new data
     per_page = 4
-    @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
-    @all_desks = Desk.all
+    if params[:query].present?
+      case params[:search_type]
+      when "title"
+        @desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").all
+      when "user"
+        @desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+      end
+    else
+      @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
+      @all_desks = Desk.all
+    end
 
     respond_to do |format|
       format.html  # loading in HTML in normal case
