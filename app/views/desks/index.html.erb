@@ -24,13 +24,13 @@
       </div>
     <% else %>
       <%@desks.each do |desk| %>
-      <%=render "shared/card", desk: desk%>
+          <%=render "shared/card", desk: desk%>
       <%end%>
     <%end%>
   </div>
   <% unless @all_desks.nil? %>
     <% if @all_desks.count > 4 %>
-      <button id="load-more" data-page="1" class="btn btn-primary" data-action="click->load-more#loadMore" data-page="1" data-load-more-target="button">Load More</button>
+      <button id="load-more" data-page="1" class="btn btn-primary" data-action="click->load-more#loadMore" data-page="1" data-load-more-target="button"> <%= image_tag "bee.png", class: "index-load"%>Load More</button>
     <% end %>
   <% end %>
 </div>
