@@ -22,17 +22,23 @@ user4 = User.create!(email: "abc@gmail.com", password: "123321", username: "Sara
 puts "Creating user4..."
 user5 = User.create!(email: "cba@gmail.com", password: "123321", username: "Alex")
 puts "Creating user5..."
+user6 = User.create!(email: "qqq@gmail.com", password: "123123", username: "Emily")
+puts "Creating user6..."
+user7 = User.create!(email: "www@gmail.com", password: "222222", username: "Claire")
+puts "Creating user7..."
 
 # Create a desk
 
 puts "Clearing desks..."
 Desk.destroy_all
 
-desk1 = Desk.create!(user: user1, title: "Making Games!!!Rock", points: 100)
-desk2 = Desk.create!(user: user2, title: "Preparing Interview", points: 200)
-desk3 = Desk.create!(user: user3, title: "Dating tips", points: 300)
-desk4 = Desk.create!(user: user4, title: "Programming", points: 300)
-desk5 = Desk.create!(user: user5, title: "Programming", points: 300)
+desk1 = Desk.create!(user: user1, title: "Making Games!!!Rock", points: 100, task: "Finish the game")
+desk2 = Desk.create!(user: user2, title: "Preparing Interview", points: 200, task: "Finish the interview")
+desk3 = Desk.create!(user: user3, title: "Dating tips", points: 300, task: "Finish the date")
+desk4 = Desk.create!(user: user4, title: "Programming", points: 300, task: "Finish the code")
+desk5 = Desk.create!(user: user5, title: "Programming", points: 300, task: "Finish the code")
+desk6 = Desk.create!(user: user6, title: "Tiredddd", points: 500, task: "Preview material")
+desk7 = Desk.create!(user: user7, title: "Damn exam", points: 600, task: "Practice exams")
 
 # Create an event
 

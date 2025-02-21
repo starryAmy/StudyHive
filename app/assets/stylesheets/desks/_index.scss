@@ -5,6 +5,55 @@ body{
   padding: 0 80px;
 }
 
+.index-card{
+  padding-left:20px;
+  .card-title {
+    font-family: "Permanent Marker", cursive;
+    font-size: 25px;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+
+  }
+  .card-username {
+    font-family: "Caveat", cursive;
+    font-size: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: $color-fifth;
+  }
+  .card-tasks {
+    font-family: "Caveat", cursive;
+    font-size: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+    color: $color-fifth;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-15px);
+    // box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+#load-more{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, $color-third, $color-second);
+  border: 3px solid white;
+  border-radius: 25px; /* 讓按鈕有圓潤感 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  .index-load {
+    height: 25%;
+    width: 25%;
+  }
+}
 .message-form {
   position: absolute;
   background: white;
@@ -21,4 +70,5 @@ body{
   height: 100%;
   object-fit: cover;
   margin-bottom: 3rem;
+  font-family: "Fredericka the Great", cursive;
 }

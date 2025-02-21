@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["form"]
+  static targets = ["form", "clickable-card"]
   connect() {
     console.log("MessageController connected!");
   }
@@ -12,5 +12,9 @@ export default class extends Controller {
     if(form){
       form.style.display = form.style.display === "none" ? "block" : "none";
     }
+  }
+
+  toIndividualDesk(){
+    window.location.href = this.element.dataset.url
   }
 }
