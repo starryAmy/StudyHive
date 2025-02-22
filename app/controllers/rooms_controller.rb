@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+
     @chatmessage = Chatmessage.new
     # @youtube_id = 101
     @youtube_id = params[:youtube_id]
