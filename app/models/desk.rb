@@ -4,6 +4,7 @@ class Desk < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   before_create :set_default_image
+  acts_as_favoritable
 
   private
 
