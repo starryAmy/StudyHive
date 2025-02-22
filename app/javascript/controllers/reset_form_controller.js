@@ -10,4 +10,9 @@ export default class extends Controller {
     this.element.reset()
     console.log("hello");
   }
+
+  submit(event) {
+    event.preventDefault()
+    this.element.requestSubmit() // Submits the form programmatically
+  }
 }
