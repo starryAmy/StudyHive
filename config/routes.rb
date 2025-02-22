@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :desks do
     resources :messages, only: [:new, :create]
+    resource :follows, only: [:create, :destroy]
   end
   resources :rooms do
     resources :spots
