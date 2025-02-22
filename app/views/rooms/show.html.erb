@@ -1,12 +1,11 @@
-<div class="container">
-  <div class="d-flex mt-2">
-    <div class="search-container">
-      <input type="text" placeholder="youtube search">
-      <button type="button"><i class="fa fa-search"></i></button>
-    </div>
-    <h1 class="ms-auto"><%= @room.title %></h1>
+
+
+<div class="container" data-controller="user-activity" data-user-activity-url-value="<%= room_spot_path(@room) %>">
+  <div class="d-flex my-2">
+    <h1><%= @room.title %></h1>
+    <h1 class="ms-auto">Owner: <%= @room.user.username %></h1>
   </div>
-  <h1>Owner: <%= @room.user.username %></h1>
+
   <% if current_user == @room.user %>
     <div class="d-flex mb-2">
       <%= link_to "Edit room", edit_room_path(@room), class: "btn btn-primary" %>
@@ -60,4 +59,5 @@
       <% end %>
     </div>
   </div>
+
 </div>
