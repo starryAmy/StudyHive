@@ -3,6 +3,12 @@
     <div class="col text-center">
       <h1><%= @desk.title %></h1>
       <h2><%= @user.username %></h2>
+      <% if current_user.favorited?(@desk) %>
+        <%= button_to "Unfollow", desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } %>
+      <% else %>
+        <%= button_to "Follow", desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } %>
+      <% end %>
+
       <br>
       <br>
       <div class="desk-img">
