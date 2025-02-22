@@ -1,58 +1,20 @@
+<%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
 <div class="container">
-  <div class="d-flex mt-2">
-    <div class="search-container">
-      <input type="text" placeholder="youtube search">
-      <button type="button"><i class="fa fa-search"></i></button>
+  <%# dQw4w9WgXcQ %>
+  <%# QMW4AqbuSG %>
+  <div class="row my-5">
+    <div class="col-7 px-5">
+      <%= render "youtube" %>
     </div>
-    <h1 class="ms-auto"><%= @room.title %></h1>
-  </div>
-  <h1>Owner: <%= @room.user.username %></h1>
-  <% if current_user == @room.user %>
-    <div class="d-flex mb-2">
-      <%= link_to "Edit room", edit_room_path(@room), class: "btn btn-primary" %>
-      <%= button_to "Delete room😱", @room, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger", form_class: "ms-auto" %>
+    <div class="col-5">
+      <%# This is the code for the tabs %>
+      <%= render "tabs" %>
+      <%# Above is the code for the tabs %>
     </div>
-  <% end %>
-  <div class="row">
-    <%# dQw4w9WgXcQ %>
-    <%# QMW4AqbuSG %>
-    <div class="col-6 border">VIDEO HERE
-      <%# <div class="video-player" data-controller="youtube" data-youtube-video-id-value="M7FIvfx5J10g">
-      </div> %>
-      <%# <%= simple_form_for %>
-      <% if current_user == @room.user %>
-        <%= form_with url: room_path(@room), method: :get, local: true, class: "search-form" do %>
-          <%= text_field_tag :youtube_id, params[:youtube_id], placeholder: "Please enter Youtube Id...", class: "search-input" %>
-          <%= submit_tag "Enter", class: "search-button" %>
-        <% end %>
-      <% end %>
-      <iframe width="400" height="200" src="https://www.youtube.com/embed/<%= @youtube_id %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="col-6 border">KANBAN HERE</div>
   </div>
   <div class="row">
-    <div class="col-6 border">
-      <% @room.spots.each do |spot|  %>
-        <p>Desk: <%= spot.user.desk.title %>. Status: <%= spot.status %></p>
-      <% end %>
-    </div>
-    <div class="col-6 chatbox border">
-      <h1>Chat</h1>
-      <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
-      <div id="chatmessages">
-        <% @room.chatmessages.each do |chatmessage| %>
-          <%= render "chatmessages/chatmessage", chatmessage: chatmessage %>
-        <% end %>
-      </div>
-      <%= simple_form_for [@room, @chatmessage], html: {class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
-        <%=
-          f.input :content,
-          label: false,
-          placeholder: "Message from #{current_user.username}",
-          wrapper_html: {class: "flex-grow-1"}
-        %>
-        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-      <% end %>
+    <div class="col-6 chatbox">
+      <%= render "roomchat" %>
     </div>
   </div>
 </div>
