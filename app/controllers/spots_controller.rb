@@ -1,6 +1,5 @@
 class SpotsController < ApplicationController
   def index
-    raise
     @room = Room.find(params[:room_id])
   end
 
@@ -19,7 +18,7 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     @spot.update(spot_params)
-    redirect_to request.referer
+    #redirect_to request.referer
   end
 
   private

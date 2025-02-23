@@ -7,22 +7,20 @@ export default class extends Controller {
   connect() {
     // set spot active true
     console.log("connect user activity");
-    console.log(this.urlValue);
 
-
-    this.updateActivity(true)
+    //this.updateActivity(true)
   }
 
   disconnect() {
     // set spot active false
-    console.log("connect user activity");
-    console.log(this.urlValue);
+    console.log("disconnect user activity");
 
     this.updateActivity(false)
   }
 
   updateActivity(activity) {
     const csrfToken = document.head.querySelector("[name~=csrf-token]").content;
+    console.log("Sending PATCH request to:", this.urlValue);
     fetch(this.urlValue, {
       headers: {
         "X-CSRF-Token": csrfToken, // 👈👈👈 Set the token

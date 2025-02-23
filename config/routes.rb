@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     resource :follows, only: [:create, :destroy]
   end
   resources :rooms do
-    resources :spots
+
     resources :chatmessages, only: :create
   end
+
+  resources :spots
 
 end
