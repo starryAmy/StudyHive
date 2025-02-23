@@ -29,7 +29,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_22_063442) do
     t.bigint "user_id", null: false
     t.string "title"
     t.integer "points"
-    t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"

@@ -27,8 +27,18 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
 
     @chatmessage = Chatmessage.new
-    # @youtube_id = 101
-    @youtube_id = params[:youtube_id]
+
+    if params[:youtube_id].present?
+      url = params[:youtube_id]
+      video_id = url[/[?&]v=([a-zA-Z0-9_-]+)/, 1]
+      time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]
+      @youtube_id = time_stamp ? params[:youtube_id][/[?&]v=([a-zA-Z0-9_-]+)/, 1] : video_id
+    else
+      @youtube_id = "ErPNkvLCDSQ?start=20"
+    end
+    # raise
+
+    # ErPNkvLCDSQ&t=20s
     puts params.inspect
   end
 
