@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_18_115331) do
+
+ActiveRecord::Schema[7.1].define(version: 2025_02_22_063442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +45,24 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_18_115331) do
     t.index ["desk_id"], name: "index_events_on_desk_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.string "favoritable_type", null: false
+    t.bigint "favoritable_id", null: false
+    t.string "favoritor_type", null: false
+    t.bigint "favoritor_id", null: false
+    t.string "scope", default: "favorite", null: false
+    t.boolean "blocked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked"], name: "index_favorites_on_blocked"
+    t.index ["favoritable_id", "favoritable_type"], name: "fk_favoritables"
+    t.index ["favoritable_type", "favoritable_id", "favoritor_type", "favoritor_id", "scope"], name: "uniq_favorites__and_favoritables", unique: true
+    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable"
+    t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
+    t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor"
+    t.index ["scope"], name: "index_favorites_on_scope"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.datetime "date"
     t.string "text"
@@ -53,17 +72,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_18_115331) do
     t.datetime "updated_at", null: false
     t.index ["desk_id"], name: "index_messages_on_desk_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "notepads", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "parent_id"
-    t.bigint "desk_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["desk_id"], name: "index_notepads_on_desk_id"
-    t.index ["parent_id"], name: "index_notepads_on_parent_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -91,6 +99,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_18_115331) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "status", default: 0
+    t.boolean "active", default: false
     t.index ["room_id"], name: "index_spots_on_room_id"
     t.index ["user_id"], name: "index_spots_on_user_id"
   end
@@ -116,7 +125,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_18_115331) do
   add_foreign_key "events", "desks"
   add_foreign_key "messages", "desks"
   add_foreign_key "messages", "users"
-  add_foreign_key "notepads", "desks"
   add_foreign_key "rooms", "users"
   add_foreign_key "spots", "rooms"
   add_foreign_key "spots", "users"

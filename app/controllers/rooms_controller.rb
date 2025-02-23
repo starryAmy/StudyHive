@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+
     @chatmessage = Chatmessage.new
 
     if params[:youtube_id].present?
