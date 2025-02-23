@@ -1,4 +1,5 @@
 <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+
 <div class="container">
   <%# dQw4w9WgXcQ %>
   <%# QMW4AqbuSG %>
@@ -18,4 +19,21 @@
     </div>
   </div>
 
+  <% if @spot_current_user.present? %>
+    <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>">
+
+      <!--
+      <%= @spot_current_user.user.username %>
+      <%= @spot_current_user.active %>
+      -->
+    </div>
+  <% end %>
+  <div class="row">
+    <% @spots_accepted.each do |spot| %>
+      <div class="col-3">
+        <p><%= spot.user.username %></p>
+        <p><%= spot.user.desk.image %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

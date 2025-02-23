@@ -25,8 +25,11 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-
     @chatmessage = Chatmessage.new
+
+    @spot_current_user = Spot.find_by(user: current_user, room: @room)
+    @spot_current_user.update(active: true) if @spot_current_user.present?
+    @spots_accepted = Spot.where(status: :accepted, room: @room)
 
     if params[:youtube_id].present?
       url = params[:youtube_id]
