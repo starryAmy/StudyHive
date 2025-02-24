@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :spots
-  resources :votes, only: [:create, :destroy]
+  resources :votes, only: [:create] do
+    delete "/", to: "votes#destroy", on: :collection
+  end
 
 end

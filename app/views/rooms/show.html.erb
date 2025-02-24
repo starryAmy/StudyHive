@@ -1,23 +1,24 @@
 <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
 
 <div class="container">
-  <%# dQw4w9WgXcQ %>
-  <%# QMW4AqbuSG %>
-  <div class="row my-5">
-    <div class="col-7 px-5">
-      <%= render "youtube" %>
-    </div>
-    <div class="col-5">
-      <%# This is the code for the tabs %>
-      <%= render "tabs" %>
-      <%# Above is the code for the tabs %>
-    </div>
-  </div>
   <div class="row">
-    <div class="col-6 chatbox">
+    <!-- Left side: 7-column flexbox -->
+    <div class="col-7 d-flex flex-column">
+      <div class="room-show-index mb-3">
+        <%= render "youtube" %>
+      </div>
+      <div class="tabs">
+        <%= render "tabs" %>
+      </div>
+    </div>
+
+    <!-- Right side: 5-column -->
+    <div class="col-5 room-show-chat">
       <%= render "roomchat" %>
     </div>
   </div>
+</div>
+
 
   <% if @spot_current_user.present? %>
     <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>">
