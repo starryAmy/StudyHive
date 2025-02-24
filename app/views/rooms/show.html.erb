@@ -1,0 +1,21 @@
+<%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+<div class="container">
+  <%# dQw4w9WgXcQ %>
+  <%# QMW4AqbuSG %>
+  <div class="row my-5">
+    <div class="col-7 px-5">
+      <%= render "youtube" %>
+    </div>
+    <div class="col-5">
+      <%# This is the code for the tabs %>
+      <%= render "tabs" %>
+      <%# Above is the code for the tabs %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 chatbox">
+      <%= render "roomchat" %>
+    </div>
+  </div>
+
+</div>
