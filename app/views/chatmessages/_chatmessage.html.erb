@@ -1,0 +1,12 @@
+<div id="message-<%= chatmessage.id %>">
+  <small>
+    <strong><%= chatmessage.user.username %></strong>
+    <i><%= chatmessage.created_at.in_time_zone("Asia/Tokyo").strftime("%a %b %e at %H:%M") %></i>
+    <%= link_to votes_path(chatmessage_id: chatmessage.id), data: {controller: "vote", action: "click->vote#toggle"}, method: :post do %>
+      <% liked = user_signed_in? && current_user.voted_for?(chatmessage) %>
+      <i class="<%= liked ? 'fas' : 'far' %> fa-heart"
+         style="<%= liked ? 'color: red;' : '' %>" data-vote-target= "heart"></i>
+    <% end %>
+  </small>
+  <p><%= chatmessage.content %></p>
+</div>

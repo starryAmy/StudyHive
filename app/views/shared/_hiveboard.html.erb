@@ -1,0 +1,14 @@
+<% if @chatmessages_most_liked %>
+  <% @chatmessages_most_liked.each do |chatmessage| %>
+  <div id="message-<%= chatmessage.id %>">
+    <small>
+      <strong><%= chatmessage.user.username %></strong>
+      <i><%= chatmessage.created_at.in_time_zone("Asia/Tokyo").strftime("%a %b %e at %H:%M") %></i>
+      <%= chatmessage.get_likes.size%> <i class="fas fa-heart" style="color: red"></i>
+    </small>
+    <p><%= chatmessage.content %></p>
+  </div>
+  <% end %>
+<% else %>
+  <h2> No popular comments for now </h2>
+<% end %>

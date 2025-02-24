@@ -1,0 +1,14 @@
+<div class="index-card col-md-3" data-controller="message" style="background-image: url('<%= asset_path("desk2.png")%>');" data-message-target="clickable-card" data-action="click->message#toIndividualDesk" data-url="<%= desk_path(desk) %>">
+  <div class="card-title"><%= desk.title %></div>
+  <div class="card-username"><%= "@#{desk.user.username}" %> | <%=desk.points%> points </div>
+
+  <div class="card-tasks">📚<%= desk.task %></div>
+  <% if current_user %>
+    <% if current_user.favorited?(desk) %>
+      <i class="fas fa-heart"></i>
+    <% else %>
+      <i class="far fa-heart"></i>
+    <% end %>
+  <% end %>
+
+</div>
