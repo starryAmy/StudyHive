@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-background sticky-top">
   <div class="container">
-    <%=link_to "StudyHive", desks_path, class: "navbar-brand nav-link navbar-text-main"%>
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center justify-content-center" do %>
+      <%= image_tag "navbarlogo.png", class: "navbar-logo"%>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

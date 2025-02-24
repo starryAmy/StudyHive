@@ -1,6 +1,10 @@
 @import "config/colors";
 @import "config/fonts";
 
+.navbar {
+  margin: 0;
+  padding: 0;
+}
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -38,4 +42,12 @@
 .navbar-word-welcome{
   color:white;
   text-align: center;
+}
+
+.navbar-logo {
+  width: 150px;
+  height: auto;
+  margin-top: -20px;
+  // move logo to the left
+  margin-left: -60px;
 }

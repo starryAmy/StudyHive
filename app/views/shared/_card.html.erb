@@ -3,10 +3,12 @@
   <div class="card-username"><%= "@#{desk.user.username}" %> | <%=desk.points%> points </div>
 
   <div class="card-tasks">📚<%= desk.task %></div>
-  <% if current_user.favorited?(desk) %>
-    <i class="fas fa-heart"></i>
-  <% else %>
-    <i class="far fa-heart"></i>
+  <% if current_user %>
+    <% if current_user.favorited?(desk) %>
+      <i class="fas fa-heart"></i>
+    <% else %>
+      <i class="far fa-heart"></i>
+    <% end %>
   <% end %>
 
 </div>
