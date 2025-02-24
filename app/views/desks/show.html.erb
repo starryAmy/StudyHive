@@ -11,21 +11,11 @@
       <br>
       <br>
       <div class="desk-img">
-        <div class="calendar">
-          <%= calendar(number_of_days: 1, events: @desk.events) do |date, events| %>
-            <%= date.day %>
-            <% events.each do |event| %>
-              <div>
-                <%= event.title %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
         <div class="messages-main">
           <div class="messages-div" data-controller="toggle-messages">
             <!-- Messages -->
             <div class="messages-btn" data-action="click->toggle-messages#showHideMessages">
-              <h2 class="messages-title">Messages</h2>
+              <h3 class="messages-title">All Messages</h3>
             </div>
             <div data-toggle-messages-target="messages">
               <% @desk.messages.each do |message| %>
@@ -59,8 +49,10 @@
         <div class="sticky-notes" data-controller="sticky-notes">
           <% @desk.messages.last(6).each do |message| %>
             <div class="sticky-note">
-              <p><%= message.text %></p>
-              <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
+              <p id="sticky-time"><%= message.created_at.strftime("%m/%d %H:%M") %></p>
+              <p class="text-break" data-sticky-note-target="message-content"><%= message.text %></p>
+              <p class="align-self-end"><em>
+                  - <%= message.user.username %></em></p>
             </div>
           <% end %>
         </div>
