@@ -21,27 +21,17 @@
             <% end %>
           <% end %>
         </div>
-        <div class="time-assets" data-controller="clock" data-clock-end-time-value="2025-02-13T20:47:00">
-          <div class="timer border border-4 border-dark rounded bg-light display-inline">
-            <h2>
-              <i class="fa-solid fa-hourglass-end"></i> <span data-clock-target="countdown"></span>
-            </h2>
-          </div>
-          <div class="clock">
-            <h2><i class="fa-solid fa-clock"></i> <span data-clock-target="time">00:00:00</span>
-            </h2>
-          </div>
-        </div>
         <div class="messages-main">
           <div class="messages-div" data-controller="toggle-messages">
             <!-- Messages -->
             <div class="messages-btn" data-action="click->toggle-messages#showHideMessages">
-              <h2>Messages</h2>
+              <h2 class="messages-title">Messages</h2>
             </div>
             <div data-toggle-messages-target="messages">
               <% @desk.messages.each do |message| %>
                 <div class="message">
-                  <span><strong><%= message.user.username %></strong></span>: <span><%= message.text %></span>
+                  <span><strong>
+                      <%= link_to message.user.username, desk_path(message.user.desk) %></strong></span>: <span><%= message.text %></span>
                   <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
                 </div>
               <% end %>
@@ -49,7 +39,7 @@
           </div>
           <div data-controller="toggle-form" class="clickable-div">
             <!-- Clickable Div to Show Form -->
-            <div class="p-3 border clickable-div-btn" data-action="click->toggle-form#showHideForm">
+            <div class="p-3 clickable-div-btn" data-action="click->toggle-form#showHideForm">
               Click to Send a Message
             </div>
             <!-- Hidden Form -->
@@ -61,10 +51,18 @@
               turbo_frame: "messages"
               } do |f| %>
                 <%= f.input :text, as: :text, input_html: { maxlength: 400, data: { toggle_form_target: "textarea" } } %>
-                <%= f.submit "Send Message", class: "btn btn-primary" %>
+                <%= f.submit "Send Message", class: "btn btn-primary rounded" %>
               <% end %>
             </div>
           </div>
+        </div>
+        <div class="sticky-notes" data-controller="sticky-notes">
+          <% @desk.messages.last(6).each do |message| %>
+            <div class="sticky-note">
+              <p><%= message.text %></p>
+              <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
