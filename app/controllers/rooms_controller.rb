@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @chatmessage = Chatmessage.new
-    max_likes = Chatmessage.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
+    max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
     @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
 
 
