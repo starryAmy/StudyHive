@@ -8,7 +8,6 @@
       <% else %>
         <%= button_to "Follow", desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } %>
       <% end %>
-
       <br>
       <br>
       <div class="desk-img">
@@ -54,7 +53,7 @@
               Click to Send a Message
             </div>
             <!-- Hidden Form -->
-            <div class="form-container d-none" data-toggle-form-target="form">
+            <div class="form-container d-none p-3" data-toggle-form-target="form">
               <%= simple_form_for [@desk, @message],
             method: :post,
             data: {
