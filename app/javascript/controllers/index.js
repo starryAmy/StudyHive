@@ -10,3 +10,4 @@ application.register("load-more", LoadMoreController);
 application.register("message", MessageController);
 application.register("blackboard", BlackboardController);
 application.register("follow", FollowController);
+application.register("vote", VoteController);

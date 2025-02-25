@@ -26,6 +26,9 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @chatmessage = Chatmessage.new
+    max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
+    @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
+
 
     @spot_current_user = Spot.find_by(user: current_user, room: @room)
     @spot_current_user.update(active: true) if @spot_current_user.present?
