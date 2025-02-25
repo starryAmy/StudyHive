@@ -1,40 +1,42 @@
 <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+<% if @spot_current_user.present? %>
+  <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>"></div>
+<% end %>
 
 <div class="container">
+  <div class="d-flex my-3 align-items-center">
+    <h1><%= @room.title %></h1>
+    <% if current_user != @room.user %>
+      <% unless @spot_current_user %>
+        <%= button_to "Join room!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "btn btn-primary ms-3" %>
+      <% else @spot_current_user %>
+        <%= button_to "Leave room!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "btn btn-danger ms-3", data: { confirm: "Are you sure you want to leave this room?" } %>
+      <% end %>
+    <% end %>
+
+
+  </div>
   <div class="row">
     <!-- Left side: 7-column flexbox -->
     <div class="col-7 d-flex flex-column">
       <div class="room-show-index mb-3">
         <%= render "youtube" %>
       </div>
+      <h1>Members desks</h1>
+      <div class="row">
+        <% @spots_accepted.each do |spot| %>
+          <%= render "shared/card", desk: spot.user.desk if spot.active %>
+        <% end %>
+      </div>
+
       <div class="tabs">
         <%= render "tabs" %>
       </div>
     </div>
 
     <!-- Right side: 5-column -->
-    <div class="col-5 room-show-chat">
-      <%= render "roomchat" %>
-    </div>
-  </div>
-</div>
-
-
-  <% if @spot_current_user.present? %>
-    <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>">
-
-      <!--
-      <%= @spot_current_user.user.username %>
-      <%= @spot_current_user.active %>
-      -->
-    </div>
-  <% end %>
-  <div class="row">
-    <% @spots_accepted.each do |spot| %>
-      <div class="col-3">
-        <p><%= spot.user.username %></p>
-        <p><%= spot.user.desk.image %></p>
+      <div class="col-5 room-show-chat">
+        <%= render "roomchat" %>
       </div>
-    <% end %>
   </div>
 </div>
