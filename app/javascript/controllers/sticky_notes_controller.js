@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="sticky-notes"
 export default class extends Controller {
   connect() {
-    console.log("Hello, Stimulus!", this.element);
+    console.log("Sticky notes controller connected");
     this.randomStickyNotes();
   }
 
@@ -27,7 +27,6 @@ export default class extends Controller {
       const messageContent = note.querySelector(
         "[data-sticky-note-target='message-content']"
       );
-      console.log(messageContent?.textContent);
 
       if (messageContent) {
         let text = messageContent.textContent.trim();
