@@ -55,16 +55,19 @@ event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2025, 2, 11, 11
 
 puts "Clearing rooms..."
 Room.destroy_all
+puts "Clearing spots..."
+Spot.destroy_all
 
 room1 = Room.create!(title: "Meeting", user: user1, public: true, locked: false)
 room2 = Room.create!(title: "Movie", user: user2, public: true, locked: false)
 room3 = Room.create!(title: "Algorithm", user: user3, public: true, locked: false)
 room4 = Room.create!(title: "Boxing", user: user2, public: true, locked: false)
+room5 = Room.create!(title: "Boxing2", user: user1, public: false, locked: false)
+room6 = Room.create!(title: "Boxing3", user: user2, public: false, locked: false)
 
-puts "Clearing spots..."
-Spot.destroy_all
 
-spot1 = Spot.create!(status: "pending", room: room1, user: user2)
+
+spot1 = Spot.create!(status: :accepted, room: room1, user: user2)
 spot2 = Spot.create!(status: "pending", room: room2, user: user3)
 spot3 = Spot.create!(status: "pending", room: room3, user: user1)
 spot4 = Spot.create!(status: "pending", room: room4, user: user1)
