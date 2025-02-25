@@ -1,15 +1,13 @@
 <% liked ||= false %>
-<div id="message-<%= chatmessage.id %>">
+<div id="message-<%= chatmessage.id %>" data-controller = "vote">
   <small>
     <strong><%= chatmessage.user.username %></strong>
     <i><%= chatmessage.created_at.in_time_zone("Asia/Tokyo").strftime("%a %b %e at %H:%M") %></i>
-  </small>
-  <div class="like-container" data-controller = "vote">
-    <%= link_to votes_path(chatmessage_id: chatmessage.id), method: :post,
+      <%= link_to votes_path(chatmessage_id: chatmessage.id), method: :post,
       data: { action: "click->vote#toggle"}, class: "like-button" do %>
       <i class="fa-heart <%= liked ? 'fas' : 'far' %>" data-vote-target="heart" data-liked = "<%= liked %>" data-chatmessageid = "<%= chatmessage.id %>"></i>
-    <% end %>
-    <span data-vote-target="count"><%= chatmessage.get_likes.size %></span>
-  </div>
+      <% end %>
+      <span data-vote-target="count"><%= chatmessage.get_likes.size %></span>
+  </small>
   <p><%= chatmessage.content %></p>
 </div>
