@@ -1,12 +1,18 @@
-body{
+body {
   background-color: $color-third;
 }
+
+a {
+  text-decoration: none;
+}
+
 #index-container {
   padding: 0 80px;
 }
 
-.index-card{
-  padding-left:20px;
+.index-card {
+  padding-left: 20px;
+  padding-top: 50px;
   .card-title {
     font-family: "Permanent Marker", cursive;
     font-size: 25px;
@@ -14,7 +20,6 @@ body{
     margin-top: 0px;
     padding-bottom: 0px;
     margin-bottom: 0px;
-
   }
   .card-username {
     font-family: "Caveat", cursive;
@@ -40,7 +45,7 @@ body{
   }
 }
 
-#load-more{
+#load-more {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -63,7 +68,6 @@ body{
   border: 1px solid #ddd;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .blackboard-img {
   width: 100%;

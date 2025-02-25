@@ -81,11 +81,20 @@
   cursor: pointer;
 }
 
+[data-toggle-messages-target="messages"] {
+  max-height: 300px;
+  overflow-y: auto; /* Enables vertical scrolling when content overflows */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  border-top: 1px solid rgb(104, 58, 58);
+  border-bottom: 1px solid rgb(104, 58, 58);
+}
+
 .message {
   background-color: wheat;
   border: 1px solid rgb(104, 58, 58);
   border-radius: 10px;
   margin: 10px 0;
+  padding: 10px;
 }
 
 .clickable-div {
