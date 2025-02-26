@@ -10,6 +10,6 @@ class Chatmessage < ApplicationRecord
   def broadcast_chatmessage
     broadcast_append_to "room_#{room.id}_chatmessages",
                         partial: "chatmessages/chatmessage",
-                        locals: { chatmessage: self }
+                        locals: { chatmessage: self, liked: false }
   end
 end
