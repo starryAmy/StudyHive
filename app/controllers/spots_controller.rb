@@ -4,12 +4,12 @@ class SpotsController < ApplicationController
   end
 
   def create
+
     puts params.inspect
-    @room = Room.find(params[:room_id])
-    @spot = Spot.new(user_id: current_user.id, room_id: @room.id, status: "pending")
+    @spot = Spot.new(spot_params)
     if @spot.save
       puts "send the permission!"
-      redirect_to rooms_path, notice: "sent the permission!"
+      redirect_to(params[:redirect] || rooms_path, notice: "Sent the permission!")
     else
       puts @spot.errors.full_messages
     end
@@ -18,12 +18,26 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     @spot.update(spot_params)
-    #redirect_to request.referer
+
+    #redirect_to @spot.room_path
   end
+
+  def destroy
+    #raise
+    @spot = Spot.find(params[:id])
+    if @spot.destroy
+      flash[:success] = 'Object was successfully deleted.'
+      redirect_to(params[:redirect])
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to(params[:redirect])
+    end
+  end
+
 
   private
 
   def spot_params
-    params.require(:spot).permit(:status, :active)
+    params.require(:spot).permit(:status, :active, :room_id, :user_id)
   end
 end

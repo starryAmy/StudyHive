@@ -4,5 +4,10 @@
     <%@rooms.each do |room| %>
       <%=render "shared/roomcard", room: room%>
     <%end%>
+    <div class="image-container">
+      <%= image_tag "hex room A.png", class: "image default" %>
+      <%# <%= image_tag "hex room B.gif", class: "image animated" %>
+      <%# <%= image_tag "hex room B.png", class: "image last-frame" %>
+    </div>
   </div>
 </div>
