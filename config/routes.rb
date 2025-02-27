@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :rooms do
 
     resources :chatmessages, only: :create
+    resources :polls, only: [:create, :edit, :update] do
+      resources :ballots, only: :create
+    end
   end
 
   resources :spots

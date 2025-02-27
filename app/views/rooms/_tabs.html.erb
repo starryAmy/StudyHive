@@ -36,6 +36,17 @@
       <%= render "shared/kanban" %>
     </div>
     <div class="tab-pane fade" id="hiveboard">
+      <div class="tab-poll" data-controller="poll">
+        <button data-action="click->poll#toggle">Create a Poll</button>
+        <div data-poll-target="pollform" class="d-none">
+          <%= render "rooms/new_poll" %>
+        </div>
+        <% if @all_polls.present? %>
+          <% @all_polls.each do |poll| %>
+            <%= render "rooms/poll", poll: poll %>
+          <% end %>
+        <% end %>
+      </div>
       <%= render "shared/hiveboard" %>
     </div>
     <div class="tab-pane fade" id="settings">

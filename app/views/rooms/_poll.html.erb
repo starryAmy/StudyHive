@@ -1,0 +1,18 @@
+<div id="poll_<%= poll.id %>">
+  <h3><%= poll.question %></h3>
+  <h4>Deadline: <%= poll.deadline %></h4>
+  <% if poll.user_voted?(current_user) %>
+    <p data-ballot-target="message">You have already voted</p>
+  <% else %>
+    <%= form_with model: Ballot.new, url: room_poll_ballots_path(@room, poll), method: :post, data: { turbo: "true" } do |f| %>
+    <% poll.poll_options.each do |option| %>
+      <div>
+        <%= check_box_tag "ballot[poll_option_ids][]", option.id, id: "option_#{option.id}" %>
+        <%= label_tag "option_#{option.id}", option.option_text %>
+      </div>
+    <% end %>
+
+    <%= f.submit "Submit", class: "btn btn-primary"%>
+    <% end %>
+  <% end %>
+</div>
