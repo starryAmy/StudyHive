@@ -1,11 +1,21 @@
 /* 🟡 控制 .index-card 佔據 50% (兩張一排) */
 .index-card {
-  width: 25%; /* 每張卡片佔據一半寬度 */
-  height: 300px;
-  overflow: hidden;
+  width: 350px; /* 每張卡片佔據一半寬度 */
+  height: 350px;
+  overflow: visible;
+  background-color: transparent;
   background-size: 90% auto;
   background-position: center;
   background-repeat: no-repeat;
+  border: none;
   display: flex;
   flex-direction: column;
+}
+
+.room-animation-card {
+  background-image: url("hex room A alpha.png");
+}
+
+.room-animation-card:hover {
+  background-image: url("hex room B alpha.gif");
 }

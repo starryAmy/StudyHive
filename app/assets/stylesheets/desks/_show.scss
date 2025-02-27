@@ -121,38 +121,16 @@
   // overflow: hidden; /* Prevent notes from overflowing */
 }
 
-// .sticky-note {
-//   background-color: rgba(255, 255, 0, 0.335);
-//   border: 1px solid black;
-//   margin: 10px 0;
-// }
-
-// .sticky-notes {
-//   position: absolute; /* Keep this as it is */
-//   top: 200px;
-//   left: 100px;
-//   width: 46%;
-//   height: 400px; /* Set a height so child elements fit inside */
-//   background-color: pink;
-//   overflow: hidden; /* Prevent notes from overflowing */
-// }
-
 .sticky-note {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // align-items: flex-start;
-  background-color: yellow;
   border: 1px solid black;
   padding: 10px;
   width: 120px;
   height: 160px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   // transition: transform 0.2s ease-in-out;
-}
-
-.sticky-note:hover {
-  transform: scale(1.05);
 }
 
 #sticky-time {

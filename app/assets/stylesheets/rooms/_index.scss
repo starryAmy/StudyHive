@@ -4,21 +4,5 @@
 }
 
 .image-container img:hover {
-  content: url("hex room B3.gif");
+  content: url("hex room B alpha.gif");
 }
-
-// .image-container {
-//   background-image: url("hex room B.gif");
-
-//   animation: playGif 1s linear 1; /* "1" here means play once */
-// }
-
-// @keyframes playGif {
-//   from {
-//     background-position: 0 0;
-//   }
-
-//   to {
-//     background-position: -100px 0;
-//   } /* Adjust based on your GIF dimensions */
-// }

@@ -48,6 +48,16 @@ export default class extends Controller {
       note.style.backgroundColor =
         colors[Math.floor(Math.random() * colors.length)];
 
+      note.addEventListener("mouseenter", () => {
+        note.style.transition = "transform 0.2s ease-in-out"; // Ensure transition only applies to scale
+        note.style.transform = `scale(1.2) rotate(${randomRotation}deg)`;
+      });
+
+      note.addEventListener("mouseleave", () => {
+        note.style.transition = "transform 0.2s ease-in-out"; // Keep transition only for scale
+        note.style.transform = `scale(1) rotate(${randomRotation}deg)`; // Reset scale smoothly, keep rotation unchanged
+      });
+
       currentX += note.clientWidth; // Move next note to the right
     });
   }

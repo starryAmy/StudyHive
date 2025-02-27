@@ -1,7 +1,8 @@
-<div class="card col-sm-6 col-md-4 index-card">
+<div class="card col-sm-6 col-md-4 index-card room-animation-card">
   <div class="card-body">
     <h5 class="card-title"><%=room.title%></h5>
-    <p class="card-text"><%=room.user_id%></p>
+    <p class="card-text"><strong><%=room.user.username%></strong></p>
+    <p class="card-text"><strong><%=room.spots.length%></strong></p>
     <% if (room.public == true && room.locked == false) || room.user == current_user %>
       <%= link_to "Enter the room", room_path(room) %>
     <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :pending) %>
@@ -14,4 +15,6 @@
       <p>Sorry this room is locked.</p>
     <%end%>
   </div>
+  <%# <div class="image-container card-img-bottom">
+    <%= image_tag "hex room A alpha.png", class: "image default" %>
 </div>
