@@ -12,18 +12,24 @@ export default class extends Controller {
   }
   open() {
     this.inputTarget.classList.toggle("d-none");
+    this.inputTarget.classList.toggle("show");
     console.log("Open Giphy Controller!");
   }
 
   search() {
     const query = this.inputTarget.value;
     console.log("Searching for", query);
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      this.resultsTarget.classList.toggle("show");
+      this.resultsTarget.innerHTML = "";
+      return;
+    }
 
     fetch(`${this.endpoint}?api_key=${this.apiKey}&q=${query}&limit=10`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        this.resultsTarget.classList.toggle("show");
         this.resultsTarget.innerHTML = data.data
           .map(gif => `
             <img src="${gif.images.fixed_height.url}"

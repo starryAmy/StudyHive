@@ -1,6 +1,6 @@
 
 <% liked ||= false %>
-<div id="message-<%= chatmessage.id %>" data-controller = "vote">
+<div id="message-<%= chatmessage.id %>" data-controller = "vote" class="room-show-chatmsg">
   <small>
     <strong><%= chatmessage.user.username %></strong>
     <i><%= chatmessage.created_at.in_time_zone("Asia/Tokyo").strftime("%a %b %e at %H:%M") %></i>
@@ -15,3 +15,4 @@
   <% else %>
     <p><%= chatmessage.content %></p>
   <% end %>
+</div>

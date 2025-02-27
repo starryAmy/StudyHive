@@ -4,16 +4,27 @@
 <% end %>
 
 <div class="container">
-  <div class="d-flex my-3 align-items-center">
-    <h1><%= @room.title %></h1>
-    <% if current_user != @room.user %>
-      <% unless @spot_current_user %>
-        <%= button_to "Join room!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "btn btn-primary ms-3" %>
-      <% else @spot_current_user %>
-        <%= button_to "Leave room!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "btn btn-danger ms-3", data: { confirm: "Are you sure you want to leave this room?" } %>
-      <% end %>
-    <% end %>
-
+  <div class="d-flex my-3 flex-column">
+    <div class="d-flex flex-row align-items-center">
+      <h1>🐝 <%= @room.title %></h1>
+      <div class="room-show-status"><%= @room.public ? "Public・" : "Private・" %><%= @room.spots.size %> members</div>
+        <% if current_user != @room.user %>
+        <% unless @spot_current_user %>
+          <%= button_to "Subscribe this Hive!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "room-show-btn" %>
+        <% else @spot_current_user %>
+          <%= button_to "Unsubsribe this Hive!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "room-show-btn", data: { confirm: "Are you sure you want to leave this room?" } %>
+        <% end %>
+        <% end %>
+    </div>
+    <div class="room-show-user-description">
+      <div class="room-show-user d-flex flex-row">
+        <p class="mr-5">Owned by: <%=link_to @room.user.username, desk_path(@room.user) %></p>
+        <p class="honey-icon">🍯</p>
+      </div>
+      <div class="mt-0 pt-o">
+        <p style="color: grey"><%= @room.description %></p>
+      </div>
+    </div>
 
   </div>
   <div class="row">
@@ -21,12 +32,6 @@
     <div class="col-7 d-flex flex-column">
       <div class="room-show-index mb-3">
         <%= render "youtube" %>
-      </div>
-      <h1>Members desks</h1>
-      <div class="row">
-        <% @spots_accepted.each do |spot| %>
-          <%= render "shared/card", desk: spot.user.desk if spot.active %>
-        <% end %>
       </div>
 
       <div class="tabs">
@@ -39,4 +44,10 @@
         <%= render "roomchat" %>
       </div>
   </div>
+  <h1>Members desks</h1>
+      <div class="row">
+        <% @spots_accepted.each do |spot| %>
+          <%= render "shared/card", desk: spot.user.desk if spot.active %>
+        <% end %>
+      </div>
 </div>

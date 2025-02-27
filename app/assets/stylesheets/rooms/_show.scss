@@ -1,68 +1,224 @@
+::-webkit-scrollbar-track {
+  background: #f3b700;
+}
+::-webkit-scrollbar-thumb {
+  background: #f3b700;
+}
+
 .room-show-index {
-  width: 800px;
+  width: 600px;
 }
-
-.ratio {
-  width: 800px;
-  margin-bottom: 40px;
-}
-.tabs {
-  width: 800px;
-}
-
-.room-show-chat {
-  height: 70vh;
-  background-color: hsl(43, 74%, 90%);
-  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1), 4px 0 8px rgba(0, 0, 0, 0.1);
-
-  overflow-y: scroll;
-}
-
-.room-show-chat-input {
-  background-color: lightyellow;
-  height: 60px;
-}
-
-.chat-input-container {
-  // background-color: hsl(43, 74%, 90%); /* 與圖片背景一致 */
-  border-radius: 12px; /* 圓角 */
+.room-show-status {
+  background-color: #fae6a9;
+  border: none;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* 柔和的陰影 */
-  height: 60px;
-}
-
-.chat-input-wrapper {
-  border: 3px solid black;
-  height: 50px;
-}
-
-.chat-input {
-  border: none;
-  background: yellow;
-  height: 100%;
-  width: 100%;
-  font-size: 16px;
-  color: lightgray; /* 灰色文字 */
-  outline: none;
-  align-items: center;
   justify-content: center;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-
+  transition: background 0.3s;
+  height: 30px;
+  border-radius: 12px;
+  margin-left: 10px;
+  font-weight: bold;
 }
-
-.chat-send-btn {
-  background-color: #f7c948; /* 按鈕黃色 */
+.room-show-btn {
+  background-color: #f3b700;
   border: none;
-  border-radius: 8px;
   padding: 10px 14px;
-  margin-left: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s;
+  height: 30px;
+  border-radius: 12px;
+  margin-left: 10px;
+}
+
+.room-show-user-description {
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid #f3b700;
+  padding-left: 10px;
+  padding-top: 10px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  .room-show-user {
+    height: 25px;
+    p {
+      margin-right: 5px;
+      text-align: center;
+    }
+    .honey-icon {
+      size: 30px;
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+
+    }
+  }
+}
+.ratio {
+  width: 700px;
+  margin-bottom: 40px;
+}
+.tabs {
+  width: 800px;
+}
+.room-show-chat-title {
+  background-color: #f7c948;
+  height: 50px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  padding-left: 20px;
+  text-align: center;
+  .room-show-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    font-size: 20px;
+    font-weight: bold;
+    i {
+      margin-right: 10px;
+    }
+  }
+}
+.room-show-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.room-show-chat {
+  flex-grow: 1;
+  max-height: 90%;
+  background-color: hsl(43, 74%, 90%);
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1), 4px 0 8px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.room-show-chat-input {
+  background-color: lightyellow;
+  height: 80px;
+  min-height: 80px;
+  position: relative;
+  .giphy-search-box {
+    position: absolute;
+    bottom: 20px;
+    left: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .gif {
+      background-color: #f7c948;
+      color: $color-fifth;
+      border: none;
+      border-radius: 10px;
+      &:hover {
+        background-color: #f3b700; /* 深黃色 hover 效果 */
+      }
+    }
+    .giphy-results {
+      position: absolute;
+      top: calc(100% + 45px); /* 讓結果出現在輸入框下方 5px */
+      left: 0;
+      width: 200px; /* 讓這個寬度符合 3 張 GIF */
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+      display: grid; /* 使用 Grid 排列 */
+      grid-template-columns: repeat(3, 1fr); /* 每行顯示 3 張 GIF */
+      gap: 5px; /* 控制 GIF 之間的間距 */
+      padding: 10px;
+      z-index: 1001;
+      display: none;
+    }
+    .giphy-results.show {
+      display: grid; /* 只有當有 GIF 結果時才顯示 */
+    }
+
+    .giphy-result {
+      width: 100%; /* 讓 GIF 適應格子寬度 */
+      height: auto;
+      cursor: pointer;
+      object-fit: cover; /* 保持圖片的完整性 */
+      border-radius: 6px;
+    }
+
+    .giphy-input {
+      position: absolute;
+      top: 100%; /* 讓 input 出現在 GIF 按鈕下方 */
+      left: 0;
+      width: 200px;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      display: none; /* 預設隱藏 */
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+      z-index: 1000; /* 確保它顯示在最上層 */
+    }
+
+    /* 當 Stimulus 顯示 input 時 */
+    .giphy-input.show {
+      display: block;
+    }
+  }
+}
+
+.chat-input-container {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  height: 80px;
+  padding-left: 10px;
+  padding-right:10px;
+}
+
+.chat-input-wrapper {
+  height: 50px;
+}
+
+
+.chat-input {
+  border: none;
+  background-color: hsl(43, 74%, 90%);
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  color: lightgray; /* 灰色文字 */
+  outline: none !important;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+}
+.chat-input:focus {
+  border: 2px solid #f7c948; /* 點擊後的黃色邊框 */
+  box-shadow: 0px 0px 8px rgba(247, 201, 72, 0.6); /* 柔和的發光效果 */
+  background-color: #fff; /* 可選：點擊後變白色背景 */
+}
+
+.chat-send-btn {
+  background-color: #f7c948; /* 按鈕黃色 */
+  border: none;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  height: 50px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .chat-send-btn:hover {
@@ -72,4 +228,11 @@
 .chat-send-btn i {
   color: #4a3f35; /* 深棕色圖示 */
   font-size: 18px;
+}
+
+.room-show-chatmsg {
+  background-color: lightyellow;
+  margin: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
 }

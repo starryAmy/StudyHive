@@ -1,4 +1,4 @@
-<% if @chatmessages_most_liked %>
+<% if @max_likes && @max_likes > 0 && @chatmessages_most_liked %>
   <% @chatmessages_most_liked.each do |chatmessage| %>
   <div id="message-<%= chatmessage.id %>">
     <small>

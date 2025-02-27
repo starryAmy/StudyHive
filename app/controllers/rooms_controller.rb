@@ -34,10 +34,10 @@ class RoomsController < ApplicationController
     end
 
     @chatmessage = Chatmessage.new
-    max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
-    @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
+    @max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
+    @chatmessages_most_liked = Chatmessage.where(cached_votes_up: @max_likes)
     @poll = Poll.new
-    @all_polls = Poll.all
+    @all_polls = @room.polls
 
     @spot_current_user.update(active: true) if @spot_current_user.present?
     @spots_accepted = Spot.where(status: :accepted, room: @room)

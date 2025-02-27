@@ -1,29 +1,34 @@
-<h1>Chat</h1>
-<div class="room-show-chat">
-  <div id="chatmessages">
-  <% @room.chatmessages.each do |chatmessage| %>
-    <%= render "chatmessages/chatmessage", chatmessage: chatmessage, liked: (current_user&.voted_for?(chatmessage) || false) %>
-  <% end %>
+<div class="room-show-chat-title d-flex align-items-center">
+  <div class="room-show-title-wrapper">
+    <i class="fa-regular fa-comments"></i>Chat
   </div>
 </div>
-<div class="room-show-chat-input">
-  <%= simple_form_for [@room, @chatmessage], html: {class: "chat-input-container d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
-    <div class="chat-input-wrapper flex-grow-1">
-      <%= f.input :content,
-            label: false,
-            wrapper: false,
-            placeholder: "Message from #{current_user.username}",
-            input_html: { id: "msg_content", class: "chat-input", data: { action: "keydown.enter->reset-form#submit" } } %>
+<div class="room-show-chat-container">
+  <div class="room-show-chat">
+    <div id="chatmessages">
+    <% @room.chatmessages.each do |chatmessage| %>
+      <%= render "chatmessages/chatmessage", chatmessage: chatmessage, liked: (current_user&.voted_for?(chatmessage) || false) %>
+    <% end %>
     </div>
-    <button type="submit" class="chat-send-btn">
-      <i class="fas fa-paper-plane"></i> <!-- 使用 FontAwesome 的紙飛機圖標 -->
-    </button>
-  <% end %>
-</div>
-<!-- Giphy search section -->
-
-<div data-controller="giphy" class="giphy-search-box">
-  <button type="button" data-action="click->giphy#open" class="btn btn-secondary">Send GIF</button>
-  <input type="text" data-giphy-target="input" placeholder="search GIF..." class="form-control d-none" data-giphy-apikey-value="<%=ENV["GIPHY_API_KEY"]%>" data-action="input->giphy#search">
-  <div data-giphy-target="results" class="giphy-results"></div>
+  </div>
+  <div class="room-show-chat-input">
+    <%= simple_form_for [@room, @chatmessage], html: {class: "chat-input-container d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
+      <div class="chat-input-wrapper flex-grow-1">
+        <%= f.input :content,
+              label: false,
+              wrapper: false,
+              placeholder: "Message from #{current_user.username}",
+              input_html: { id: "msg_content", class: "chat-input", data: { action: "keydown.enter->reset-form#submit" } } %>
+      </div>
+      <button type="submit" class="chat-send-btn">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    <% end %>
+    <!-- Giphy search section -->
+      <div data-controller="giphy" class="giphy-search-box">
+        <button class="gif" data-action="click->giphy#open">GIF</button>
+        <input type="text" data-giphy-target="input" placeholder="search GIF..." class="form-control d-none giphy-input" data-giphy-apikey-value="<%=ENV["GIPHY_API_KEY"]%>" data-action="input->giphy#search">
+        <div data-giphy-target="results" class="giphy-results"></div>
+      </div>
+  </div>
 </div>

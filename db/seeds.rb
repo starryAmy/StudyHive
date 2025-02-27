@@ -58,12 +58,12 @@ Room.destroy_all
 puts "Clearing spots..."
 Spot.destroy_all
 
-room1 = Room.create!(title: "Meeting", user: user1, public: true, locked: false)
-room2 = Room.create!(title: "Movie", user: user2, public: true, locked: false)
-room3 = Room.create!(title: "Algorithm", user: user3, public: true, locked: false)
-room4 = Room.create!(title: "Boxing", user: user2, public: true, locked: false)
-room5 = Room.create!(title: "Boxing2", user: user1, public: false, locked: false)
-room6 = Room.create!(title: "Boxing3", user: user2, public: false, locked: false)
+room1 = Room.create!(title: "Meeting", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: true, locked: false)
+room2 = Room.create!(title: "Movie", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
+room3 = Room.create!(title: "Algorithm", description: "Let's talk about Marvel movies, that will be fun!", user: user3, public: true, locked: false)
+room4 = Room.create!(title: "Boxing", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
+room5 = Room.create!(title: "Boxing2", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: false, locked: false)
+room6 = Room.create!(title: "Boxing3", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: false, locked: false)
 
 
 
