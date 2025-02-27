@@ -28,6 +28,8 @@ class RoomsController < ApplicationController
     @chatmessage = Chatmessage.new
     max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
     @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
+    @poll = Poll.new
+    @all_polls = Poll.all
 
 
     @spot_current_user = Spot.find_by(user: current_user, room: @room)

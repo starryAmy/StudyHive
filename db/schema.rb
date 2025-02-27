@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_24_093558) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_26_081642) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ballots", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "poll_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_ballots_on_poll_id"
+    t.index ["user_id"], name: "index_ballots_on_user_id"
+  end
 
   create_table "chatmessages", force: :cascade do |t|
     t.text "content"
@@ -73,6 +82,25 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_093558) do
     t.datetime "updated_at", null: false
     t.index ["desk_id"], name: "index_messages_on_desk_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "poll_options", force: :cascade do |t|
+    t.string "option_text"
+    t.bigint "poll_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_poll_options_on_poll_id"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string "question"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_polls_on_room_id"
+    t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -136,12 +164,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_24_093558) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter"
   end
 
+  add_foreign_key "ballots", "polls"
+  add_foreign_key "ballots", "users"
   add_foreign_key "chatmessages", "rooms"
   add_foreign_key "chatmessages", "users"
   add_foreign_key "desks", "users"
   add_foreign_key "events", "desks"
   add_foreign_key "messages", "desks"
   add_foreign_key "messages", "users"
+  add_foreign_key "poll_options", "polls"
+  add_foreign_key "polls", "rooms"
+  add_foreign_key "polls", "users"
   add_foreign_key "rooms", "users"
   add_foreign_key "spots", "rooms"
   add_foreign_key "spots", "users"
