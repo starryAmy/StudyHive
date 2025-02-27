@@ -11,6 +11,65 @@
 }
 
 .room-show-chat {
-  height: 100vh;
+  height: 70vh;
+  background-color: hsl(43, 74%, 90%);
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1), 4px 0 8px rgba(0, 0, 0, 0.1);
+
   overflow-y: scroll;
+}
+
+.room-show-chat-input {
+  background-color: lightyellow;
+  height: 60px;
+}
+
+.chat-input-container {
+  // background-color: hsl(43, 74%, 90%); /* 與圖片背景一致 */
+  border-radius: 12px; /* 圓角 */
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* 柔和的陰影 */
+  height: 60px;
+}
+
+.chat-input-wrapper {
+  border: 3px solid black;
+  height: 50px;
+}
+
+.chat-input {
+  border: none;
+  background: yellow;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  color: lightgray; /* 灰色文字 */
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+
+}
+
+.chat-send-btn {
+  background-color: #f7c948; /* 按鈕黃色 */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-send-btn:hover {
+  background-color: #f3b700; /* 深黃色 hover 效果 */
+}
+
+.chat-send-btn i {
+  color: #4a3f35; /* 深棕色圖示 */
+  font-size: 18px;
 }

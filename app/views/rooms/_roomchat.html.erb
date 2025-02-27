@@ -1,20 +1,25 @@
 <h1>Chat</h1>
-<div id="chatmessages">
+<div class="room-show-chat">
+  <div id="chatmessages">
   <% @room.chatmessages.each do |chatmessage| %>
     <%= render "chatmessages/chatmessage", chatmessage: chatmessage, liked: (current_user&.voted_for?(chatmessage) || false) %>
   <% end %>
+  </div>
 </div>
-<%= simple_form_for [@room, @chatmessage], html: {class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
-  <%=
-          f.input :content,
-          label: false,
-          placeholder: "Message from #{current_user.username}",
-          wrapper_html: {class: "flex-grow-1"},
-          input_html: { id: "msg_content", data: { action: "keydown.enter->reset-form#submit" } }
-        %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-<% end %>
-
+<div class="room-show-chat-input">
+  <%= simple_form_for [@room, @chatmessage], html: {class: "chat-input-container d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f| %>
+    <div class="chat-input-wrapper flex-grow-1">
+      <%= f.input :content,
+            label: false,
+            wrapper: false,
+            placeholder: "Message from #{current_user.username}",
+            input_html: { id: "msg_content", class: "chat-input", data: { action: "keydown.enter->reset-form#submit" } } %>
+    </div>
+    <button type="submit" class="chat-send-btn">
+      <i class="fas fa-paper-plane"></i> <!-- 使用 FontAwesome 的紙飛機圖標 -->
+    </button>
+  <% end %>
+</div>
 <!-- Giphy search section -->
 
 <div data-controller="giphy" class="giphy-search-box">
