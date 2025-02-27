@@ -22,4 +22,5 @@ Rails.application.routes.draw do
     delete "/", to: "votes#destroy", on: :collection
   end
 
+  post "/update_user_last_online", to: "application#update_user_last_online"
 end
