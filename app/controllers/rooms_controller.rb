@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
     @room.user_id = current_user.id
 
     if @room.save
+      #@spot = Spot.new(user: current_user, room: @room, status: :accepted)
       redirect_to rooms_path, notice: "Room is built successfully!"
     else
       puts @room.errors.full_messages
@@ -25,16 +26,22 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @spot_current_user = Spot.find_by(user: current_user, room: @room)
+
+    if @room.public == false && (@spot_current_user.nil? || @spot_current_user.status != :accepted)
+      redirect_to rooms_path, alert: "You cannot enter this private room unless your spot is accepted."
+      return
+    end
+
     @chatmessage = Chatmessage.new
     max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
     @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
     @poll = Poll.new
     @all_polls = Poll.all
 
-
-    @spot_current_user = Spot.find_by(user: current_user, room: @room)
     @spot_current_user.update(active: true) if @spot_current_user.present?
     @spots_accepted = Spot.where(status: :accepted, room: @room)
+
 
     if params[:youtube_id].present?
       url = params[:youtube_id]

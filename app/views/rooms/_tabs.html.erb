@@ -21,6 +21,11 @@
         Settings
       </button>
     </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#members">
+        Members
+      </button>
+    </li>
   </ul>
   <!-- Tab Content -->
   <div class="tab-content">
@@ -46,6 +51,9 @@
     </div>
     <div class="tab-pane fade" id="settings">
       <%= render "shared/settings" %>
+    </div>
+    <div class="tab-pane fade" id="members">
+      <%= render "shared/members" %>
     </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+
 <% liked ||= false %>
 <div id="message-<%= chatmessage.id %>" data-controller = "vote">
   <small>
@@ -9,5 +10,8 @@
       <% end %>
       <span data-vote-target="count"><%= chatmessage.get_likes.size %></span>
   </small>
-  <p><%= chatmessage.content %></p>
-</div>
+   <% if chatmessage.content.match?(/\.(gif)$/) %>
+    <img src="<%= chatmessage.content %>" alt="GIF" class="chat-gif">
+  <% else %>
+    <p><%= chatmessage.content %></p>
+  <% end %>

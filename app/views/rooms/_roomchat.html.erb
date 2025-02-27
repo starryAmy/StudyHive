@@ -9,7 +9,16 @@
           f.input :content,
           label: false,
           placeholder: "Message from #{current_user.username}",
-          wrapper_html: {class: "flex-grow-1"}
+          wrapper_html: {class: "flex-grow-1"},
+          input_html: { id: "msg_content", data: { action: "keydown.enter->reset-form#submit" } }
         %>
   <%= f.submit "Send", class: "btn btn-primary mb-3" %>
 <% end %>
+
+<!-- Giphy search section -->
+
+<div data-controller="giphy" class="giphy-search-box">
+  <button type="button" data-action="click->giphy#open" class="btn btn-secondary">Send GIF</button>
+  <input type="text" data-giphy-target="input" placeholder="search GIF..." class="form-control d-none" data-giphy-apikey-value="<%=ENV["GIPHY_API_KEY"]%>" data-action="input->giphy#search">
+  <div data-giphy-target="results" class="giphy-results"></div>
+</div>
