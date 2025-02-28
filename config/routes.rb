@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   end
 
   post "/update_user_last_online", to: "application#update_user_last_online"
+  get "/followed_users_status", to: "application#followed_users_status"
 end

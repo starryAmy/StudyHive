@@ -4,6 +4,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     @poll.user_id = current_user.id
     @poll.room_id = @room.id
+    @notification = Notification.create(category: "poll", user: current_user, room: @room)
 
     if @poll.save
       params[:poll][:options].each do |option|

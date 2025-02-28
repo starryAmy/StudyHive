@@ -38,12 +38,14 @@ class RoomsController < ApplicationController
     @chatmessages_most_liked = Chatmessage.where(cached_votes_up: @max_likes)
     @poll = Poll.new
     @all_polls = @room.polls
+    @notifications = Notification.where(room: @room).order(created_at: :desc)
 
     @spot_current_user.update(active: true) if @spot_current_user.present?
     @spots_accepted = Spot.where(status: :accepted, room: @room)
 
 
     if params[:youtube_id].present?
+      Notification.create(category: "youtube", user: current_user, room: @room)
       url = params[:youtube_id]
       video_id = url[/[?&]v=([a-zA-Z0-9_-]+)/, 1]
       time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]

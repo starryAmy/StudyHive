@@ -12,7 +12,7 @@ a {
 
 .index-card {
   padding-left: 20px;
-  padding-top: 50px;
+  padding-top: 15px;
   .card-title {
     font-family: "Permanent Marker", cursive;
     font-size: 25px;
@@ -75,4 +75,48 @@ a {
   object-fit: cover;
   margin-bottom: 3rem;
   font-family: "Fredericka the Great", cursive;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  // align-items: center;
+  margin-bottom: 20px;
+  width: 800px;
+}
+
+.search-form {
+  margin-bottom: 20px;
+}
+
+
+.search-select {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+.search-input {
+  border: none;
+  background-color: lightyellow;
+  height: 40px;
+  width: 700px;
+  font-size: 16px;
+  color: lightgray;
+  outline: none !important;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  &:focus {
+    border: 2px solid #f7c948;
+    box-shadow: 0px 0px 8px rgba(247, 201, 72, 0.6);
+    background-color: #fff;
+  }
+
 }

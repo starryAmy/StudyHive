@@ -1,4 +1,4 @@
-/* Poll 主要容器 */
+/* Poll main container */
 .poll-container {
   background: #fff;
   border-radius: 8px;
@@ -8,7 +8,7 @@
   margin: 20px 0;
 }
 
-/* 問卷選項 */
+/* poll option */
 .poll-option {
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
   width: 100%;
 }
 
-/* 投票按鈕 */
+/* poll button */
 .vote-btn {
   background-color: #f7f7f7;
   border: none;
@@ -40,20 +40,20 @@
   color: white;
 }
 
-/* 已投票時的樣式 */
+/* styles for buttons being pressed */
 .vote-button i {
   font-size: 18px;
   color: #f7c948;
 }
 
-/* 選項名稱 */
+/* titles of options*/
 .poll-option-text {
   font-size: 16px;
   font-weight: bold;
   flex-grow: 1;
 }
 
-/* 進度條容器 */
+/* progressbar container */
 .progress-bar-container {
   width: 100%;
   height: 8px;
@@ -63,14 +63,14 @@
   flex-grow: 2;
 }
 
-/* 進度條本體 */
+/* progress bar */
 .progress-bar {
   height: 100%;
   background-color: #f7c948;
   transition: width 0.5s ease-in-out;
 }
 
-/* 百分比標籤 */
+/* percentage tag */
 .percentage-badge {
   background-color: #f7c948;
   color: white;

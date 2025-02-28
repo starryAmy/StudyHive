@@ -32,7 +32,7 @@ puts "Creating user7..."
 puts "Clearing desks..."
 Desk.destroy_all
 
-desk1 = Desk.create!(user: user1, title: "Making Games!!!Rock", points: 100, task: "Finish the game")
+desk1 = Desk.create!(user: user1, title: "Making Games!!!Rock", points: 100, task: "Finish the game", interest: "Game", question: "What is the best game you have?")
 desk2 = Desk.create!(user: user2, title: "Preparing Interview", points: 200, task: "Finish the interview")
 desk3 = Desk.create!(user: user3, title: "Dating tips", points: 300, task: "Finish the date")
 desk4 = Desk.create!(user: user4, title: "Programming", points: 300, task: "Finish the code")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_27_143348) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_28_113038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_27_143348) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "interest"
+    t.string "question"
     t.index ["user_id"], name: "index_desks_on_user_id"
   end
 
@@ -82,6 +84,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_27_143348) do
     t.datetime "updated_at", null: false
     t.index ["desk_id"], name: "index_messages_on_desk_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["room_id"], name: "index_notifications_on_room_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "poll_options", force: :cascade do |t|
@@ -174,6 +186,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_27_143348) do
   add_foreign_key "events", "desks"
   add_foreign_key "messages", "desks"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "rooms"
+  add_foreign_key "notifications", "users"
   add_foreign_key "poll_options", "polls"
   add_foreign_key "polls", "rooms"
   add_foreign_key "polls", "users"

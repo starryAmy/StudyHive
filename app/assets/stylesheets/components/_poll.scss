@@ -1,10 +1,10 @@
 
-/* 選項容器 */
+/* option container */
 .polling-option {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightyellow; /* 預設背景色 */
+  background-color: lightyellow;
   width: 100%;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -14,15 +14,15 @@
   padding: 0;
 }
 
-/* 隱藏原始 checkbox */
+/* hide original checkbox */
 .poll-checkbox {
   position: absolute;
-  opacity: 0; /* 隱藏 checkbox 但仍可點擊 */
+  opacity: 0; /* hide checkbox but still clickable */
   width: 0;
   height: 0;
 }
 
-/* 設計 label 讓它像按鈕 */
+/* design label to make it look like buttons */
 .poll-label {
   width: 100%;
   text-align: left;
@@ -33,16 +33,16 @@
   border-radius: 8px;
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
   &:hover {
-    background-color: #f7c948; /* 滑鼠移入變黃色 */
-    color: white; /* 文字變白 */
+    background-color: #f7c948;
+    color: white;
     cursor: pointer;
   }
 }
 
-/* 當 checkbox 被選中時，label 變成選取狀態 */
+/* when checkbox is checked, the label will be selected */
 .poll-checkbox:checked + .poll-label {
-  background-color: #f7c948; /* 選擇後變黃色 */
-  color: white; /* 文字變白 */
+  background-color: #f7c948;
+  color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
