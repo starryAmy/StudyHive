@@ -36,7 +36,7 @@
       <%= render "shared/resources" %>
     </div>
     <div class="tab-pane fade" id="hivepoll">
-      <div class="tab-poll" data-controller="poll">
+      <div class="tab-poll" data-controller="poll" style="width: 700px; height: 800px; overflow-y: scroll">
         <% if @room.user == current_user %>
           <button data-action="click->poll#toggle" class="tab-poll-btn"><i class="fa-regular fa-square-plus"></i>&nbsp;Create a Poll</button>
         <% end %>
