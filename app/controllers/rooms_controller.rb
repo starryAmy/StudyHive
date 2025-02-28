@@ -37,7 +37,7 @@ class RoomsController < ApplicationController
     @max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
     @chatmessages_most_liked = Chatmessage.where(cached_votes_up: @max_likes)
     @poll = Poll.new
-    @all_polls = @room.polls
+    @all_polls = @room.polls.includes(:poll_options).sort_by { |poll| poll.user_voted?(current_user) ? 1 : 0 }
     @notifications = Notification.where(room: @room).order(created_at: :desc)
 
     @spot_current_user.update(active: true) if @spot_current_user.present?
