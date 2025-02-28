@@ -1,0 +1,17 @@
+<div class="card col-sm-6 col-md-4 index-card">
+  <div class="card-body">
+    <h5 class="card-title"><%=room.title%></h5>
+    <p class="card-text"><%=room.user_id%></p>
+    <% if (room.public == true && room.locked == false) || room.user == current_user %>
+      <%= link_to "Enter the room", room_path(room) %>
+    <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :pending) %>
+      <p>Join request has been sent.</p>
+    <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :accepted) %>
+      <%= link_to "Enter the room", room_path(room) %>
+    <% elsif room.public == false && room.locked == false %>
+      <%= button_to "Ask for Permissions", spots_path(spot: { status: :pending, active: false, room_id: room.id, user_id: current_user.id }), method: :post %>
+    <% elsif room.locked == true %>
+      <p>Sorry this room is locked.</p>
+    <%end%>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<%=link_to "Create a new room", new_room_path, class: "btn btn-secondary m-2" %>
+<div class="container mt-4">
+  <h1>Owner</h1>
+  <div class="row">
+    <% @rooms_owned.each do |room| %>
+      <%=render "shared/roomcard", room: room%>
+    <%end%>
+  </div>
+
+  <h1 class="mt-3">Member</h1>
+  <div class="row mb-3">
+    <% @rooms_member.each do |room| %>
+      <%=render "shared/roomcard", room: room%>
+    <%end%>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="home-background">
+  <div class="home-words">
+    <h3>Want to look for partners with same interests?</h3>
+  </div>
+</div>
+<div class="home-background2 d-flex">
+  <div class="logo-wrap">
+    <%= image_tag "hivebg", class: "logo-1" %>
+    <%= image_tag "studyhive", class: "logo" %>
+  </div>
+  <div class="comb-wrap">
+    <%= image_tag "right", class: "comb-bg" %>
+    <svg class="honeycomb" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+      <%= link_to new_user_registration_path do %>
+        <g class="hive-group hive-1">
+          <polygon transform="scale(1, 1)" points="75,0 150,37.5 150,112.5 75,150 0,112.5 0,37.5" fill="#e9c46a" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-1"/>
+            <text x="75" y="75" text-anchor="middle" font-size="18" fill="#264653" class="hive-text">
+              <tspan x="75" dy="0">Sign Up to be</tspan>
+              <tspan x="75" dy="20">Hivemate!🐝🐝</tspan>
+            </text>
+        </g>
+      <% end %>
+      <%= link_to desks_path do %>
+        <g class="hive-group hive-2">
+          <polygon transform="scale(1, 1)" points="150,112.5 225,150 225,225 150,262.5 75,225 75,150" fill="#e76f51" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-2"/>
+            <text x="150" y="190" text-anchor="middle" font-size="18" fill="#264653" class="hive-text">
+              <tspan x="150" dy="0">Check out Who are</tspan>
+              <tspan x="150" dy="20">Online!🐝🐝</tspan>
+            </text>
+        </g>
+      <% end %>
+
+      <%= link_to rooms_path do %>
+        <g class="hive-group hive-3">
+          <polygon transform="scale(1, 1)" points="75,225 150,262.5 150,337.5 75,375 0,337.5 0,262.5" fill="#f4a261" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-3"/>
+            <text x="75" y="300" text-anchor="middle" font-size="18" fill="#264653" class="hive-text">
+              <tspan x="75" dy="0">Check out Hives</tspan>
+              <tspan x="75" dy="20">with Cool Topics!🐝</tspan>
+            </text>
+        </g>
+      <% end %>
+    </svg>
+  </div>
+</div>
