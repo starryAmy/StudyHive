@@ -67,6 +67,14 @@ class RoomsController < ApplicationController
     redirect_to request.referer
   end
 
+  def my_rooms
+    @rooms_member = []
+    @rooms_owned = []
+    current_user.spots.each do |spot|
+      room = spot.room
+      room.user == current_user ? @rooms_owned << room : @rooms_member << room
+    end
+  end
 
   def destroy
     @room = Room.find(params[:id])
@@ -79,5 +87,4 @@ class RoomsController < ApplicationController
   def rooms_params
     params.require(:room).permit(:title, :locked, :public)
   end
-
 end

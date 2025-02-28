@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     resource :follows, only: [:create, :destroy]
   end
   resources :rooms do
-
     resources :chatmessages, only: :create
     resources :polls, only: [:create, :edit, :update] do
       resources :ballots, only: :create
     end
   end
+  get "/my_rooms", to: "rooms#my_rooms"
 
   resources :spots
   resources :votes, only: [:create] do
