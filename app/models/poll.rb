@@ -7,4 +7,7 @@ class Poll < ApplicationRecord
   def user_voted?(user)
     ballots.exists?(user_id: user.id)
   end
+  def total_votes
+    poll_options.sum { |option| option.votes_for.size }
+  end
 end

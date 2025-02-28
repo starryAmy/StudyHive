@@ -11,6 +11,7 @@
 @import "components/index";
 @import "components/card";
 @import "components/footer";
+@import "components/poll";
 @import "pages/index";
 @import "pages/home";
 
@@ -21,3 +22,6 @@
 
 @import "rooms/show";
 @import "rooms/index";
+@import "rooms/navtab";
+@import "rooms/old_poll";
+@import "rooms/new_poll";
