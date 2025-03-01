@@ -1,0 +1,15 @@
+
+<%= turbo_frame_tag "resources-list" do %>
+    <% room.res_list.each_with_index do |item, idx| %>
+      <div class="d-flex">
+        <% if user == "owner" %>
+          <%= form_with url: room_path(room), method: :patch do |f| %>
+            <%= f.hidden_field :idx_to_remove, value: idx %>
+            <%= f.submit "-", class: "resources-button" %>
+          <% end %>
+        <% end %>
+
+        <a href="<%= item %>" target="_blank"><%= item %></a>
+      </div>
+    <% end %>
+  <% end %>

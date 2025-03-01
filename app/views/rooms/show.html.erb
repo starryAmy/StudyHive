@@ -1,4 +1,6 @@
 <%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+<%= turbo_stream_from "room_#{@room.id}_resources/#{@participant_type}" %>
+
 <% if @spot_current_user.present? %>
   <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>"></div>
 <% end %>
