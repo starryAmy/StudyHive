@@ -75,8 +75,8 @@
 
 .messages-main {
   position: absolute;
-  top: 120px;
-  left: 40px;
+  top: 150px;
+  left: 50px;
   margin-top: 20px;
   margin-left: 20px;
   width: 50%;
@@ -84,7 +84,7 @@
   background-color: rgba(255, 255, 255, 1);
   display: inline-block;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 5px;
   z-index: 3;
 }
 
@@ -92,18 +92,53 @@
   cursor: pointer;
 }
 
-[data-toggle-messages-target="messages"] {
+.messages-div {
   max-height: 300px;
   overflow-y: auto; /* Enables vertical scrolling when content overflows */
   overflow-x: hidden; /* Prevents horizontal scrolling */
-  border-top: 1px solid rgb(104, 58, 58);
-  border-bottom: 1px solid rgb(104, 58, 58);
+  border-radius: 5px;
+  // border-top: 1px solid rgb(104, 58, 58);
+  // border-bottom: 1px solid rgb(104, 58, 58);
 }
 
 .message {
   background-color: wheat;
   border: 1px solid rgb(104, 58, 58);
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 10px 0;
   padding: 10px;
+}
+
+.sticky-notes {
+  position: absolute;
+  top: 160px;
+  left: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 60%;
+  height: 30%;
+  background-color: transparent;
+  display: inline-block;
+  // overflow: hidden; /* Prevent notes from overflowing */
+}
+.sticky-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // align-items: flex-start;
+  background-color: yellow;
+  border: 1px solid black;
+  padding: 10px;
+  width: 120px;
+  height: 160px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  // transition: transform 0.2s ease-in-out;
+}
+
+.sticky-note:hover {
+  transform: scale(1.05);
+}
+
+#sticky-time {
+  font-size: 12px;
 }

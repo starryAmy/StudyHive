@@ -1,4 +1,4 @@
-<div class="d-flex flex-row">
+<div class="d-flex flex-row" style="margin-bottom: 200px;">
   <div class="desk-show-info-wrap d-flex flex-column col-6">
     <div class="desk-show-shot-and-name d-flex flex-row align-items-center justify-content-center">
       <div class="desk-show-shot">
@@ -19,10 +19,10 @@
         <button><i class="fa-solid fa-plus"></i>&nbsp;Follow</button>
         <div data-controller="toggle-messages">
           <button data-action="click->toggle-messages#showHideMessages"><i class="fa-regular fa-message"></i>&nbsp;Message</button>
-          <div class="messages-main">
+          <div class="messages-main" data-toggle-messages-target="messages">
             <div class="messages-div" >
               <!-- Messages -->
-              <div data-toggle-messages-target="messages">
+              <div >
                 <% @desk.messages.each do |message| %>
                   <div class="message">
                     <span><strong>
@@ -33,20 +33,29 @@
               </div>
             </div>
             <div class="clickable-div mt-2">
-              <!-- Clickable Div to Show Form -->
-              <div class="p-3 clickable-div-btn" data-action="click->toggle-form#showHideForm">
-                Click to Send a Message
-              </div>
               <!-- Hidden Form -->
-              <div class="form-container p-3" data-toggle-form-target="form">
+              <div class="form-container" data-toggle-messages-target="form">
                 <%= simple_form_for [@desk, @message],
-            method: :post,
-            data: {
-              action: "submit->toggle-form#hideForm",
-              turbo_frame: "messages"
-              } do |f| %>
-                  <%= f.input :text, as: :text, input_html: { maxlength: 400, data: { toggle_form_target: "textarea" } } %>
-                  <%= f.submit "Send Message", class: "btn btn-primary rounded" %>
+                method: :post,
+                data: {
+                # action: "submit->toggle-messages#hideForm",
+                turbo_frame: "messages"
+                } do |f| %>
+                  <div class="d-flex">
+                    <%# <%= f.input :text,
+                  as: :text,
+                  label: false,
+                  input_html: { maxlength: 400,
+                  # data: { toggle_form_target: "textarea" } } %>
+                    <%= f.input :text,
+              label: false,
+              wrapper: false,
+              placeholder: "Message from #{current_user.username}",
+              input_html: { id: "msg_content", class: "chat-input", data: { action: "keydown.enter->toggle-form#submit" } } %>
+                    <button type="submit" class="chat-send-btn">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -70,5 +79,15 @@
     </div>
   </div>
   <div class="desk-img col-6">
+    <div class="sticky-notes" data-controller="sticky-notes">
+      <% @desk.messages.last(5).each do |message| %>
+        <div class="sticky-note">
+          <p id="sticky-time"><%= message.created_at.strftime("%m/%d %H:%M") %></p>
+          <p class="text-break" data-sticky-note-target="message-content"><%= message.text %></p>
+          <p class="align-self-end"><em>
+              - <%= message.user.username %></em></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
