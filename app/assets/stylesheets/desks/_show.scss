@@ -1,139 +1,59 @@
-// body {
-//   background-color: #f0c539;
-// }
 
-.show-desk-bg {
-  // margin-top: 100px;
-  // width: 800px;
-  // height: 770px;
-  // background-color: #f0c539;
-
-  // position: relative;
+.desk-show-info-wrap {
+  margin-top: 30px;
+  .desk-show-shot-and-name {
+    margin-bottom: 20px;
+  }
 }
-
 .desk-img {
   background-image: image-url("desk2.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  // width: 200px;
-  height: 950px;
-  // margin: 0 auto;
+  width: 700px;
+  height: 700px;
 }
 
-.calendar {
-  position: absolute;
-  top: 120px;
-  right: 180px;
-  margin-top: 20px;
+.desk-show-headshot {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 5px solid $color-fifth;
+  margin-right: 10px;
+}
+
+.desk-show-intro {
   margin-left: 20px;
-  // width: 180px;
-  // height: 180px;
-  width: 25%;
-  height: 25%;
-  border: 4px solid black;
+}
+
+.desk-show-about-me, .desk-show-current-interest, .desk-show-question {
   background-color: white;
-  display: inline-block;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 100px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
 }
 
-.timer {
-  position: absolute;
-  top: 40px;
-  right: 180px;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 25%;
-  border: 4px solid black;
-  background-color: white;
-  display: inline-block;
-  padding: 10px;
-}
-
-.clock {
-  position: absolute;
-  top: 360px;
-  right: 180px;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 25%;
-  border: 4px solid black;
-  background-color: white;
-  display: inline-block;
-  padding: 10px;
-}
-
-.messages-main {
-  position: absolute;
-  top: 50px;
-  left: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 23%;
-  border: 2px solid black;
-  background-color: rgba(255, 255, 255, 0.5);
-  display: inline-block;
-  padding: 10px;
-  border-radius: 15px;
-  z-index: 3;
-}
-
-.messages-title {
-  cursor: pointer;
-}
-
-[data-toggle-messages-target="messages"] {
-  max-height: 300px;
-  overflow-y: auto; /* Enables vertical scrolling when content overflows */
-  overflow-x: hidden; /* Prevents horizontal scrolling */
-  border-top: 1px solid rgb(104, 58, 58);
-  border-bottom: 1px solid rgb(104, 58, 58);
-}
-
-.message {
-  background-color: wheat;
-  border: 1px solid rgb(104, 58, 58);
-  border-radius: 10px;
-  margin: 10px 0;
-  padding: 10px;
-}
-
-.clickable-div {
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: rgba(220, 200, 255, 0.6);
-  display: inline-block;
-}
-
-.clickable-div:hover {
-  cursor: pointer;
-}
-
-.sticky-notes {
-  position: absolute;
-  top: 200px;
-  left: 150px;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: 80%;
-  height: 30%;
-  background-color: transparent;
-  display: inline-block;
-  // overflow: hidden; /* Prevent notes from overflowing */
-}
-
-.sticky-note {
+.desk-show-info-btns {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  border: 1px solid black;
-  padding: 10px;
-  width: 120px;
-  height: 160px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  // transition: transform 0.2s ease-in-out;
+  height: 150px;
+  button {
+    border: 4px solid #ff6700;
+    background-color: transparent;
+    color: #ff6700;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+  }
 }
 
-#sticky-time {
-  font-size: 12px;
+.desk-show-bottom {
+  height: 300px;
 }
