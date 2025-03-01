@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
     t.bigint "user_id", null: false
     t.string "title"
     t.integer "points"
+    t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.string "task"
     t.string "interest"
     t.string "question"
     t.index ["user_id"], name: "index_desks_on_user_id"
@@ -84,17 +84,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
     t.datetime "updated_at", null: false
     t.index ["desk_id"], name: "index_messages_on_desk_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "notepads", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "parent_id"
-    t.bigint "desk_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["desk_id"], name: "index_notepads_on_desk_id"
-    t.index ["parent_id"], name: "index_notepads_on_parent_id"
   end
 
   create_table "notifications", force: :cascade do |t|
