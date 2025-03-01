@@ -66,7 +66,7 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     @room.update(rooms_params)
-    redirect_to request.referer
+    #redirect_to request.referer
   end
 
   def my_rooms
@@ -87,6 +87,6 @@ class RoomsController < ApplicationController
   private
 
   def rooms_params
-    params.require(:room).permit(:title, :locked, :public)
+    params.require(:room).permit(:title, :locked, :public, :resources_content)
   end
 end
