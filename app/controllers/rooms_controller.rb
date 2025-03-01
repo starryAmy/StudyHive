@@ -22,6 +22,18 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
     @desk = current_user.desk
+    @is_entering_allowed = true
+
+    if params[:query].present?
+      case params[:search_type]
+      when "title"
+        @rooms = Room.where("title ILIKE ?", "%#{params[:query]}%").all
+      when "user"
+        @rooms = Room.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+      end
+    else
+      @rooms = Room.all
+    end
   end
 
   def show

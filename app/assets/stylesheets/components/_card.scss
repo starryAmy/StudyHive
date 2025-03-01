@@ -12,6 +12,19 @@
   flex-direction: column;
 }
 
+.room-index-card {
+  width: 320px; /* 每張卡片佔據一半寬度 */
+  height: 320px;
+  overflow: visible;
+  background-color: transparent;
+  background-size: 90% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
 .room-animation-card {
   background-image: url("hex room A alpha.png");
 }
@@ -34,4 +47,6 @@
   // background-color: yellow;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   position: absolute;
+  display: flex;
+  align-items: center;
 }

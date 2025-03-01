@@ -6,3 +6,44 @@
 .image-container img:hover {
   content: url("hex room B alpha.gif");
 }
+
+.room-index-card {
+  padding-left: 20px;
+  padding-top: 25px;
+  margin-right: 80px;
+  .card-title {
+    font-family: "Permanent Marker", cursive;
+    font-size: 25px;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .card-username {
+    font-family: "Caveat", cursive;
+    font-size: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: $color-fifth;
+  }
+  .card-tasks {
+    font-family: "Caveat", cursive;
+    font-size: 20px;
+    padding-top: 0px;
+    margin-top: 0px;
+    color: $color-fifth;
+  }
+
+  &:hover {
+    cursor: pointer;
+    // transform: translateY(-15px);
+    // box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.room-card-body {
+  overflow-wrap: break-word;
+  width: 50%;
+}
