@@ -1,13 +1,23 @@
 <div class="container show-desk-bg">
   <div class="row justify-content-center">
-    <div class="col text-center">
-      <h1><%= @desk.title %></h1>
-      <h2><%= @user.username %></h2>
-      <% if current_user.favorited?(@desk) %>
-        <%= button_to "Unfollow", desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } %>
-      <% else %>
-        <%= button_to "Follow", desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } %>
-      <% end %>
+    <div class="col">
+      <div class="desk-show-title text-align-center justify-content-center">
+        <h1><%= @desk.title %></h1>
+        <h2><%= @online_status ? "#{@desk.user.username} is 🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "#{@desk.user.username} is 🔴 Offline" %></h2>
+
+        <p>I'm currently interested in <%= @desk.interest %></p>
+        <p>Recenlt I'm wondering.... <%= @desk.question %></p>
+        <% if current_user.favorited?(@desk) %>
+          <%= button_to "Unfollow", desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } %>
+        <% else %>
+          <%= button_to "Follow", desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } %>
+        <% end %>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
       <br>
       <br>
       <div class="desk-img">

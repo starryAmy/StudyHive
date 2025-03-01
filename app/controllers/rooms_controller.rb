@@ -46,14 +46,18 @@ class RoomsController < ApplicationController
     end
 
     @chatmessage = Chatmessage.new
-    max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
-    @chatmessages_most_liked = Chatmessage.where(cached_votes_up: max_likes)
+    @max_likes = @room.chatmessages.order(cached_votes_up: :desc).limit(1).pluck(:cached_votes_up).first
+    @chatmessages_most_liked = Chatmessage.where(cached_votes_up: @max_likes)
+    @poll = Poll.new
+    @all_polls = @room.polls.includes(:poll_options).sort_by { |poll| poll.user_voted?(current_user) ? 1 : 0 }
+    @notifications = Notification.where(room: @room).order(created_at: :desc)
 
     @spot_current_user.update(active: true) if @spot_current_user.present?
     @spots_accepted = Spot.where(status: :accepted, room: @room)
 
 
     if params[:youtube_id].present?
+      Notification.create(category: "youtube", user: current_user, room: @room)
       url = params[:youtube_id]
       video_id = url[/[?&]v=([a-zA-Z0-9_-]+)/, 1]
       time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]
@@ -77,6 +81,14 @@ class RoomsController < ApplicationController
     redirect_to request.referer
   end
 
+  def my_rooms
+    @rooms_member = []
+    @rooms_owned = []
+    current_user.spots.each do |spot|
+      room = spot.room
+      room.user == current_user ? @rooms_owned << room : @rooms_member << room
+    end
+  end
 
   def destroy
     @room = Room.find(params[:id])
@@ -89,5 +101,4 @@ class RoomsController < ApplicationController
   def rooms_params
     params.require(:room).permit(:title, :locked, :public)
   end
-
 end

@@ -1,14 +1,9 @@
 class DesksController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_desk_and_user, only: [:show]
+  before_action :set_basic_info, only: [:show]
 
   def index
-    # get titles for blackboard
-    if Desk.all.count < 16
-      @desk_titles = Desk.order("RANDOM()").pluck(:title)
-    else
-      @desk_titles = Desk.order("RANDOM()").limit(16).pluck(:title)
-    end
     # get the page params
     @page = params[:page].to_i
     if @page == 0
@@ -38,7 +33,6 @@ class DesksController < ApplicationController
   end
   def show
     @message = Message.new
-    # raise
   end
 
   private
@@ -50,6 +44,20 @@ class DesksController < ApplicationController
     else
       @desk = current_user.desk
       @user = current_user
+    end
+  end
+
+  def set_basic_info
+    @online_status = @desk.user.last_online_at.present? && @desk.user.last_online_at > 30.minutes.ago
+    @active_spot = @desk.user.spots.includes(:room).where(active: true).first
+    @if_in_room = @active_spot.present?
+
+    if @active_spot
+      @room_status = @active_spot.room&.public ? "Public" : "Private"
+      @room_title = @active_spot.room&.title
+    else
+      @room_status = nil
+      @room_title = nil
     end
   end
 end

@@ -2,41 +2,53 @@
   <!-- Nav Tabs -->
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#resources">
-        Resources
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#hiveboard">
+        <i class="fa-solid fa-tag"></i> Hiveboard
       </button>
     </li>
     <li class="nav-item">
-      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kanban">
-        Kanban
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#resources">
+        <i class="fa-solid fa-tag"></i> Resources
       </button>
     </li>
     <li class="nav-item">
-      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hiveboard">
-        Hiveboard
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hivepoll">
+        <i class="fa-solid fa-tag"></i> HivePoll
       </button>
     </li>
     <li class="nav-item">
       <button class="nav-link" data-bs-toggle="tab" data-bs-target="#settings">
-        Settings
+        <i class="fa-solid fa-tag"></i> Settings
       </button>
     </li>
     <li class="nav-item">
       <button class="nav-link" data-bs-toggle="tab" data-bs-target="#members">
-        Members
+        <i class="fa-solid fa-tag"></i> Members
       </button>
     </li>
   </ul>
   <!-- Tab Content -->
   <div class="tab-content">
-    <div class="tab-pane fade show active" id="resources">
+    <div class="tab-pane fade show active" id="hiveboard">
+      <%= render "shared/hiveboard" %>
+    </div>
+    <div class="tab-pane fade" id="resources">
       <%= render "shared/resources" %>
     </div>
-    <div class="tab-pane fade" id="kanban">
-      <%= render "shared/kanban" %>
-    </div>
-    <div class="tab-pane fade" id="hiveboard">
-      <%= render "shared/hiveboard" %>
+    <div class="tab-pane fade" id="hivepoll">
+      <div class="tab-poll" data-controller="poll" style="width: 700px; height: 800px; overflow-y: scroll">
+        <% if @room.user == current_user %>
+          <button data-action="click->poll#toggle" class="tab-poll-btn"><i class="fa-regular fa-square-plus"></i>&nbsp;Create a Poll</button>
+        <% end %>
+        <div data-poll-target="pollform" class="d-none">
+          <%= render "rooms/new_poll" %>
+        </div>
+        <% if @all_polls.present? %>
+          <% @all_polls.each do |poll| %>
+            <%= render "rooms/poll", poll: poll %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="tab-pane fade" id="settings">
       <%= render "shared/settings" %>
