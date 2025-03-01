@@ -1,13 +1,44 @@
-<%=link_to "Create a new room", new_room_path, class: "btn btn-secondary m-2" %>
-<div class="container mt-4">
-  <div class="row">
-    <%@rooms.each do |room| %>
-      <%=render "shared/roomcard", room: room%>
-    <%end%>
-    <div class="image-container">
-      <%= image_tag "hex room A.png", class: "image default" %>
-      <%# <%= image_tag "hex room B.gif", class: "image animated" %>
-      <%# <%= image_tag "hex room B.png", class: "image last-frame" %>
-    </div>
+<div class="d-flex flex-row justify-content-evenly align-items-center">
+  <div>
+    <%=link_to "Create a new room", new_room_path, class: "d-inline btn tab-poll-btn m-2" %>
   </div>
-</div>
+  <div class="room-search-container">
+    <%= form_with url: rooms_path, method: :get, local: true do %>
+      <select name="search_type" class="search-select">
+        <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Room Title</option>
+      <option value="user" <%= "selected" if params[:search_type] == "user" %>>Room User</option>
+    </select>
+    <%= text_field_tag :query, params[:query], placeholder: "Search Room...", class: "room-search-input" %>
+    <%= submit_tag "🔍", class: "search-button" %>
+  <% end %>
+  </div>
+        </div>
+        <div class="container mt-4 hex-container mb-4" style="height: <%= (@rooms.count / 2.8 * 312) + 104 %>px">
+          <div class="row" data-controller="hexagon">
+            <%@rooms.each do |room| %>
+              <%# Check if the user is allowed to enter the room %>
+              <% if (room.public == true && room.locked == false) || room.user == current_user %>
+                <% @is_entering_allowed = true %>
+              <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :pending) %>
+                <% @is_entering_allowed = false %>
+                <p>Join request has been sent.</p>
+              <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :accepted) %>
+                <% @is_entering_allowed = true %>
+              <% elsif room.public == false && room.locked == false %>
+                <% @is_entering_allowed = false %>
+                <%= button_to "Ask for Permissions", spots_path(spot: { status: :pending, active: false, room_id: room.id, user_id: current_user.id }), method: :post %>
+              <% elsif room.locked == true %>
+                <% @is_entering_allowed = false %>
+                <p>Sorry this room is locked.</p>
+              <%end%>
+              <%# Render the Room Card %>
+              <% if @is_entering_allowed %>
+                <%= link_to room_path(room) do %>
+                  <%=render "shared/roomcard", room: room%>
+                <% end %>
+              <% else %>
+                <%=render "shared/roomcard", room: room%>
+              <% end %>
+            <%end%>
+          </div>
+        </div>
