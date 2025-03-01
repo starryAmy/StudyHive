@@ -1,22 +1,7 @@
-<h1>Resourses</h1>
-<% @room.res_list.each_with_index do |item, idx| %>
-  <div class="d-flex">
-    <% if @room.user == current_user %>
-      <%= form_with url: room_path(@room), method: :patch do |f| %>
-        <%= f.hidden_field :idx_to_remove, value: idx %>
-        <%= f.submit "-", class: "resources-button" %>
-      <% end %>
-    <% end %>
+<div id="resources-<%= @room.id %>">
 
-    <a href="<%= item %>" target="_blank"><%= item %></a>
-  </div>
-<% end %>
+  <h1>Resourses</h1>
+  <%= render "shared/resources_list", user: @participant_type, room: @room %>
 
-<% if @room.user == current_user %>
-  <%= form_with url: room_path(@room), method: :patch do |f| %>
-    <div class="resources-form">
-      <%= f.text_field :input_field, class: "w-75", placeholder: "Add a new resource link" %>
-      <%= f.submit "+", class: "resources-button" %>
-    </div>
-  <% end %>
-<% end %>
+  <%= render "shared/resources_submit_form", user: @participant_type, room: @room %>
+</div>
