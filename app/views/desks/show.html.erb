@@ -1,81 +1,40 @@
-<div class="container show-desk-bg">
-  <div class="row justify-content-center">
-    <div class="col">
-      <div class="desk-show-title text-align-center justify-content-center">
-        <h1><%= @desk.title %></h1>
-        <h2><%= @online_status ? "#{@desk.user.username} is 🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "#{@desk.user.username} is 🔴 Offline" %></h2>
-
-        <p>I'm currently interested in <%= @desk.interest %></p>
-        <p>Recenlt I'm wondering.... <%= @desk.question %></p>
-        <% if current_user.favorited?(@desk) %>
-          <%= button_to "Unfollow", desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } %>
-        <% else %>
-          <%= button_to "Follow", desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } %>
-        <% end %>
+<div class="d-flex flex-row">
+  <div class="desk-show-info-wrap d-flex flex-column col-6">
+    <div class="desk-show-shot-and-name d-flex flex-row align-items-center justify-content-center">
+      <div class="desk-show-shot">
+        <%= image_tag "headshot", class: "desk-show-headshot" %>
       </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="desk-img">
-        <div class="messages-main">
-          <div class="messages-div" data-controller="toggle-messages">
-            <!-- Messages -->
-            <div class="messages-btn" data-action="click->toggle-messages#showHideMessages">
-              <h3 class="messages-title">All Messages</h3>
-            </div>
-            <div data-toggle-messages-target="messages">
-              <% @desk.messages.each do |message| %>
-                <div class="message">
-                  <span><strong>
-                      <%= link_to message.user.username, desk_path(message.user.desk) %></strong></span>: <span class="text-break"><%= message.text %></span>
-                  <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div data-controller="toggle-form" class="clickable-div mt-2">
-            <!-- Clickable Div to Show Form -->
-            <div class="p-3 clickable-div-btn" data-action="click->toggle-form#showHideForm">
-              Click to Send a Message
-            </div>
-            <!-- Hidden Form -->
-            <div class="form-container d-none p-3" data-toggle-form-target="form">
-              <%= simple_form_for [@desk, @message],
-            method: :post,
-            data: {
-              action: "submit->toggle-form#hideForm",
-              turbo_frame: "messages"
-              } do |f| %>
-                <%= f.input :text, as: :text, input_html: { maxlength: 400, data: { toggle_form_target: "textarea" } } %>
-                <%= f.submit "Send Message", class: "btn btn-primary rounded" %>
-              <% end %>
-            </div>
-          </div>
+      <div class="desk-show-name-and-status d-flex flex-column">
+        <div class="desk-show-title mb-0">
+          <h1><%= @desk.title %></h1>
         </div>
-        <div class="sticky-notes" data-controller="sticky-notes">
-          <% @desk.messages.last(6).each do |message| %>
-            <div class="sticky-note">
-              <p id="sticky-time"><%= message.created_at.strftime("%m/%d %H:%M") %></p>
-              <p class="text-break" data-sticky-note-target="message-content"><%= message.text %></p>
-              <p class="align-self-end"><em>
-                  - <%= message.user.username %></em></p>
-            </div>
-          <% end %>
+        <div class="desk-show-status mb-0">
+          <p><%= @online_status ? "#{@desk.user.username} is 🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "#{@desk.user.username} is 🔴 Offline" %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center desk-show-bottom">
+      <div class="desk-show-info-btns d-flex flex-column">
+        <button><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button><i class="fa-solid fa-plus"></i>&nbsp;Follow</button>
+        <button><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+      </div>
+      <div class="desk-show-intro">
+        <div class="desk-show-about-me">
+          <div style="font-weight: bold;"><i class="fa-solid fa-bookmark"></i>&nbsp;About Me</div>
+          <%= @desk.intro%>
+        </div>
+        <div class="desk-show-current-interest">
+          <div style="font-weight: bold;"><i class="fa-solid fa-book-open"></i>&nbsp;I'm currently interested in...</div>
+          <%= @desk.interest%>
+        </div>
+        <div class="desk-show-question">
+          <div style="font-weight: bold;"><i class="fa-solid fa-question"></i>&nbsp;I want to ask...</div>
+          <%= @desk.question%>
         </div>
       </div>
     </div>
   </div>
+  <div class="desk-img col-6">
+  </div>
 </div>
-<%# The code below is just for reference, it is not part of the project. %>
-<%# <script>
-setInterval(myTimer, 1000);
-
-function myTimer() {
-  const d = new Date();
-  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
-}
-</script> %>
