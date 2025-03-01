@@ -1,21 +1,11 @@
 <h1>Resourses</h1>
-<ol>
-  <li>
-    <a href="http://www.railstutorial.org/book" target="_blank">Ruby on Rails Tutorial</a>
-  </li>
-  <li>
-    <a href="http://guides.rubyonrails.org/" target="_blank">Rails Guides</a>
-  </li>
-  <li>
-    <a href="http://api.rubyonrails.org/" target="_blank">Rails API</a>
-  </li>
-  <li>
-    <a href="http://rubygems.org/" target="_blank">Ruby Gems</a>
-  </li>
-  <li>
-    <a href="http://stackoverflow.com/" target="_blank">Stack Overflow</a>
-  </li>
-  <li>
-    <a href="http://www.ruby-lang.org/en/" target="_blank">Ruby Language</a>
-  </li>
-</ol>
+
+<%=
+  text_area(:room, :resources_content, size: "50x10",
+  data: {
+    controller: "text-area",
+    action: "focusout->text-area#deselect",
+    text_area_url_value: room_path(@room)
+  },
+  disabled: ('disabled' if @room.user != current_user))
+%>
