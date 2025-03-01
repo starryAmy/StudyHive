@@ -6,17 +6,29 @@
       </div>
       <div class="desk-show-name-and-status d-flex flex-column">
         <div class="desk-show-title mb-0">
-          <h1><%= @desk.title %></h1>
+          <h2><%= @desk.title %></h2>
         </div>
         <div class="desk-show-status mb-0">
-          <p><%= @online_status ? "#{@desk.user.username} is 🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "#{@desk.user.username} is 🔴 Offline" %></p>
+          <p class="desk-show-status-username"><%= "@#{@desk.user.username}" %></p>
+          <p><%= @online_status ? "🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "🔴 Offline" %></p>
         </div>
       </div>
     </div>
     <div class="d-flex flex-row justify-content-center desk-show-bottom">
       <div class="desk-show-info-btns d-flex flex-column">
-        <button><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
-        <button><i class="fa-solid fa-plus"></i>&nbsp;Follow</button>
+        <%= button_to desk_path(@desk), method: :get, data: { action:"click->edit-desk#edit", follows_target: "editButton", controller: "Edit-desk" } do %>
+            <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
+        <% end %>
+        <% render "edit", class:"d-none" %>
+        <% if current_user.favorited?(@desk) %>
+          <%= button_to desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } do %>
+            <i class="fa-solid fa-heart"></i>&nbsp;Unfollow
+          <% end %>
+        <% else %>
+          <%= button_to desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } do %>
+            <i class="far fa-heart"></i>&nbsp;Follow
+          <% end%>
+        <% end %>
         <button><i class="fa-regular fa-message"></i>&nbsp;Message</button>
       </div>
       <div class="desk-show-intro">
