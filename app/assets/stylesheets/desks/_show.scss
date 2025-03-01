@@ -3,16 +3,20 @@
 // }
 
 .show-desk-bg {
+  background-image: url("stationery-bg alpha.png");
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  // opacity: 0.4;
   // margin-top: 100px;
   // width: 800px;
   // height: 770px;
-  // background-color: #f0c539;
+  // background-color: #9d7100;
 
   // position: relative;
 }
 
 .desk-img {
-  background-image: image-url("desk2.png");
+  background-image: url("desk2.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
