@@ -77,8 +77,20 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    @room.update(rooms_params)
-    #redirect_to request.referer
+
+    if params[:input_field].present?
+      @room.res_list << params[:input_field]
+      @room.save
+
+    elsif params[:idx_to_remove].present?
+      @room.res_list.delete_at(params[:idx_to_remove].to_i)
+      @room.save
+    else
+      @room.update(rooms_params)
+
+    end
+
+    redirect_to room_path @room
   end
 
   def my_rooms
@@ -99,6 +111,6 @@ class RoomsController < ApplicationController
   private
 
   def rooms_params
-    params.require(:room).permit(:title, :locked, :public, :resources_content)
+    params.require(:room).permit(:title, :locked, :public, :res_list)
   end
 end

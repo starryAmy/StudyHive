@@ -1,11 +1,22 @@
 <h1>Resourses</h1>
+<% @room.res_list.each_with_index do |item, idx| %>
+  <div class="d-flex">
+    <% if @room.user == current_user %>
+      <%= form_with url: room_path(@room), method: :patch do |f| %>
+        <%= f.hidden_field :idx_to_remove, value: idx %>
+        <%= f.submit "-", class: "resources-button" %>
+      <% end %>
+    <% end %>
 
-<%=
-  text_area(:room, :resources_content, size: "50x10",
-  data: {
-    controller: "text-area",
-    action: "focusout->text-area#deselect",
-    text_area_url_value: room_path(@room)
-  },
-  disabled: ('disabled' if @room.user != current_user))
-%>
+    <a href="<%= item %>" target="_blank"><%= item %></a>
+  </div>
+<% end %>
+
+<% if @room.user == current_user %>
+  <%= form_with url: room_path(@room), method: :patch do |f| %>
+    <div class="resources-form">
+      <%= f.text_field :input_field, class: "w-75", placeholder: "Add a new resource link" %>
+      <%= f.submit "+", class: "resources-button" %>
+    </div>
+  <% end %>
+<% end %>

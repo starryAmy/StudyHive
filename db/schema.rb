@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
     t.bigint "user_id", null: false
     t.string "title"
     t.integer "points"
+    t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.string "task"
     t.string "interest"
     t.string "question"
     t.index ["user_id"], name: "index_desks_on_user_id"
@@ -86,17 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "notepads", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "parent_id"
-    t.bigint "desk_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["desk_id"], name: "index_notepads_on_desk_id"
-    t.index ["parent_id"], name: "index_notepads_on_parent_id"
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.string "category"
     t.datetime "created_at", null: false
@@ -134,7 +123,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_035601) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.text "resources_content"
+    t.string "res_list", default: [], array: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
