@@ -1,6 +1,6 @@
 <%=link_to "Create a new room", new_room_path, class: "btn btn-secondary m-2" %>
-<div class="container mt-4">
-  <div class="row">
+<div class="container mt-4 hex-container mb-4" style="height: <%= (@rooms.count / 2.8 * 312) + 104 %>px">
+  <div class="row" data-controller="hexagon">
     <%@rooms.each do |room| %>
       <%=render "shared/roomcard", room: room%>
     <%end%>
