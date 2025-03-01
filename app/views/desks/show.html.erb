@@ -17,7 +17,41 @@
       <div class="desk-show-info-btns d-flex flex-column">
         <button><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
         <button><i class="fa-solid fa-plus"></i>&nbsp;Follow</button>
-        <button><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+        <div data-controller="toggle-messages">
+          <button data-action="click->toggle-messages#showHideMessages"><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+          <div class="messages-main">
+            <div class="messages-div" >
+              <!-- Messages -->
+              <div data-toggle-messages-target="messages">
+                <% @desk.messages.each do |message| %>
+                  <div class="message">
+                    <span><strong>
+                        <%= link_to message.user.username, desk_path(message.user.desk) %></strong></span>: <span class="text-break"><%= message.text %></span>
+                    <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="clickable-div mt-2">
+              <!-- Clickable Div to Show Form -->
+              <div class="p-3 clickable-div-btn" data-action="click->toggle-form#showHideForm">
+                Click to Send a Message
+              </div>
+              <!-- Hidden Form -->
+              <div class="form-container p-3" data-toggle-form-target="form">
+                <%= simple_form_for [@desk, @message],
+            method: :post,
+            data: {
+              action: "submit->toggle-form#hideForm",
+              turbo_frame: "messages"
+              } do |f| %>
+                  <%= f.input :text, as: :text, input_html: { maxlength: 400, data: { toggle_form_target: "textarea" } } %>
+                  <%= f.submit "Send Message", class: "btn btn-primary rounded" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="desk-show-intro">
         <div class="desk-show-about-me">

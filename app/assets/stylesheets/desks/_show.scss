@@ -70,4 +70,40 @@
 
 .desk-show-bottom {
   height: 300px;
+  position: relative;
+}
+
+.messages-main {
+  position: absolute;
+  top: 120px;
+  left: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 50%;
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 1);
+  display: inline-block;
+  padding: 10px;
+  border-radius: 15px;
+  z-index: 3;
+}
+
+.messages-title {
+  cursor: pointer;
+}
+
+[data-toggle-messages-target="messages"] {
+  max-height: 300px;
+  overflow-y: auto; /* Enables vertical scrolling when content overflows */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  border-top: 1px solid rgb(104, 58, 58);
+  border-bottom: 1px solid rgb(104, 58, 58);
+}
+
+.message {
+  background-color: wheat;
+  border: 1px solid rgb(104, 58, 58);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
 }
