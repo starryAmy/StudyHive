@@ -1,8 +1,59 @@
 
+.desk-show-info-wrap {
+  margin-top: 30px;
+  .desk-show-shot-and-name {
+    margin-bottom: 20px;
+  }
+}
 .desk-img {
   background-image: image-url("desk2.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  width: 700px;
+  height: 700px;
+}
+
+.desk-show-headshot {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 5px solid $color-fifth;
+  margin-right: 10px;
+}
+
+.desk-show-intro {
+  margin-left: 20px;
+}
+
+.desk-show-about-me, .desk-show-current-interest, .desk-show-question {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 100px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.desk-show-info-btns {
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  button {
+    border: 4px solid #ff6700;
+    background-color: transparent;
+    color: #ff6700;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+  }
+}
+
+.desk-show-bottom {
+  height: 300px;
 }

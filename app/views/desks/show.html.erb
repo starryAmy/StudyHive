@@ -1,6 +1,39 @@
 <div class="d-flex flex-row">
-  <div class="desk-show-info-wrap col-6">
-    <p>Hello</p>
+  <div class="desk-show-info-wrap d-flex flex-column col-6">
+    <div class="desk-show-shot-and-name d-flex flex-row align-items-center justify-content-center">
+      <div class="desk-show-shot">
+        <%= image_tag "headshot", class: "desk-show-headshot" %>
+      </div>
+      <div class="desk-show-name-and-status d-flex flex-column">
+        <div class="desk-show-title mb-0">
+          <h1><%= @desk.title %></h1>
+        </div>
+        <div class="desk-show-status mb-0">
+          <p><%= @online_status ? "#{@desk.user.username} is 🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "#{@desk.user.username} is 🔴 Offline" %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center desk-show-bottom">
+      <div class="desk-show-info-btns d-flex flex-column">
+        <button><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+        <button><i class="fa-solid fa-plus"></i>&nbsp;Follow</button>
+        <button><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+      </div>
+      <div class="desk-show-intro">
+        <div class="desk-show-about-me">
+          <div style="font-weight: bold;"><i class="fa-solid fa-bookmark"></i>&nbsp;About Me</div>
+          <%= @desk.intro%>
+        </div>
+        <div class="desk-show-current-interest">
+          <div style="font-weight: bold;"><i class="fa-solid fa-book-open"></i>&nbsp;I'm currently interested in...</div>
+          <%= @desk.interest%>
+        </div>
+        <div class="desk-show-question">
+          <div style="font-weight: bold;"><i class="fa-solid fa-question"></i>&nbsp;I want to ask...</div>
+          <%= @desk.question%>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="desk-img col-6">
   </div>
