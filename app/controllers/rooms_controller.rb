@@ -41,7 +41,7 @@ class RoomsController < ApplicationController
     @spot_current_user = Spot.find_by(user: current_user, room: @room)
     @participant_type = participant_type
 
-    if @room.public == false && (@spot_current_user.nil? || @spot_current_user.status != :accepted)
+    if @room.public == false && (@spot_current_user.nil? || @spot_current_user.status != "accepted")
       redirect_to rooms_path, alert: "You cannot enter this private room unless your spot is accepted."
       return
     end
