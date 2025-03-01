@@ -1,14 +1,18 @@
-<%=link_to "Create a new room", new_room_path, class: "btn btn-secondary m-2" %>
-<div class="search-container">
-  <%= form_with url: rooms_path, method: :get, local: true, class: "search-form" do %>
-    <select name="search_type" class="search-select">
-      <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Room Title</option>
+<div class="d-flex flex-row justify-content-evenly align-items-center">
+  <div>
+    <%=link_to "Create a new room", new_room_path, class: "d-inline btn tab-poll-btn m-2" %>
+  </div>
+  <div class="room-search-container">
+    <%= form_with url: rooms_path, method: :get, local: true do %>
+      <select name="search_type" class="search-select">
+        <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Room Title</option>
       <option value="user" <%= "selected" if params[:search_type] == "user" %>>Room User</option>
     </select>
-    <%= text_field_tag :query, params[:query], placeholder: "Search Room...", class: "search-input" %>
+    <%= text_field_tag :query, params[:query], placeholder: "Search Room...", class: "room-search-input" %>
     <%= submit_tag "🔍", class: "search-button" %>
   <% end %>
-</div>
+  </div>
+        </div>
         <div class="container mt-4 hex-container mb-4" style="height: <%= (@rooms.count / 2.8 * 312) + 104 %>px">
           <div class="row" data-controller="hexagon">
             <%@rooms.each do |room| %>

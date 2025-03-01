@@ -47,3 +47,32 @@
   overflow-wrap: break-word;
   width: 50%;
 }
+
+.room-search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  // align-items: center;
+  // margin-bottom: 20px;
+  width: 800px;
+}
+
+.room-search-input {
+  border: none;
+  background-color: lightyellow;
+  height: 40px;
+  width: 300px;
+  font-size: 16px;
+  color: lightgray;
+  outline: none !important;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  &:focus {
+    border: 2px solid #f7c948;
+    box-shadow: 0px 0px 8px rgba(247, 201, 72, 0.6);
+    background-color: #fff;
+  }
+}
