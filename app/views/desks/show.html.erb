@@ -31,7 +31,50 @@
             <i class="far fa-heart"></i>&nbsp;Follow
           <% end%>
         <% end %>
-        <button><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+        <div data-controller="toggle-messages">
+          <button data-action="click->toggle-messages#showHideMessages"><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+          <div class="messages-main" data-toggle-messages-target="messages">
+            <div class="messages-div" >
+              <!-- Messages -->
+              <div >
+                <% @desk.messages.each do |message| %>
+                  <div class="message">
+                    <span><strong>
+                        <%= link_to message.user.username, desk_path(message.user.desk) %></strong></span>: <span class="text-break"><%= message.text %></span>
+                    <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="clickable-div mt-2">
+              <!-- Hidden Form -->
+              <div class="form-container" data-toggle-messages-target="form">
+                <%= simple_form_for [@desk, @message],
+                method: :post,
+                data: {
+                # action: "submit->toggle-messages#hideForm",
+                turbo_frame: "messages"
+                } do |f| %>
+                  <div class="d-flex">
+                    <%# <%= f.input :text,
+                  as: :text,
+                  label: false,
+                  input_html: { maxlength: 400,
+                  # data: { toggle_form_target: "textarea" } } %>
+                    <%= f.input :text,
+              label: false,
+              wrapper: false,
+              placeholder: "Message from #{current_user.username}",
+              input_html: { id: "msg_content", class: "chat-input", data: { action: "keydown.enter->toggle-form#submit" } } %>
+                    <button type="submit" class="chat-send-btn">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="desk-show-intro">
         <div class="desk-show-about-me">
