@@ -35,6 +35,12 @@ class DesksController < ApplicationController
     @message = Message.new
   end
 
+  def update
+    @desk = Desk.find(params[:id])
+    @desk.update(desk_params)
+    redirect_to desk_path(@desk)
+  end
+
   private
 
   def set_desk_and_user
@@ -59,5 +65,9 @@ class DesksController < ApplicationController
       @room_status = nil
       @room_title = nil
     end
+  end
+
+  def desk_params
+    params.require(:desk).permit(:title, :intro, :interest, :question)
   end
 end
