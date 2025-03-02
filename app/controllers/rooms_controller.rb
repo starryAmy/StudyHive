@@ -38,6 +38,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @all_users = User.all.where.not(id: current_user.id)
     @spot_current_user = Spot.find_by(user: current_user, room: @room)
     @participant_type = participant_type
 

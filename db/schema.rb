@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_02_114032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
     t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
     t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor"
     t.index ["scope"], name: "index_favorites_on_scope"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_invites_on_room_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -186,6 +195,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
   add_foreign_key "chatmessages", "users"
   add_foreign_key "desks", "users"
   add_foreign_key "events", "desks"
+  add_foreign_key "invites", "rooms"
+  add_foreign_key "invites", "users"
   add_foreign_key "messages", "desks"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "rooms"

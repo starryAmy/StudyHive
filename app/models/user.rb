@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :ballots, dependent: :destroy
   has_many :chatmessages, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :invites, dependent: :destroy
 
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first_or_initialize

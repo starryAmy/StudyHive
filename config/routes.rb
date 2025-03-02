@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resource :follows, only: [:create, :destroy]
   end
   resources :rooms do
+    post "invite/:user_id", to: "invites#create", as: :invite
     resources :chatmessages, only: :create
     resources :polls, only: [:create, :edit, :update] do
       resources :ballots, only: :create

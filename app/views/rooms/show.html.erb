@@ -11,11 +11,19 @@
       <h1 style="filter: grayscale(100%)">🐝 <%= @room.title %></h1>
       <div class="room-show-status"><%= @room.public ? "Public・" : "Private・" %><%= @room.spots.size %> members</div>
         <% if current_user != @room.user %>
-        <% unless @spot_current_user %>
-          <%= button_to "Subscribe this Hive!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "room-show-btn" %>
-        <% else @spot_current_user %>
-          <%= button_to "Unsubsribe this Hive!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "room-show-btn", data: { confirm: "Are you sure you want to leave this room?" } %>
+          <% unless @spot_current_user %>
+            <%= button_to "Subscribe this Hive!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "room-show-btn" %>
+          <% else @spot_current_user %>
+            <%= button_to "Unsubsribe this Hive!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "room-show-btn", data: { confirm: "Are you sure you want to leave this room?" } %>
+          <% end %>
         <% end %>
+        <% if current_user == @room.user %>
+          <div data-controller="invite">
+            <i class="fa-solid fa-envelope room-show-invite" data-action="click->invite#toggle"></i>
+            <div class="d-none room-show-invite-list" data-invite-target="section">
+              <%= render "invitation" %>
+            </div>
+          </div>
         <% end %>
     </div>
     <div class="room-show-user-description">

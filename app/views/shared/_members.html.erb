@@ -1,3 +1,14 @@
-<% @room.spots.each do |spot| %>
-  <p><%= spot.user.username %></p>
-<% end %>
+<div class="d-flex flex-row">
+  <% @room.spots.each do |spot| %>
+    <% if spot.user&.last_online_at.present? %>
+      <% time_difference = Time.now - spot.user.last_online_at %>
+      <% online_status = time_difference < 30.minutes ? true : false %>
+    <% else %>
+      <% online_status = false %>
+    <% end %>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="margin:10px;">
+      <div><span style="<%= online_status ? "" : "filter: grayscale(100%)" %>; font-size: 32px;">🐝</span></div>
+      <p><%= spot.user.username %></p>
+    </div>
+  <% end %>
+</div>
