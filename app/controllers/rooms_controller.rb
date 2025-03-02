@@ -39,8 +39,9 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @spot_current_user = Spot.find_by(user: current_user, room: @room)
+    @participant_type = participant_type
 
-    if @room.public == false && (@spot_current_user.nil? || @spot_current_user.status != :accepted)
+    if @room.public == false && (@spot_current_user.nil? || @spot_current_user.status != "accepted")
       redirect_to rooms_path, alert: "You cannot enter this private room unless your spot is accepted."
       return
     end
@@ -77,8 +78,35 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    @room.update(rooms_params)
-    #redirect_to request.referer
+    unless params[:idx_to_remove].present? || params[:input_field].present?
+      @room.update(rooms_params)
+      redirect_to room_path @room
+      return
+    end
+
+    if params[:input_field].present?
+      @room.res_list << params[:input_field]
+    else
+      @room.res_list.delete_at(params[:idx_to_remove].to_i)
+    end
+
+    if @room.save
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("resources-submit-form",
+              partial: "shared/resources_submit_form",
+              locals: { room: @room, user: "owner" }),
+            turbo_stream.replace("resources-list",
+              partial: "shared/resources_list",
+              locals: { user: "owner", room: @room })
+          ]
+        end
+      end
+      broadcast_update
+    else
+      redirect_to room_path @room
+    end
   end
 
   def my_rooms
@@ -99,6 +127,22 @@ class RoomsController < ApplicationController
   private
 
   def rooms_params
-    params.require(:room).permit(:title, :locked, :public, :resources_content)
+    params.require(:room).permit(:title, :locked, :public, :res_list)
+  end
+
+  def broadcast_update
+    # @room.broadcast_replace_to("room_#{@room.id}_resources/owner",
+    #                     target: "resources-list",
+    #                     partial: "shared/resources_list",
+    #                     locals: { user: "owner", room: @room })
+
+    @room.broadcast_replace_to("room_#{@room.id}_resources/member",
+                        target: "resources-list",
+                        partial: "shared/resources_list",
+                        locals: { user: "member", room: @room })
+  end
+
+  def participant_type
+    (current_user == @room.user ? "owner" : "member")
   end
 end
