@@ -8,7 +8,7 @@
 <div class="container">
   <div class="d-flex my-3 flex-column">
     <div class="d-flex flex-row align-items-center">
-      <h1 style="filter: grayscale(100%)">🐝 <%= @room.title %></h1>
+      <h1>🐝 <%= @room.title %></h1>
       <div class="room-show-status"><%= @room.public ? "Public・" : "Private・" %><%= @room.spots.size %> members</div>
         <% if current_user != @room.user %>
           <% unless @spot_current_user %>
