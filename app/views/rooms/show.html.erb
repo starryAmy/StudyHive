@@ -46,10 +46,4 @@
         <%= render "roomchat" %>
       </div>
   </div>
-  <h1>Check who are active now in this room!</h1>
-      <div class="row">
-        <% @spots_accepted.each do |spot| %>
-          <%= render "shared/card", desk: spot.user.desk if spot.active %>
-        <% end %>
-      </div>
 </div>
