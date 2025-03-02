@@ -10,7 +10,7 @@ class DesksController < ApplicationController
       @page = 1
     end
     # everytime we press the button, there will be ten more new data
-    per_page = 4
+    per_page = 3
     if params[:query].present?
       case params[:search_type]
       when "title"

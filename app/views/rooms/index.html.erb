@@ -1,16 +1,16 @@
 <div class="d-flex flex-row justify-content-evenly align-items-center">
   <div>
     <%=link_to new_room_path, class: "btn btn-info rounded-pill m-2" do %>
-      <h4 class="m-2">Create a new room <i class="fa-regular fa-square-plus"></i></h4>
+      <h4 class="m-2">Create a new hive <i class="fa-regular fa-square-plus"></i></h4>
     <% end %>
   </div>
   <div class="room-search-container">
     <%= form_with url: rooms_path, method: :get, local: true do %>
       <select name="search_type" class="search-select">
-        <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Room Title</option>
-      <option value="user" <%= "selected" if params[:search_type] == "user" %>>Room User</option>
+        <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Hive Title</option>
+      <option value="user" <%= "selected" if params[:search_type] == "user" %>>Hive User</option>
     </select>
-    <%= text_field_tag :query, params[:query], placeholder: "Search Room...", class: "room-search-input" %>
+    <%= text_field_tag :query, params[:query], placeholder: "Search Hive...", class: "room-search-input" %>
     <%= submit_tag "🔍", class: "search-button" %>
   <% end %>
   </div>
