@@ -49,15 +49,13 @@ export default class extends Controller {
       container.appendChild(userText);
 
       if (user.online && user.spots.length > 0) {
-        user.spots.forEach((spot) => {
           const roomLink = document.createElement("a");
-          roomLink.href = `/rooms/${spot.room_id}`;
-          roomLink.textContent = `in ${spot.room_status} Room: ${spot.room}`;
+          roomLink.href = `/rooms/${user.spots[0].room_id}`;
+          roomLink.textContent = `in ${user.spots[0].room_status} Room: ${user.spots[0].room}`;
           roomLink.classList.add("blackboard-room-link");
           roomLink.style.top = `${y}px`;
 
           container.appendChild(roomLink);
-        });
       } else if (user.online && user.spots.length === 0) {
         const roomLink = document.createElement("div");
         roomLink.textContent = "but not in any rooms right now";

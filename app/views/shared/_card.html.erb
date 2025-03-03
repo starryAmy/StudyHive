@@ -4,9 +4,7 @@
   <div class="card-tasks">📚Interest: <%= desk.interest %></div>
   <% if current_user %>
     <% if current_user.favorited?(desk) %>
-      <i class="fas fa-heart"></i>
-    <% else %>
-      <i class="far fa-heart"></i>
+      <div class="desk-index-status">🐝 Followed</div>
     <% end %>
   <% end %>
 </div>
