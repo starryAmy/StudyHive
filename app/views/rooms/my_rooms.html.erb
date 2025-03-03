@@ -1,9 +1,9 @@
 <div class="d-flex flex-column justify-content-evenly align-items-center">
   <%=link_to new_room_path, class: "btn btn-info rounded-pill m-2" do %>
-    <h4 class="m-2">Create a new room <i class="fa-regular fa-square-plus"></i></h4>
+    <h4 class="m-2">Create a new hive <i class="fa-regular fa-square-plus"></i></h4>
   <% end %>
   <div class="container mt-4">
-    <h1>🐝 Owner</h1>
+    <h1>🐝 You Are the Owner</h1>
     <div style="height: <%= (@rooms_owned.count / 2.8 * 312) + 104 %>px">
       <div class="row" data-controller="hexagon">
         <% @rooms_owned.each do |room| %>
@@ -11,7 +11,7 @@
         <%end%>
       </div>
     </div>
-    <h1 class="mt-3">🐝 Member</h1>
+    <h1 class="mt-3">🐝 Your Are the Member</h1>
     <div style="height: <%= (@rooms_member.count / 1.5 * 312) + 104 %>px">
       <div class="row mb-3" data-controller="hexagon">
         <% @rooms_member.each do |room| %>

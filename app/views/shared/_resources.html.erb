@@ -1,7 +1,7 @@
-<div id="resources-<%= @room.id %>">
 
-  <h1>Resourses</h1>
-  <%= render "shared/resources_list", user: @participant_type, room: @room %>
-
-  <%= render "shared/resources_submit_form", user: @participant_type, room: @room %>
-</div>
+  <div id="resources-<%= @room.id %>">
+    <div class="resources-section">
+      <%= render "shared/resources_list", user: @participant_type, room: @room %>
+    </div>
+    <%= render "shared/resources_submit_form", user: @participant_type, room: @room %>
+  </div>

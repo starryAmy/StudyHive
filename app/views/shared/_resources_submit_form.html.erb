@@ -3,7 +3,7 @@
   <% if user == "owner" %>
     <%= form_with url: room_path(room), method: :patch do |f| %>
       <div class="resources-form">
-        <%= f.text_field :input_field, class: "w-75", placeholder: "Add a new resource link" %>
+        <%= f.text_field :input_field, class: "resources-input", placeholder: "Add a new resource link" %>
         <%= f.submit "+", class: "resources-button" %>
       </div>
     <% end %>

@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   has_many :chatmessages, dependent: :destroy
   has_many :polls, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :invites, dependent: :destroy
 
   after_create :create_spot_for_owner
   # after_commit :broadcast_message

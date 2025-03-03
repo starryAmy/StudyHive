@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_02_114032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
     t.bigint "user_id", null: false
     t.string "title"
     t.integer "points"
+    t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.string "task"
     t.string "interest"
     t.string "question"
     t.text "intro"
@@ -76,6 +76,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_invites_on_room_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.datetime "date"
     t.string "text"
@@ -85,17 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
     t.datetime "updated_at", null: false
     t.index ["desk_id"], name: "index_messages_on_desk_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "notepads", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "parent_id"
-    t.bigint "desk_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["desk_id"], name: "index_notepads_on_desk_id"
-    t.index ["parent_id"], name: "index_notepads_on_parent_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -197,6 +195,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_054149) do
   add_foreign_key "chatmessages", "users"
   add_foreign_key "desks", "users"
   add_foreign_key "events", "desks"
+  add_foreign_key "invites", "rooms"
+  add_foreign_key "invites", "users"
   add_foreign_key "messages", "desks"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "rooms"
