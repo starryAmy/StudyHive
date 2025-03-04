@@ -1,7 +1,7 @@
 .show-desk-bg {
   background-image: url("stationery-bg alpha.png");
   background-repeat: repeat;
-  mix-blend-mode: multiply;
+  // mix-blend-mode: multiply;
   // opacity: 0.4;
   // margin-top: 100px;
   // width: 800px;
@@ -154,7 +154,7 @@
   cursor: pointer;
 }
 
-.messages-div {
+#messages-div {
   max-height: 300px;
   overflow-y: auto; /* Enables vertical scrolling when content overflows */
   overflow-x: hidden; /* Prevents horizontal scrolling */

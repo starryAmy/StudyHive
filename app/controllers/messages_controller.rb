@@ -5,7 +5,14 @@ class MessagesController < ApplicationController
     @message.desk = @desk
     @message.user = current_user ? current_user : User.where.not(id: @desk.user_id).sample
     if @message.save
-      redirect_to desk_path(@desk), notice: "Message sent successfully!"
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:"messages-div", partial: "desks/desk_message",
+            locals: { message: @message })
+        end
+        format.html { redirect_to booking_path(@booking) }
+      end
     else
       redirect_to desk_path(@desk), alert: "Failed sending message"
     end
