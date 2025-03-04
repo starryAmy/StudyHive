@@ -12,4 +12,10 @@ export default class extends Controller {
     this.formTarget.classList.toggle("d-none");
     this.textareaTarget.focus();
   }
+
+  submit(event) {
+    debugger;
+    event.preventDefault();
+    this.element.requestSubmit(); // Submits the form programmatically
+  }
 }

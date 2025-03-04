@@ -1,0 +1,5 @@
+<div class="message">
+  <span><strong>
+      <%= link_to message.user.username, desk_path(message.user.desk) %></strong></span>: <span class="text-break"><%= message.text %></span>
+  <p><%= message.created_at.strftime("%d/%m/%Y %H:%M:%S") %></p>
+</div>
