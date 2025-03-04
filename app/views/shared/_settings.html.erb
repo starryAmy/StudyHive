@@ -1,25 +1,30 @@
 <h1>Settings</h1>
-<ul>
-  <li>
-    <p>Change your profile picture</p>
-  </li>
-  <li>
-    <p>Change your theme</p>
-  </li>
-  <li>
-    <p>Change your language</p>
-  </li>
-  <li>
-    <p>Change your notification settings</p>
-  </li>
-  <li>
-    <p>Change your privacy settings</p>
-  </li>
-  <li>
-    <p>Change your account settings</p>
-  </li>
-  <li>
-    <p>Change your preferences
-    </p>
-  </li>
-</ul>
+
+<% if current_user == @room.user %>
+  <div>
+    <% if @room.locked %>
+      <%= button_to "Locked", room_path(@room), params: { room: { locked: false } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% else %>
+      <%= button_to "Unlocked", room_path(@room), params: { room: { locked: true } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% end %>
+  </div>
+
+  <div class="my-2">
+    <% if @room.public %>
+      <%= button_to "Public", room_path(@room), params: { room: { public: false } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% else %>
+      <%= button_to "Private", room_path(@room), params: { room: { public: true } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% end %>
+  </div>
+
+  <% @room.spots.each do |spot|  %>
+    <% if spot.status == "pending" %>
+      <div class="d-flex align-items-center mt-3">
+        <p class="me-2 my-0">Status: <%= spot.status %>. User: <%= spot.user.username %>. Desk: <%= spot.user.desk.title %></p>
+
+        <%= button_to "Accept", spot_path(spot), params: { spot: { status: :accepted } }, class: "btn btn-primary me-2", method: :patch %>
+        <%= button_to "Reject", spot_path(spot), params: { spot: { status: :rejected } }, class: "btn btn-primary", method: :patch %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
