@@ -1,0 +1,56 @@
+@import "config/colors";
+@import "config/fonts";
+
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+.navbar-lewagon {
+  justify-content: space-between;
+  background: white;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+
+.navbar-background {
+  background-color: $color-fifth;
+}
+
+.navbar-text {
+  color: $color-first !important;
+  font-weight: bold !important;
+  font-size: larger !important;
+}
+
+.navbar-text-main {
+  color: $color-third !important;
+  font-weight: bold !important;
+  font-size: larger !important;
+}
+.home-welcome{
+  display:flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  p {
+    margin: 0;
+  }
+}
+.navbar-word-welcome{
+  color:white;
+  text-align: center;
+}
+
+.navbar-logo {
+  width: 150px;
+  height: auto;
+  margin-top: -20px;
+  // move logo to the left
+  margin-left: -60px;
+}

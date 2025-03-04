@@ -1,0 +1,7 @@
+<%= simple_form_for @desk do |f| %>
+    <%= f.input :title, label: "What's your task today?", input_html: { class: "desk-show-edit-column" } %>
+    <%= f.input :intro, label: "Tell us about yourself!", input_html: { class: "desk-show-edit-column" } %>
+    <%= f.input :interest, label: "What are you interested in the most recently?", input_html: { class: "desk-show-edit-column" } %>
+    <%= f.input :question, label: "What's the question hovering in your mind recently?", input_html: { class: "desk-show-edit-column" } %>
+    <%= f.button :submit %>
+<% end %>
