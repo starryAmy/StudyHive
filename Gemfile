@@ -63,6 +63,7 @@ gem "sassc-rails"
 gem "simple_calendar"
 
 gem 'youtube_rails'
+gem "ruby-openai"
 
 group :development, :test do
   # gem "dotenv-rails"

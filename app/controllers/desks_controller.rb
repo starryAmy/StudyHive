@@ -33,6 +33,13 @@ class DesksController < ApplicationController
   end
   def show
     @message = Message.new
+
+    if params.keys.count > 3
+      @query =  params["desk"]["question"]
+      openai_service = OpenaiService.new
+      @response = openai_service.generate_response(@query)
+    end
+
   end
 
   def update

@@ -96,5 +96,29 @@
         </div>
       <% end %>
     </div>
+    <div data-controller="toggle-ai">
+      <div id="ai-chat-div" data-toggle-ai-target="aiChat" class="<%= "d-none" unless @response %>  ">
+        <h3>Ask the AI Queen Bee</h3>
+        <%= simple_form_for @desk, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :question, label: false, wrapper: false %>
+            <button type="submit" class="chat-send-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        <% end %>
+        <% if @query %>
+          <div class="ai-response">
+            <p>
+              Your question: <%= @query %>
+            </p>
+            <p>
+              The AI Response: <%= @response %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="queen-bee-img" data-action="click->toggle-ai#showHideAI"></div>
+    </div>
   </div>
 </div>
