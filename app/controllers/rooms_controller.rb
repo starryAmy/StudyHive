@@ -113,6 +113,7 @@ class RoomsController < ApplicationController
   def my_rooms
     @rooms_member = []
     @rooms_owned = []
+    @is_entering_allowed = true
     current_user.spots.each do |spot|
       room = spot.room
       room.user == current_user ? @rooms_owned << room : @rooms_member << room

@@ -8,24 +8,29 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Event.destroy_all
 puts "Clearing users..."
 User.destroy_all
-puts "Clearing users..."
 
-user1 = User.create(email: "zzz@gmail.com", password: "123123", username: "Rayz")
-puts "Creating user1..."
-user2 = User.create!(email: "yzyz@gmail.com", password: "321321", username: "Amy")
-puts "Creating user2..."
-user3 = User.create!(email: "wwyy@gmail.com", password: "123321", username: "Ruben")
-puts "Creating user3..."
-user4 = User.create!(email: "abc@gmail.com", password: "123321", username: "Sarah")
-puts "Creating user4..."
-user5 = User.create!(email: "cba@gmail.com", password: "123321", username: "Alex")
-puts "Creating user5..."
-user6 = User.create!(email: "qqq@gmail.com", password: "123123", username: "Emily")
-puts "Creating user6..."
-user7 = User.create!(email: "www@gmail.com", password: "222222", username: "Claire")
-puts "Creating user7..."
+puts "Creating users..."
+user1 = User.create(email: "rayz@gmail.com", password: "12345", username: "Rayz")
+user2 = User.create!(email: "amy@gmail.com", password: "12345", username: "Amy")
+user3 = User.create!(email: "ruben@gmail.com", password: "12345", username: "Ruben")
+user4 = User.create!(email: "sarah@gmail.com", password: "12345", username: "Sarah")
+user5 = User.create!(email: "alex@gmail.com", password: "12345", username: "Alex")
+user6 = User.create!(email: "allan@gmail.com", password: "12345", username: "Allan")
+user7 = User.create!(email: "mia@gmail.com", password: "12345", username: "Mia")
+user8 = User.create!(email: "minami@gmail.com", password: "12345", username: "Minami")
+user9 = User.create!(email: "cindy@gmail.com", password: "12345", username: "Cindy")
+user10 = User.create!(email: "liam@gmail.com", password: "12345", username: "Liam")
+user11 = User.create!(email: "nico@gmail.com", password: "12345", username: "Nico")
+user12 = User.create!(email: "julian@gmail.com", password: "12345", username: "Julian")
+user13 = User.create!(email: "lio@gmail.com", password: "12345", username: "Lio")
+user14 = User.create!(email: "jakub@gmail.com", password: "12345", username: "Jakub")
+user15 = User.create!(email: "ben@gmail.com", password: "12345", username: "Ben")
+user16 = User.create!(email: "max@gmail.com", password: "12345", username: "Max")
+user17 = User.create!(email: "stamati@gmail.com", password: "12345", username: "Stamati")
+user18 = User.create!(email: "jas@gmail.com", password: "12345", username: "Jas")
 
 # Create a desk
 
@@ -43,27 +48,21 @@ desk7 = Desk.create!(user: user7, title: "Damn exam", points: 600, task: "Practi
 # Create an event
 
 puts "Clearing events..."
-Event.destroy_all
 
-event1 = Event.create!(title: "Meeting", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
-
-event2 = Event.create!(title: "Lunch", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
-
-event3 = Event.create!(title: "Sleeping", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
-
-event4 = Event.create!(title: "Boxing", start_time: DateTime.new(2025, 2, 11, 11, 0, 0), end_time: DateTime.new(2025, 2, 11, 11, 0, 0), desk: desk1)
 
 puts "Clearing rooms..."
 Room.destroy_all
 puts "Clearing spots..."
 Spot.destroy_all
 
+room0 = Room.create!(title: "AI", description: "Let's talk about AI, yayyy!!!", user: user1, public: true, locked: false)
 room1 = Room.create!(title: "Meeting", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: true, locked: false)
 room2 = Room.create!(title: "Movie", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room3 = Room.create!(title: "Algorithm", description: "Let's talk about Marvel movies, that will be fun!", user: user3, public: true, locked: false)
 room4 = Room.create!(title: "Boxing", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room5 = Room.create!(title: "Boxing2", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: false, locked: false)
 room6 = Room.create!(title: "Boxing3", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: false, locked: false)
+
 
 
 

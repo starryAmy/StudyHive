@@ -19,7 +19,7 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @spot.update(spot_params)
 
-    #redirect_to @spot.room_path
+    redirect_to room_path(@spot.room)
   end
 
   def destroy

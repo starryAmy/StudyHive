@@ -2,7 +2,7 @@
   <div>
     <% if current_user == @room.user %>
       <%= form_with url: room_path(@room), method: :get, local: true, class: "search-form d-flex align-items-center" do %>
-        <%= text_field_tag :youtube_id, params[:youtube_id], placeholder: "Please enter Youtube Id...", class: "search-input flex-grow-1" %>
+        <%= text_field_tag :youtube_id, params[:youtube_id], placeholder: "Please enter Youtube URL...", class: "search-input flex-grow-1" %>
         <%= button_tag type: "submit", class: "search-button" do %>
             <i class="fas fa-paper-plane"></i>
         <% end %>
