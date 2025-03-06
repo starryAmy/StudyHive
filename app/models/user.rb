@@ -27,7 +27,7 @@ class User < ApplicationRecord
   end
 
 # when user finished signing up, the desk will auto be created
-  after_create :create_desk
+  #after_create :create_desk
 
   private
 
