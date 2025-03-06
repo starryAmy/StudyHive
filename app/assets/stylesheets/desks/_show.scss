@@ -221,3 +221,21 @@
   overflow-y: auto; /* Enables vertical scrolling when content overflows */
   overflow-x: hidden; /* Prevents horizontal scrolling */
 }
+
+.queen-bee-img {
+  background-image: url("queen bee.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 40px;
+  right: 30px;
+}
+
+.queen-bee-img:hover {
+  background-image: url("queen bee up.png");
+  transform: scale(1.1);
+  cursor: pointer;
+}
