@@ -44,6 +44,17 @@ desk4 = Desk.create!(user: user4, title: "Programming", points: 300, task: "Fini
 desk5 = Desk.create!(user: user5, title: "Programming", points: 300, task: "Finish the code")
 desk6 = Desk.create!(user: user6, title: "Tiredddd", points: 500, task: "Preview material")
 desk7 = Desk.create!(user: user7, title: "Damn exam", points: 600, task: "Practice exams")
+desk8 = Desk.create!(user: user8, title: "Damn exam", points: 600, task: "Practice exams")
+desk9 = Desk.create!(user: user9, title: "Damn exam", points: 600, task: "Practice exams")
+desk10 = Desk.create!(user: user10, title: "Damn exam", points: 600, task: "Practice exams")
+desk11 = Desk.create!(user: user11, title: "Damn exam", points: 600, task: "Practice exams")
+desk12 = Desk.create!(user: user12, title: "Damn exam", points: 600, task: "Practice exams")
+desk13 = Desk.create!(user: user13, title: "Damn exam", points: 600, task: "Practice exams")
+desk14 = Desk.create!(user: user14, title: "Damn exam", points: 600, task: "Practice exams")
+desk15 = Desk.create!(user: user15, title: "Damn exam", points: 600, task: "Practice exams")
+desk16 = Desk.create!(user: user16, title: "Damn exam", points: 600, task: "Practice exams")
+desk17 = Desk.create!(user: user17, title: "Damn exam", points: 600, task: "Practice exams")
+desk18 = Desk.create!(user: user18, title: "Damn exam", points: 600, task: "Practice exams")
 
 # Create an event
 
