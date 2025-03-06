@@ -97,4 +97,22 @@
       <% end %>
     </div>
   </div>
+  <div id="ai-chat-div" style="height: 300px; width: 300px;">
+    <%= simple_form_for @desk, method: :get do |f| %>
+      <%= f.input :question, label: false, wrapper: false %>
+      <button type="submit" class="chat-send-btn">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    <% end %>
+    <% if @query %>
+      <div class="ai-response">
+        <p>
+          Your question: <%= @query %>
+        </p>
+        <p>
+          The AI Response: <%= @response %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
