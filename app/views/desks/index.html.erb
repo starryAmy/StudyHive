@@ -1,32 +1,34 @@
-<div class="container mt-4 index-desk-bg" id="index-container" data-controller="load-more">
-  <div class="blackboard-container">
-    <img src="<%= asset_path('blackboard1.png') %>" class="blackboard-img" alt="Blackboard">
-    <div class="blackboard-text-container" data-controller="blackboard"></div>
-  </div>
-  <div class="search-container">
-    <%= form_with url: desks_path, method: :get, local: true, class: "search-form" do %>
-      <select name="search_type" class="search-select">
-        <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Desk Title</option>
+<div class="index-desk-bg">
+  <div class="container mt-4" id="index-container" data-controller="load-more">
+    <div class="blackboard-container">
+      <img src="<%= asset_path('blackboard1.png') %>" class="blackboard-img" alt="Blackboard">
+      <div class="blackboard-text-container" data-controller="blackboard"></div>
+    </div>
+    <div class="search-container">
+      <%= form_with url: desks_path, method: :get, local: true, class: "search-form" do %>
+        <select name="search_type" class="search-select">
+          <option value="title" <%= "selected" if params[:search_type].nil? || params[:search_type] == "title" %>>Desk Title</option>
         <option value="user" <%= "selected" if params[:search_type] == "user" %>>Desk User</option>
       </select>
       <%= text_field_tag :query, params[:query], placeholder: "Search Desk...", class: "search-input" %>
       <%= submit_tag "🔍", class: "search-button" %>
     <% end %>
   </div>
-          <div class="row d-flex flex-wrap justify-content-center" data-load-more-target="container">
-            <% if @desks.nil? %>
-              <div class="col-md-12">
-                <h1 class="text-center">No desks found</h1>
-              </div>
-            <% else %>
-              <%@desks.each do |desk| %>
-                <%= render "shared/card", desk: desk, status: @online_status %>
+            <div class="row d-flex flex-wrap justify-content-center" data-load-more-target="container">
+              <% if @desks.nil? %>
+                <div class="col-md-12">
+                  <h1 class="text-center">No desks found</h1>
+                </div>
+              <% else %>
+                <%@desks.each do |desk| %>
+                  <%= render "shared/card", desk: desk, status: @online_status %>
+                <%end%>
               <%end%>
-            <%end%>
-          </div>
-          <% unless @all_desks.nil? %>
-            <% if @all_desks.count > 4 %>
-              <button id="load-more" data-page="1" class="btn btn-primary" data-action="click->load-more#loadMore" data-page="1" data-load-more-target="button"> <%= image_tag "bee.png", class: "index-load"%>Load More</button>
+            </div>
+            <% unless @all_desks.nil? %>
+              <% if @all_desks.count > 4 %>
+                <button id="load-more" data-page="1" class="btn btn-primary" data-action="click->load-more#loadMore" data-page="1" data-load-more-target="button"> <%= image_tag "bee.png", class: "index-load"%>Load More</button>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
