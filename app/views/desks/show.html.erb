@@ -109,11 +109,12 @@
         <% end %>
         <% if @query %>
           <div class="ai-response">
-            <p>
-              Your question: <%= @query %>
+            <p><strong>
+                Your question: </strong><%= @query %>
             </p>
-            <p>
-              The AI Response: <%= @response %>
+            <p>--------------------</p>
+            <p><strong>
+                The AI Response: </strong><%= @response %>
             </p>
           </div>
         <% end %>
