@@ -32,6 +32,7 @@ user16 = User.create!(email: "max@gmail.com", password: "123456", username: "Max
 user17 = User.create!(email: "stamati@gmail.com", password: "123456", username: "Stamati")
 user18 = User.create!(email: "jas@gmail.com", password: "123456", username: "Jas")
 
+
 # Create a desk
 
 puts "Clearing desks..."
@@ -77,7 +78,25 @@ room6 = Room.create!(title: "AI Content Generation", description: "Studying AI c
 
 
 
-spot1 = Spot.create!(status: :accepted, room: room1, user: user2)
-spot2 = Spot.create!(status: "pending", room: room2, user: user3)
-spot3 = Spot.create!(status: "pending", room: room3, user: user1)
-spot4 = Spot.create!(status: "pending", room: room4, user: user1)
+# spot1 = Spot.create!(status: :accepted, room: room1, user: user2)
+# spot2 = Spot.create!(status: "pending", room: room2, user: user3)
+# spot3 = Spot.create!(status: "pending", room: room3, user: user1)
+# spot4 = Spot.create!(status: "pending", room: room4, user: user1)
+
+users = [user1, user2, user3, user4, user5, user6, user7, user8, user9,
+user10,user11,user12,user13,user14,user15,user16,user17,user18]
+
+
+users.each do |user|
+  if user == user1
+    next
+  end
+  Spot.create!(status: :accepted, room: room0, user: user)
+end
+
+users.each do |user|
+  if user == user1
+    next
+  end
+  Spot.create!(status: :accepted, room: room1, user: user)
+end
