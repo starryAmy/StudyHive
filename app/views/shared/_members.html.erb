@@ -1,4 +1,5 @@
-<div class="d-flex flex-row">
+
+<div class="d-flex flex-row overflow-scroll" style="max-width: 700px;">
   <% @room.spots.each do |spot| %>
     <% if spot.user&.last_online_at.present? %>
       <% time_difference = Time.now - spot.user.last_online_at %>
