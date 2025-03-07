@@ -73,7 +73,7 @@ room2 = Room.create!(title: "Movie", description: "Let's talk about Marvel movie
 room3 = Room.create!(title: "Algorithm", description: "Let's talk about Marvel movies, that will be fun!", user: user3, public: true, locked: false)
 room4 = Room.create!(title: "Boxing", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room5 = Room.create!(title: "Boxing2", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: false, locked: false)
-room6 = Room.create!(title: "AI Content Generation", description: "Studying AI content generation involves exploring how artificial intelligence technologies can be leveraged to create and optimize written content. This field of study delves into the various algorithms, models, and tools that can be used to generate high-quality and engaging text for a wide range of purposes, from marketing and advertising to journalism and storytelling.", user: user2, public: true, locked: false)
+room6 = Room.create!(title: "Math for AI/ML", description: "Mathematics forms the backbone of AI, providing essential tools for building intelligent systems. Key areas include linear algebra (for data representation and transformations), probability and statistics (for decision-making and predictions), calculus (for optimizing models via gradient descent), and discrete mathematics (for algorithms and logic). Understanding these mathematical foundations is crucial for developing and improving AI models. 🚀", user: user2, public: true, locked: false)
 
 
 
