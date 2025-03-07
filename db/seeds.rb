@@ -66,13 +66,13 @@ Room.destroy_all
 puts "Clearing spots..."
 Spot.destroy_all
 
-room0 = Room.create!(title: "AI", description: "Let's talk about AI, yayyy!!!", user: user1, public: true, locked: false)
+room0 = Room.create!(title: "AI for Everday Lives", description: "Studying the use of AI for everyday lives involves exploring how artificial intelligence can simplify and enhance various aspects of daily activities. This research delves into the development of AI-powered technologies that can improve efficiency in tasks such as home automation, healthcare, transportation, and personal assistance.", user: user1, public: true, locked: false)
 room1 = Room.create!(title: "Meeting", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: true, locked: false)
 room2 = Room.create!(title: "Movie", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room3 = Room.create!(title: "Algorithm", description: "Let's talk about Marvel movies, that will be fun!", user: user3, public: true, locked: false)
 room4 = Room.create!(title: "Boxing", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room5 = Room.create!(title: "Boxing2", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: false, locked: false)
-room6 = Room.create!(title: "Boxing3", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: false, locked: false)
+room6 = Room.create!(title: "AI Content Generation", description: "Studying AI content generation involves exploring how artificial intelligence technologies can be leveraged to create and optimize written content. This field of study delves into the various algorithms, models, and tools that can be used to generate high-quality and engaging text for a wide range of purposes, from marketing and advertising to journalism and storytelling.", user: user2, public: true, locked: false)
 
 
 
