@@ -65,7 +65,7 @@ class RoomsController < ApplicationController
       time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]
       @youtube_id = time_stamp ? params[:youtube_id][/[?&]v=([a-zA-Z0-9_-]+)/, 1] : video_id
     else
-      @youtube_id = "ErPNkvLCDSQ?start=20"
+      @youtube_id = "oJC8VIDSx_Q"
     end
     # raise
 
