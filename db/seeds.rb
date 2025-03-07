@@ -95,7 +95,7 @@ users.each do |user|
 end
 
 users.each do |user|
-  if user == user1
+  if user == user2
     next
   end
   Spot.create!(status: :accepted, room: room6, user: user)
