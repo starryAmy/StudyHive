@@ -3,7 +3,7 @@ class Chatmessage < ApplicationRecord
   belongs_to :user
   belongs_to :room
 
-  after_create_commit :broadcast_chatmessage
+  after_create :broadcast_chatmessage
 
   private
 
