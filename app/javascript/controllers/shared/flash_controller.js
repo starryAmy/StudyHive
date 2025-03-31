@@ -5,11 +5,11 @@ export default class extends Controller {
   connect() {
       const alerts = document.querySelectorAll(".alert");
       alerts.forEach((alert) => {
-        console.log("trigger alert fading");
         setTimeout(() => {
           alert.classList.remove("show"); // trigger fading animation
           setTimeout(() => alert.remove(), 300); // remove DOM element after animation
         }, 3000);
       });
     };
+
 }
