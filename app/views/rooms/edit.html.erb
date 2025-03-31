@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="d-flex">
+    <h1>Applications</h1>
+    <%= link_to "Back to room", room_path(@room), class: "btn btn-primary ms-auto mt-3" %>
+  </div>
+  <div class="d-flex align-items-center">
+    <p class="me-2 my-0">Room settings, click to switch:</p>
+    <% if @room.locked %>
+      <%= button_to "Locked", room_path(@room), params: { room: { locked: false } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% else %>
+      <%= button_to "Unlocked", room_path(@room), params: { room: { locked: true } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+    <% end %>
+    <div class="ms-2">
+      <% if @room.public %>
+        <%= button_to "Public", room_path(@room), params: { room: { public: false } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+      <% else %>
+        <%= button_to "Private", room_path(@room), params: { room: { public: true } }, class: "btn btn-primary", method: :patch, data:{ turbo_method: :patch} %>
+      <% end %>
+    </div>
+  </div>
+  <% @room.spots.each do |spot|  %>
+    <% if spot.status == "pending" %>
+      <div class="d-flex align-items-center mt-3">
+        <p class="me-2 my-0">Status: <%= spot.status %>. User: <%= spot.user.username %>. Desk: <%= spot.user.desk.title %></p>
+
+        <%= button_to "Accept", spot_path(spot), params: { spot: { status: :accepted } }, class: "btn btn-primary me-2", method: :patch %>
+        <%= button_to "Reject", spot_path(spot), params: { spot: { status: :rejected } }, class: "btn btn-primary", method: :patch %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

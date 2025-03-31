@@ -1,0 +1,15 @@
+<div class="d-flex flex-column">
+  <div>
+    <% if current_user == @room.user %>
+      <%= form_with url: room_path(@room), method: :get, local: true, class: "search-form d-flex align-items-center" do %>
+        <%= text_field_tag :youtube_id, params[:youtube_id], placeholder: "Please enter Youtube URL...", class: "search-input flex-grow-1" %>
+        <%= button_tag type: "submit", class: "search-button" do %>
+            <i class="fas fa-paper-plane"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="ratio ratio-16x9">
+    <iframe src="https://www.youtube.com/embed/<%= @youtube_id %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</div>
