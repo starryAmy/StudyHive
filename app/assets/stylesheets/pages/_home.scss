@@ -1,4 +1,5 @@
 // Specific CSS for your home-page
+
 .home-background{
   background-image: image-url("homepage.jpg");
   background-attachment: fixed;
@@ -13,11 +14,11 @@
   color: $color-first;
   position: absolute;
   background-attachment: fixed;
-  right: 0;
-  top: 150px;
+  right: 30px;
+  top: 50%;
   h3{
     font-family: "Lobster", cursive;
-    font-size: 40px;
+    font-size: 2.2em;
   }
 }
 .home-container{
