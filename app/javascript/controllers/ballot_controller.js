@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["form", "message"]
 
   submit(event) {
-    event.preventDefault(); // 阻止預設表單提交
+    event.preventDefault();
 
     const form = this.formTarget;
     const formData = new FormData(form);
@@ -19,8 +19,8 @@ export default class extends Controller {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        form.classList.add("d-none"); // 隱藏表單
-        this.messageTarget.innerText = "✅ You have already voted"; // 顯示訊息
+        form.classList.add("d-none");
+        this.messageTarget.innerText = "✅ You have already voted";
       } else {
         alert("投票失敗，請重試！");
       }
