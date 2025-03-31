@@ -4,6 +4,8 @@ html, body {
   padding: 0;
   position: relative;
   z-index: 1;
+  width: 100vw;
+  overflow-x: hidden;
 }
 .home-background{
   background-image: image-url("homepage.jpg");
