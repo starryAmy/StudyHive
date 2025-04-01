@@ -1,0 +1,61 @@
+
+<div class="home-background">
+  <div class="home-words">
+    Want to look for partners with same interests?
+  </div>
+</div>
+<div class="home-background2 d-flex align-items-center">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="logo-wrap d-flex col-6 align-items-center">
+      <%= image_tag "studyhive", class: "logo" %>
+    </div>
+    <div class="comb-wrap col-6 d-flex align-items-center justify-content-center">
+      <%#= image_tag "right", class: "comb-bg" %>
+      <div class="d-flex align-items-center justify-content-center w-100 h-100">
+        <svg class="honeycomb" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+          <% if current_user.present? %>
+            <%=link_to desk_path(current_user.desk) do %>
+              <g class="hive-group hive-1">
+                <polygon transform="scale(0.8)" points="75,0 150,37.5 150,112.5 75,150 0,112.5 0,37.5" fill="#e9c46a" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-1"/>
+                <text x="75" y="75" text-anchor="middle" font-size="15" fill="#264653" class="hive-text">
+                  <tspan x="60" dy="0">Check out your</tspan>
+                  <tspan x="60" dy="20">own Desk!🐝</tspan>
+                </text>
+              </g>
+            <% end %>
+          <% else %>
+            <%=link_to new_user_session_path do %>
+              <g class="hive-group hive-1">
+                <polygon transform="scale(0.8)" points="75,0 150,37.5 150,112.5 75,150 0,112.5 0,37.5" fill="#e9c46a" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-1"/>
+                <text x="75" y="75" text-anchor="middle" font-size="15" fill="#264653" class="hive-text">
+                  <tspan x="60" dy="-20">Check out your</tspan>
+                  <tspan x="60" dy="20">own Desk!🐝</tspan>
+                </text>
+              </g>
+            <% end %>
+          <% end %>
+          <%= link_to desks_path do %>
+            <g class="hive-group hive-2">
+              <polygon transform="scale(0.8)" points="150,112.5 225,150 225,225 150,262.5 75,225 75,150" fill="#e76f51" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-2"/>
+              <text x="150" y="190" text-anchor="middle" font-size="15" fill="#264653" class="hive-text">
+                <tspan x="122" dy="-40">Check out Who are</tspan>
+                <tspan x="122" dy="20">Online!🐝🐝</tspan>
+              </text>
+            </g>
+          <% end %>
+          <%= link_to rooms_path do %>
+            <g class="hive-group hive-3">
+              <polygon transform="scale(0.8)" points="75,225 150,262.5 150,337.5 75,375 0,337.5 0,262.5" fill="#f4a261" stroke="#264653" stroke-width="3" stroke-dasharray="8,4" class="hive-3"/>
+              <text x="75" y="300" text-anchor="middle" font-size="15" fill="#264653" class="hive-text">
+                <tspan x="60" dy="-60">Check out Hives</tspan>
+                <tspan x="60" dy="20">with Cool Topics!🐝</tspan>
+              </text>
+            </g>
+          <% end %>
+        </svg>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

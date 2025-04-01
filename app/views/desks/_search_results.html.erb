@@ -1,0 +1,9 @@
+<div id="desk_list" class="row d-flex flex-wrap justify-content-center">
+  <% if desks.empty? %>
+    <div class="desk-index-no-results-text mb-4">No desks found</div>
+  <% else %>
+    <% desks.each do |desk| %>
+      <%= render "shared/card", desk: desk, status: online_status %>
+    <% end %>
+  <% end %>
+</div>

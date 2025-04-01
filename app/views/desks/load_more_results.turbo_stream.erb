@@ -1,0 +1,9 @@
+<%= turbo_stream.append "desk_list" do %>
+  <%= render partial: "shared/card", collection: desks, as: :desk, locals: { status: online_status } %>
+<% end %>
+
+<%= turbo_stream.replace "load_more_button" do %>
+  <% if has_more_pages %>
+      <%= link_to "Load More 🐝", load_more_desks_path(page: page + 1), data: { turbo_stream: true }, class: "btn btn-primary mt-3", id: "load_more_button" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,125 @@
+<div class="d-flex flex-row show-desk-bg" style="padding-bottom: 150px;">
+  <div class="desk-show-info-wrap d-flex flex-column col-6">
+    <div class="desk-show-shot-and-name d-flex flex-row align-items-center justify-content-center">
+      <div class="desk-show-shot">
+        <%= image_tag "headshot", class: "desk-show-headshot" %>
+      </div>
+      <div class="desk-show-name-and-status d-flex flex-column">
+        <div class="desk-show-title mb-0">
+          <h2><%= @desk.title %></h2>
+        </div>
+        <div class="desk-show-status mb-0">
+          <p class="desk-show-status-username"><%= "@#{@desk.user.username}" %></p>
+          <p><%= @online_status ? "🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "🔴 Offline" %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center desk-show-bottom">
+      <div class="desk-show-info-btns d-flex flex-column" data-controller="edit-desk">
+        <div style="position: relative;">
+          <button data-action="click->edit-desk#edit"><i class="fa-solid fa-pen-to-square desk-show-edit-btn"></i>&nbsp;Edit</button>
+          <div class="desk-edit-form d-none" data-edit-desk-target="form">
+            <%= render "desks/edit"%>
+          </div>
+        </div>
+        <% if current_user.favorited?(@desk) %>
+          <%= button_to desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } do %>
+            <i class="fa-solid fa-heart"></i>&nbsp;Unfollow
+          <% end %>
+        <% else %>
+          <%= button_to desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } do %>
+            <i class="far fa-heart"></i>&nbsp;Follow
+          <% end%>
+        <% end %>
+        <div data-controller="toggle-messages">
+          <button data-action="click->toggle-messages#showHideMessages"><i class="fa-regular fa-message"></i>&nbsp;Message</button>
+          <div class="messages-main" data-toggle-messages-target="messages">
+            <div id="messages-div" >
+              <!-- Messages -->
+              <div >
+                <% @desk.messages.each do |message| %>
+                  <%= render("desk_message",{ message: message}) %>
+                <% end %>
+              </div>
+            </div>
+            <div class="clickable-div mt-2">
+              <!-- Hidden Form -->
+              <div class="form-container" data-toggle-messages-target="form">
+                <%= simple_form_for [@desk, @message],
+                method: :post,
+                html: {class: "d-flex",
+                data: { controller: "reset-form",
+                action: "turbo:submit-end->reset-form#reset" }},
+                data: {
+                turbo_frame: "messages"
+                } do |f| %>
+                  <div class="d-flex">
+                    <%= f.input :text,
+              label: false,
+              wrapper: false,
+              placeholder: "Message from #{current_user.username}",
+              input_html: { id: "msg_content", class: "chat-input" } %>
+                    <button type="submit" class="chat-send-btn">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="desk-show-intro">
+        <div class="desk-show-about-me">
+          <div style="font-weight: bold;"><i class="fa-solid fa-bookmark"></i>&nbsp;About Me</div>
+          <%= @desk.intro%>
+        </div>
+        <div class="desk-show-current-interest">
+          <div style="font-weight: bold;"><i class="fa-solid fa-book-open"></i>&nbsp;I'm currently interested in...</div>
+          <%= @desk.interest%>
+        </div>
+        <div class="desk-show-question">
+          <div style="font-weight: bold;"><i class="fa-solid fa-question"></i>&nbsp;I want to ask...</div>
+          <%= @desk.question %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="desk-img col-6">
+    <div class="sticky-notes" data-controller="sticky-notes">
+      <% @desk.messages.last(5).each do |message| %>
+        <div class="sticky-note">
+          <p id="sticky-time"><%= message.created_at.strftime("%m/%d %H:%M") %></p>
+          <p class="text-break" data-sticky-note-target="message-content"><%= message.text %></p>
+          <p class="align-self-end"><em>
+              - <%= message.user.username %></em></p>
+        </div>
+      <% end %>
+    </div>
+    <div data-controller="toggle-ai">
+      <div id="ai-chat-div" data-toggle-ai-target="aiChat" class="<%= "d-none" unless @response %>  ">
+        <h3>Ask the AI Queen Bee</h3>
+        <%= simple_form_for @desk, method: :get do |f| %>
+          <div class="d-flex">
+            <%= f.input :question, label: false, wrapper: false %>
+            <button type="submit" class="chat-send-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        <% end %>
+        <% if @query %>
+          <div class="ai-response">
+            <p><strong>
+                Your question: </strong><%= @query %>
+            </p>
+            <p>--------------------</p>
+            <p><strong>
+                The Queen Bee Response: </strong><%= @response %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="queen-bee-img" data-action="click->toggle-ai#showHideAI"></div>
+    </div>
+  </div>
+</div>
