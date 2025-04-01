@@ -4,6 +4,7 @@
   background-color: #f9eed3;
   background-image: url("stationery-bg alpha.png");
   background-repeat: repeat;
+  flex: 1;
 }
 
 a {
@@ -145,5 +146,9 @@ a {
   padding: 5px;
   text-align: center;
   font-size: 0.8rem;
+  font-weight: bold;
+}
+.desk-index-no-results-text {
+  font-size: 1.5rem;
   font-weight: bold;
 }

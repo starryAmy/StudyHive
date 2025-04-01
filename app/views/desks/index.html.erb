@@ -9,7 +9,7 @@
   <div data-controller="load-more" class="d-flex flex-column align-items-center">
     <div class="row d-flex flex-wrap justify-content-center" data-load-more-target="container">
       <% if @desks.empty? %>
-        <div class="desk-index-no-results-text">No desks found</div>
+        <div class="desk-index-no-results-text mb-4">No desks found</div>
       <% else %>
         <%@desks.each do |desk| %>
           <%= render "shared/card", desk: desk, status: @online_status %>
