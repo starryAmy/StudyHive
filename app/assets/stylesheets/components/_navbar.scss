@@ -2,6 +2,8 @@
 @import "config/fonts";
 
 .navbar {
+  // position: fixed;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -51,6 +53,4 @@
   width: 150px;
   height: auto;
   margin-top: -20px;
-  // move logo to the left
-  margin-left: -60px;
 }

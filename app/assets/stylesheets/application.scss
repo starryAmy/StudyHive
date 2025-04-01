@@ -28,3 +28,12 @@
 @import "rooms/old_poll";
 @import "rooms/new_poll";
 @import "rooms/resources";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  overflow-x: hidden;
+}
