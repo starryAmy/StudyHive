@@ -61,14 +61,20 @@ a {
   display: flex;
   align-items: center;
   font-weight: bold;
+  font-size: 1.2em;
   color: white;
   background: linear-gradient(45deg, $color-third, $color-second);
   border: 3px solid white;
   border-radius: 25px; /* 讓按鈕有圓潤感 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  .index-load {
+  width: 180px;
+  margin-bottom: 20px;
+
+  svg {
     height: 25%;
     width: 25%;
+    fill: white;
+    margin-right: 10px;
   }
 }
 .message-form {
