@@ -15,8 +15,10 @@ class DesksController < ApplicationController
       case params[:search_type]
       when "title"
         @desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("title ILIKE ?", "%#{params[:query]}%").all
       when "user"
         @desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
       end
     else
       @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
@@ -26,7 +28,9 @@ class DesksController < ApplicationController
     respond_to do |format|
       format.html  # loading in HTML in normal case
       # the reason why we added as: :ask was becuase ruby will auto render elements with variable name of card
-      format.js {render partial: "shared/card", collection: @desks, as: :desk, layout: false, formats: [:html]} # when there is AJAX request, respond js
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("search_results", partial: "desks/search_results", locals: { all_desks: @all_desks, desks: @desks, online_status: @online_status })  # loading in turbo stream
+      end
     end
   end
   def show
