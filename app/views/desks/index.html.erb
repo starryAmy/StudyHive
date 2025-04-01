@@ -6,7 +6,7 @@
     </div>
   </div>
   <%= render "shared/searchbar"%>
-  <div data-controller="load-more" class="d-flex flex-column align-items-center">
+  <div class="d-flex flex-column align-items-center">
     <turbo-frame id="search_results">
       <%= render "search_results", all_desks: @all_desks, desks: @desks, online_status: @online_status %>
     </turbo-frame>
