@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root "pages#home"
   # Defines the root path route ("/")
+  get "desks/load_more", to: "desks#load_more", as: :load_more_desks
   resources :desks do
     resources :messages, only: [:new, :create]
     resource :follows, only: [:create, :destroy]

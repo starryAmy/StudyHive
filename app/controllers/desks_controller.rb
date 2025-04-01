@@ -5,10 +5,7 @@ class DesksController < ApplicationController
 
   def index
     # get the page params
-    @page = params[:page].to_i
-    if @page == 0
-      @page = 1
-    end
+    @page = (params[:page] || 1).to_i
     # everytime we press the button, there will be ten more new data
     per_page = 4
     if params[:query].present?
@@ -44,6 +41,30 @@ class DesksController < ApplicationController
 
   end
 
+  def load_more
+    @page = params[:page].to_i
+    per_page = 4
+    if params[:query].present?
+      case params[:search_type]
+      when "title"
+        @desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("title ILIKE ?", "%#{params[:query]}%").all
+      when "user"
+        @desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+      end
+    else
+      @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
+      @all_desks = Desk.all
+    end
+    @has_more_pages = @all_desks.count > @page * per_page
+    page = @page
+    respond_to do |format|
+      format.turbo_stream do
+        render :load_more_results, locals: { desks: @desks, page: page, has_more_pages: @has_more_pages, online_status: @online_status }  # loading in turbo stream
+      end
+    end
+  end
   def update
     @desk = Desk.find(params[:id])
     @desk.update(desk_params)
