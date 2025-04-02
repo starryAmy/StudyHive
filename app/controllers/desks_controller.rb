@@ -6,18 +6,7 @@ class DesksController < ApplicationController
   def index
     # get the page params
     @page = (params[:page] || 1).to_i
-    # everytime we press the button, there will be ten more new data
     search_results
-    respond_to do |format|
-      format.html  # loading in HTML in normal case
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-        "search_results",
-        partial: "desks/search_results",
-        locals: { desks: @desks, all_desks: @all_desks }
-      )
-      end
-    end
   end
   def show
     @message = Message.new
@@ -47,6 +36,22 @@ class DesksController < ApplicationController
     @desk = Desk.find(params[:id])
     @desk.update(desk_params)
     redirect_to desk_path(@desk)
+  end
+
+  def render_search_results
+    @page = (params[:page] || 1).to_i
+    # everytime we press the button, there will be ten more new data
+    search_results
+    respond_to do |format|
+      format.html  # loading in HTML in normal case
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+        "search_results",
+        partial: "desks/search_results",
+        locals: { desks: @desks, all_desks: @all_desks }
+      )
+      end
+    end
   end
 
   private

@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   omniauth_callbacks: 'users/omniauth_callbacks'}
   root "pages#home"
   # Defines the root path route ("/")
-  get "desks/load_more", to: "desks#load_more", as: :load_more_desks
   resources :desks do
-    # collection do
-    #   get :load_more
-    # end
+    collection do
+      get :load_more
+      get :render_search_results
+    end
     resources :messages, only: [:new, :create]
     resource :follows, only: [:create, :destroy]
   end
