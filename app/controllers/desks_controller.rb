@@ -11,14 +11,13 @@ class DesksController < ApplicationController
     if params[:query].present?
       case params[:search_type]
       when "title"
-        @desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("title ILIKE ?", "%#{params[:query]}%").all
+        @desks = Desk.where("title ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("title ~* ?", "\\m#{params[:query]}\\M").all
       when "user"
-        @desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+        @desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
       end
     else
-      puts "no query"
       @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
       @all_desks = Desk.all
     end
@@ -53,11 +52,11 @@ class DesksController < ApplicationController
     if params[:query].present?
       case params[:search_type]
       when "title"
-        @desks = Desk.where("title ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("title ILIKE ?", "%#{params[:query]}%").all
+        @desks = Desk.where("title ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("title ~* ?", "\\m#{params[:query]}\\M").all
       when "user"
-        @desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+        @desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
+        @all_desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
       end
     else
       @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
