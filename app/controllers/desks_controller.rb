@@ -67,6 +67,10 @@ class DesksController < ApplicationController
       end
     @desks = base_scope.limit(PER_PAGE).offset((@page - 1) * PER_PAGE) #only loading new data
     @all_desks = base_scope.all
+    @desks = @desks.map do |desk|
+      status = desk.user.last_online_at.present? && desk.user.last_online_at > 30.minutes.ago ? "🟢 Online" : "🔴 Offline"
+      OpenStruct.new(desk: desk, status: status)
+    end
   end
 
   def set_desk_and_user
