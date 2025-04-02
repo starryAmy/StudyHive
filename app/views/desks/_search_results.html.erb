@@ -5,7 +5,7 @@
       <div class="desk-index-no-results-text mb-4">No desks found</div>
     <% else %>
       <% desks.each do |desk| %>
-        <%= render "shared/card", desk: desk, status: online_status %>
+        <%= render "shared/card", desk: desk %>
       <% end %>
     <% end %>
   </div>

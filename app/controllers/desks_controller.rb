@@ -2,35 +2,20 @@ class DesksController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_desk_and_user, only: [:show]
   before_action :set_basic_info, only: [:show]
-
+  PER_PAGE = 4
   def index
     # get the page params
     @page = (params[:page] || 1).to_i
     # everytime we press the button, there will be ten more new data
-    per_page = 4
-    if params[:query].present?
-      case params[:search_type]
-      when "title"
-        @desks = Desk.where("title ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("title ~* ?", "\\m#{params[:query]}\\M").all
-      when "user"
-        @desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
-      end
-    else
-      @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
-      @all_desks = Desk.all
-    end
-    # raise
+    search_results
     respond_to do |format|
       format.html  # loading in HTML in normal case
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
         "search_results",
         partial: "desks/search_results",
-        locals: { desks: @desks, all_desks: @all_desks, online_status: @online_status }
+        locals: { desks: @desks, all_desks: @all_desks }
       )
-        # render turbo_stream: turbo_stream.replace("search_results", partial: "desks/search_results", locals: { all_desks: @all_desks, desks: @desks, online_status: @online_status })  # loading in turbo stream
       end
     end
   end
@@ -47,27 +32,13 @@ class DesksController < ApplicationController
 
   def load_more
     @page = params[:page].to_i
-    per_page = 4
-
-    if params[:query].present?
-      case params[:search_type]
-      when "title"
-        @desks = Desk.where("title ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("title ~* ?", "\\m#{params[:query]}\\M").all
-      when "user"
-        @desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").limit(per_page).offset((@page - 1) * per_page) #only loading new data
-        @all_desks = Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
-      end
-    else
-      @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
-      @all_desks = Desk.all
-    end
-    @has_more_pages = @all_desks.count > @page * per_page
+    search_results
+    @has_more_pages = @all_desks.count > @page * PER_PAGE
     page = @page
 
     respond_to do |format|
       format.turbo_stream do
-        render :load_more_results, locals: { desks: @desks, page: page, has_more_pages: @has_more_pages, online_status: @online_status }  # loading in turbo stream
+        render :load_more_results, locals: { desks: @desks, page: page, has_more_pages: @has_more_pages }  # loading in turbo stream
       end
       format.html { render plain: "HTML fallback triggered" }
     end
@@ -79,6 +50,24 @@ class DesksController < ApplicationController
   end
 
   private
+
+  def search_results
+    query = params[:query].strip if params[:query].present?
+    type = params[:search_type]
+    base_scope =
+      if query.present?
+        case type
+        when "title"
+          Desk.where("title ~* ?", "\\m#{params[:query]}\\M")
+        when "user"
+          Desk.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M")
+        end
+      else
+        Desk.all
+      end
+    @desks = base_scope.limit(PER_PAGE).offset((@page - 1) * PER_PAGE) #only loading new data
+    @all_desks = base_scope.all
+  end
 
   def set_desk_and_user
     if Desk.exists?(id: params[:id])

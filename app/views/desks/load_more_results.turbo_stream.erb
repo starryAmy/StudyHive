@@ -1,5 +1,5 @@
 <%= turbo_stream.append "desk_list" do %>
-  <%= render partial: "shared/card", collection: desks, as: :desk, locals: { status: online_status } %>
+  <%= render partial: "shared/card", collection: desks, as: :desk %>
 <% end %>
 
 <%= turbo_stream.replace "load_more_button" do %>
