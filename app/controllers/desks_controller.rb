@@ -43,7 +43,8 @@ class DesksController < ApplicationController
     # everytime we press the button, there will be ten more new data
     search_results
     respond_to do |format|
-      format.html  # loading in HTML in normal case
+      # just in case user tried to type in the url manually
+      format.html { render plain: "Wrong URL" }
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
         "search_results",
