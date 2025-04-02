@@ -18,15 +18,20 @@ class DesksController < ApplicationController
         @all_desks = Desk.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
       end
     else
+      puts "no query"
       @desks = Desk.limit(per_page).offset((@page - 1) * per_page) #only loading new data
       @all_desks = Desk.all
     end
-
+    # raise
     respond_to do |format|
       format.html  # loading in HTML in normal case
-      # the reason why we added as: :ask was becuase ruby will auto render elements with variable name of card
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("search_results", partial: "desks/search_results", locals: { all_desks: @all_desks, desks: @desks, online_status: @online_status })  # loading in turbo stream
+        render turbo_stream: turbo_stream.replace(
+        "search_results",
+        partial: "desks/search_results",
+        locals: { desks: @desks, all_desks: @all_desks, online_status: @online_status }
+      )
+        # render turbo_stream: turbo_stream.replace("search_results", partial: "desks/search_results", locals: { all_desks: @all_desks, desks: @desks, online_status: @online_status })  # loading in turbo stream
       end
     end
   end
@@ -44,6 +49,7 @@ class DesksController < ApplicationController
   def load_more
     @page = params[:page].to_i
     per_page = 4
+
     if params[:query].present?
       case params[:search_type]
       when "title"
@@ -59,7 +65,7 @@ class DesksController < ApplicationController
     end
     @has_more_pages = @all_desks.count > @page * per_page
     page = @page
-    puts "💥 format: #{request.format}"
+
     respond_to do |format|
       format.turbo_stream do
         render :load_more_results, locals: { desks: @desks, page: page, has_more_pages: @has_more_pages, online_status: @online_status }  # loading in turbo stream
