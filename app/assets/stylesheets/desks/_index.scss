@@ -4,15 +4,16 @@
   background-color: #f9eed3;
   background-image: url("stationery-bg alpha.png");
   background-repeat: repeat;
+  flex: 1;
 }
 
 a {
   text-decoration: none;
 }
 
-#index-container {
-  padding: 0 80px;
-}
+// #index-container {
+//   padding: 0 80px;
+// }
 
 .index-card {
   padding-left: 25px;
@@ -57,19 +58,20 @@ a {
   }
 }
 
-#load-more {
+#load_more_button {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-weight: bold;
+  font-size: 1.2em;
   color: white;
   background: linear-gradient(45deg, $color-third, $color-second);
   border: 3px solid white;
   border-radius: 25px; /* 讓按鈕有圓潤感 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  .index-load {
-    height: 25%;
-    width: 25%;
-  }
+  width: 180px;
+  margin-bottom: 20px;
+
 }
 .message-form {
   position: absolute;
@@ -139,5 +141,9 @@ a {
   padding: 5px;
   text-align: center;
   font-size: 0.8rem;
+  font-weight: bold;
+}
+.desk-index-no-results-text {
+  font-size: 1.5rem;
   font-weight: bold;
 }
