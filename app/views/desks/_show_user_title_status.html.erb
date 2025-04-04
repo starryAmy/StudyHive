@@ -1,0 +1,9 @@
+<div class="desk-show-name-and-status d-flex flex-column">
+  <div class="desk-show-title mb-0">
+    <h2><%= @desk.title %></h2>
+  </div>
+  <div class="desk-show-status mb-0">
+    <p class="desk-show-status-username"><%= "@#{@desk.user.username}" %></p>
+    <p><%= @online_status ? "🟢 Online #{ @room_status.nil? ? 'not in any rooms right now' : "in #{@room_status ? 'Public' : 'Private'} Room #{@room_title}" }" : "🔴 Offline" %></p>
+  </div>
+</div>

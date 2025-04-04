@@ -1,0 +1,10 @@
+<div class="sticky-notes" data-controller="sticky-notes">
+  <% @desk.messages.last(5).each do |message| %>
+    <div class="sticky-note">
+      <p id="sticky-time"><%= message.created_at.strftime("%m/%d %H:%M") %></p>
+      <p class="text-break" data-sticky-note-target="message-content"><%= message.text %></p>
+      <p class="align-self-end"><em>
+          - <%= message.user.username %></em></p>
+    </div>
+  <% end %>
+</div>
