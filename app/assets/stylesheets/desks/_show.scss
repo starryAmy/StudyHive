@@ -1,14 +1,6 @@
 .show-desk-bg {
-  background-image: url("stationery-bg alpha.png");
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781553/stationery-bg_alpha_lnlndw.png");
   background-repeat: repeat;
-  // mix-blend-mode: multiply;
-  // opacity: 0.4;
-  // margin-top: 100px;
-  // width: 800px;
-  // height: 770px;
-  // background-color: #9d7100;
-
-  // position: relative;
 }
 
 .desk-show-info-wrap {
@@ -18,7 +10,7 @@
   }
 }
 .desk-img {
-  background-image: url("desk2.png");
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781523/desk2_wbb7gt.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -223,7 +215,7 @@
 }
 
 .queen-bee-img {
-  background-image: url("queen bee.png");
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781590/queen_bee_rm8och.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -235,7 +227,7 @@
 }
 
 .queen-bee-img:hover {
-  background-image: url("queen bee up.png");
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781601/queen_bee_up_wshyvt.png");
   transform: scale(1.1);
   cursor: pointer;
 }

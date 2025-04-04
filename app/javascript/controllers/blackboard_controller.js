@@ -9,7 +9,6 @@ export default class extends Controller {
 
   displayDate() {
     const container = this.element;
-
     const dateText = document.createElement("div");
     dateText.classList.add("blackboard-date");
     dateText.textContent = this.getFormattedDate();
@@ -29,12 +28,16 @@ export default class extends Controller {
     fetch("/followed_users_status")
       .then(response => response.json())
       .then(data => {
-        this.displayUsersOnBlackboard(data);
+        // Check if the data is a hash and has elements
+        if (Array.isArray(data) && data.length > 0) {
+          this.displayUsersOnBlackboard(data);
+        }
       })
       .catch(error => console.error("Error fetching status:", error));
   }
 
   displayUsersOnBlackboard(users) {
+    // this.element is the controller element
     const container = this.element;
     // remove all existing user and room links before adding new ones
     container.querySelectorAll(".blackboard-user, .blackboard-room-link, .blackboard-room-link-not-in-room").forEach(el => el.remove());
@@ -53,15 +56,12 @@ export default class extends Controller {
           roomLink.href = `/rooms/${user.spots[0].room_id}`;
           roomLink.textContent = `in ${user.spots[0].room_status} Room: ${user.spots[0].room}`;
           roomLink.classList.add("blackboard-room-link");
-          roomLink.style.top = `${y}px`;
-
-          container.appendChild(roomLink);
+          userText.appendChild(roomLink);
       } else if (user.online && user.spots.length === 0) {
         const roomLink = document.createElement("div");
         roomLink.textContent = "but not in any rooms right now";
-        roomLink.classList.add("blackboard-room-link-not-in-room");
-        roomLink.style.top = `${y}px`;
-        container.appendChild(roomLink);
+        roomLink.classList.add("blackboard-room-link-not-in-room");dr
+        userText.appendChild(roomLink);
       }
     });
   }
