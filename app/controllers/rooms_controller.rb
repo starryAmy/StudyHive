@@ -23,19 +23,34 @@ class RoomsController < ApplicationController
     @rooms = Room.all
     @desk = current_user.desk
     @is_entering_allowed = true
-
-    if params[:query].present?
-      case params[:search_type]
-      when "title"
-        @rooms = Room.where("title ILIKE ?", "%#{params[:query]}%").all
-      when "user"
-        @rooms = Room.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
-      end
-    else
-      @rooms = Room.all
-    end
   end
 
+  def render_search_results
+    query = params[:query].strip if params[:query].present?
+    type = params[:search_type]
+    if query.present?
+      case type
+      when "title"
+        @rooms = Room.where("title ~* ?", "\\m#{params[:query]}\\M").all
+      when "user"
+        @rooms = Room.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
+      end
+    else
+        @rooms = Room.all
+    end
+
+    respond_to do |format|
+      # just in case user tried to type in the url manually
+      format.html { render plain: "Wrong URL" }
+      # format.turbo_stream do
+      #   render turbo_stream: turbo_stream.replace(
+      #   "search_results",
+      #   partial: "desks/search_results",
+      #   locals: { desks: @desks, all_desks: @all_desks }
+      # )
+      # end
+    end
+  end
   def show
     @room = Room.find(params[:id])
     @all_users = User.all.where.not(id: current_user.id)
