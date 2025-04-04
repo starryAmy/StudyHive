@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
     @desk = current_user.desk
-    @is_entering_allowed = true
+    show_all_rooms
   end
 
   def render_search_results
@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
     else
         @rooms = Room.all
     end
-
+    show_all_rooms
     respond_to do |format|
       # just in case user tried to type in the url manually
       format.html { render plain: "Wrong URL" }
@@ -51,6 +51,7 @@ class RoomsController < ApplicationController
       end
     end
   end
+
   def show
     @room = Room.find(params[:id])
     @all_users = User.all.where.not(id: current_user.id)
@@ -161,5 +162,27 @@ class RoomsController < ApplicationController
 
   def participant_type
     (current_user == @room.user ? "owner" : "member")
+  end
+
+  def show_all_rooms
+    @rooms = @rooms.map do |room|
+      is_entering_allowed = false
+      room_status_text = nil
+
+      if (room.public == true && room.locked == false) || room.user == current_user
+        is_entering_allowed = true
+      elsif room.public == false && room.locked == false && Spot.exists?(room: room, user: current_user, status: :pending)
+        is_entering_allowed = false
+        room_status_text = "Join request has been sent."
+      elsif room.public == false && room.locked == false && Spot.exists?(room: room, user: current_user, status: :accepted)
+        is_entering_allowed = true
+      elsif room.public == false && room.locked == false
+        is_entering_allowed = false
+      elsif room.locked == true
+        is_entering_allowed = false
+        room_status_text = "Sorry this room is locked."
+      end
+      OpenStruct.new(room: room, status: is_entering_allowed, status_text: room_status_text)
+    end
   end
 end
