@@ -60,7 +60,7 @@ export default class extends Controller {
       } else if (user.online && user.spots.length === 0) {
         const roomLink = document.createElement("div");
         roomLink.textContent = "but not in any rooms right now";
-        roomLink.classList.add("blackboard-room-link-not-in-room");
+        roomLink.classList.add("blackboard-room-link-not-in-room");dr
         userText.appendChild(roomLink);
       }
     });
