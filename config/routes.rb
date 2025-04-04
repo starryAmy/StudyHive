@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :polls, only: [:create, :edit, :update] do
       resources :ballots, only: :create
     end
+    collection do
+      get :render_search_results
+    end
   end
   get "/my_rooms", to: "rooms#my_rooms"
 

@@ -4,5 +4,8 @@
     <p class="card-text"><strong><%=room.user.username%></strong></p>
     <p class="card-text"><strong><%=room.public ? "Public" : "Private"%></strong></p>
     <p class="card-text"><strong><%=room.spots.length%> members</strong></p>
+    <% if status_text.present? %>
+      <p class="card-text"><strong><%= status_text %></strong></p>
+    <% end %>
   </div>
 </div>

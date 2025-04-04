@@ -5,7 +5,7 @@
       <div class="blackboard-text-container" data-controller="blackboard"></div>
     </div>
   </div>
-  <%= render "shared/searchbar"%>
+  <%= render "shared/searchbar", path: render_search_results_desks_path, title_name: "Desk Title", user_name: "Desk User" %>
   <div class="d-flex flex-column align-items-center">
       <%= render "search_results", all_desks: @all_desks, desks: @desks, online_status: @online_status %>
   </div>

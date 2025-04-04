@@ -1,0 +1,15 @@
+<div id="search_results" class="container mt-4 hex-container mb-4" style="height: <%= (@rooms.count / 2.8 * 312) + 104 %>px">
+  <div class="row" data-controller="hexagon">
+    <% rooms.each do |room_struct| %>
+      <% room = room_struct.room %>
+      <%# Render the Room Card %>
+      <% if room_struct.status %>
+        <%= link_to room_path(room) do %>
+          <%= render "shared/roomcard", room: room, status_text: room_struct.status_text %>
+        <% end %>
+      <% else %>
+        <%= render "shared/roomcard", room: room, status_text: room_struct.status_text %>
+      <% end %>
+    <%end%>
+  </div>
+</div>

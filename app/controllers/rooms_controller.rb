@@ -11,7 +11,6 @@ class RoomsController < ApplicationController
     @room.user_id = current_user.id
 
     if @room.save
-      #@spot = Spot.new(user: current_user, room: @room, status: :accepted)
       redirect_to rooms_path, notice: "Room is built successfully!"
     else
       puts @room.errors.full_messages
@@ -22,17 +21,33 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
     @desk = current_user.desk
-    @is_entering_allowed = true
+    show_all_rooms
+  end
 
-    if params[:query].present?
-      case params[:search_type]
+  def render_search_results
+    query = params[:query].strip if params[:query].present?
+    type = params[:search_type]
+    if query.present?
+      case type
       when "title"
-        @rooms = Room.where("title ILIKE ?", "%#{params[:query]}%").all
+        @rooms = Room.where("title ~* ?", "\\m#{params[:query]}\\M").all
       when "user"
-        @rooms = Room.joins(:user).where("users.username ILIKE ?", "%#{params[:query]}%").all
+        @rooms = Room.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
       end
     else
-      @rooms = Room.all
+        @rooms = Room.all
+    end
+    show_all_rooms
+    respond_to do |format|
+      # just in case user tried to type in the url manually
+      format.html { render plain: "Wrong URL" }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+        "search_results",
+        partial: "rooms/rooms_index_search_results",
+        locals: { rooms: @rooms }
+      )
+      end
     end
   end
 
@@ -146,5 +161,27 @@ class RoomsController < ApplicationController
 
   def participant_type
     (current_user == @room.user ? "owner" : "member")
+  end
+
+  def show_all_rooms
+    @rooms = @rooms.map do |room|
+      is_entering_allowed = false
+      room_status_text = nil
+
+      if (room.public == true && room.locked == false) || room.user == current_user
+        is_entering_allowed = true
+      elsif room.public == false && room.locked == false && Spot.exists?(room: room, user: current_user, status: :pending)
+        is_entering_allowed = false
+        room_status_text = "Join request has been sent."
+      elsif room.public == false && room.locked == false && Spot.exists?(room: room, user: current_user, status: :accepted)
+        is_entering_allowed = true
+      elsif room.public == false && room.locked == false
+        is_entering_allowed = false
+      elsif room.locked == true
+        is_entering_allowed = false
+        room_status_text = "Sorry this room is locked."
+      end
+      OpenStruct.new(room: room, status: is_entering_allowed, status_text: room_status_text)
+    end
   end
 end
