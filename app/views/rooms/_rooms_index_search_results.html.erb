@@ -5,7 +5,7 @@
       <%# Render the Room Card %>
       <% if room_struct.status %>
         <%= link_to room_path(room) do %>
-          <%= render "shared/roomcard", room: room %>
+          <%= render "shared/roomcard", room: room, status_text: room_struct.status_text %>
         <% end %>
       <% else %>
         <%= render "shared/roomcard", room: room, status_text: room_struct.status_text %>

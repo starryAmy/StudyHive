@@ -11,7 +11,6 @@ class RoomsController < ApplicationController
     @room.user_id = current_user.id
 
     if @room.save
-      #@spot = Spot.new(user: current_user, room: @room, status: :accepted)
       redirect_to rooms_path, notice: "Room is built successfully!"
     else
       puts @room.errors.full_messages
