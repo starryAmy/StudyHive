@@ -42,13 +42,13 @@ class RoomsController < ApplicationController
     respond_to do |format|
       # just in case user tried to type in the url manually
       format.html { render plain: "Wrong URL" }
-      # format.turbo_stream do
-      #   render turbo_stream: turbo_stream.replace(
-      #   "search_results",
-      #   partial: "desks/search_results",
-      #   locals: { desks: @desks, all_desks: @all_desks }
-      # )
-      # end
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+        "search_results",
+        partial: "rooms/rooms_index_search_results",
+        locals: { rooms: @rooms }
+      )
+      end
     end
   end
   def show

@@ -4,33 +4,6 @@
       <div><%= render "shared/create_hive_button" %></div>
       <div><%= render "shared/searchbar", path: render_search_results_rooms_path, title_name: "Hive Title", user_name: "Hive User" %></div>
     </div>
-          </div>
-          <div class="container mt-4 hex-container mb-4" style="height: <%= (@rooms.count / 2.8 * 312) + 104 %>px">
-            <div class="row" data-controller="hexagon">
-              <% @rooms.each do |room| %>
-                <%# Check if the user is allowed to enter the room %>
-                <% if (room.public == true && room.locked == false) || room.user == current_user %>
-                  <% @is_entering_allowed = true %>
-                <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :pending) %>
-                  <% @is_entering_allowed = false %>
-                  <p>Join request has been sent.</p>
-                <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :accepted) %>
-                  <% @is_entering_allowed = true %>
-                <% elsif room.public == false && room.locked == false %>
-                  <% @is_entering_allowed = false %>
-                <% elsif room.locked == true %>
-                  <% @is_entering_allowed = false %>
-                  <p>Sorry this room is locked.</p>
-                <%end%>
-                <%# Render the Room Card %>
-                <% if @is_entering_allowed %>
-                  <%= link_to room_path(room) do %>
-                    <%=render "shared/roomcard", room: room %>
-                  <% end %>
-                <% else %>
-                  <%=render "shared/roomcard", room: room %>
-                <% end %>
-              <%end%>
-            </div>
-          </div>
-        </div>
+  </div>
+  <%= render "rooms_index_search_results", rooms: @rooms %>
+</div>
