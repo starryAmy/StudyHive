@@ -1,0 +1,18 @@
+<div class="desk-show-info-btns d-flex flex-column" data-controller="edit-desk">
+  <div style="position: relative;">
+    <button data-action="click->edit-desk#edit"><i class="fa-solid fa-pen-to-square desk-show-edit-btn"></i>&nbsp;Edit</button>
+    <div class="desk-edit-form d-none" data-edit-desk-target="form">
+      <%= render "desks/edit"%>
+    </div>
+  </div>
+  <% if current_user.favorited?(@desk) %>
+    <%= button_to desk_follows_path(@desk), method: :delete, data: { action:"click->follows#unfollow", follows_target: "followButton", controller: "follows", confirm: "Are you sure you want to unfollow?" } do %>
+      <i class="fa-solid fa-heart"></i>&nbsp;Unfollow
+    <% end %>
+  <% else %>
+    <%= button_to desk_follows_path(@desk), method: :post, data: { action:"click->follows#follow", follows_target: "followButton", controller: "follows" } do %>
+      <i class="far fa-heart"></i>&nbsp;Follow
+    <% end%>
+  <% end %>
+  <%= render "show_toggle_messages" %>
+</div>
