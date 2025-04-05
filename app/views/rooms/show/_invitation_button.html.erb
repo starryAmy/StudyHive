@@ -1,0 +1,8 @@
+<% if current_user == @room.user %>
+  <div data-controller="invite">
+    <i class="fa-solid fa-envelope room-show-invite" data-action="click->invite#toggle"></i>
+    <div class="d-none room-show-invite-list" data-invite-target="section">
+      <%= render "rooms/show/invitation_list" %>
+    </div>
+  </div>
+<% end %>

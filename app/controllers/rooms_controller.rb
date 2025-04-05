@@ -5,8 +5,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    puts "Current User: #{current_user.inspect}"
-
     @room = Room.new(rooms_params)
     @room.user_id = current_user.id
 
