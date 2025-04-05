@@ -86,6 +86,21 @@ class RoomsController < ApplicationController
     puts params.inspect
   end
 
+  def update_youtube
+    @room = Room.find(params[:room_id])
+    if params[:youtube_id].present?
+      Notification.create(category: "youtube", user: current_user, room: @room)
+      url = params[:youtube_id]
+      video_id = url[/[?&]v=([a-zA-Z0-9_-]+)/, 1]
+      time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]
+      youtube_id = time_stamp ? params[:youtube_id][/[?&]v=([a-zA-Z0-9_-]+)/, 1] : video_id
+    end
+    if @room.update(youtube_id: youtube_id)
+      redirect_to @room
+    else
+      render :show
+    end
+  end
   def edit
     @room = Room.find(params[:id])
   end
@@ -142,7 +157,7 @@ class RoomsController < ApplicationController
   private
 
   def rooms_params
-    params.require(:room).permit(:title, :locked, :public, :res_list)
+    params.require(:room).permit(:title, :locked, :public, :res_list, :youtube_id)
   end
 
   def broadcast_update
