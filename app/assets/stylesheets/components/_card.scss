@@ -50,3 +50,15 @@
   display: flex;
   align-items: center;
 }
+.room-card-title {
+  width: 90%;
+  text-overflow: ellipsis;
+  // overflow: hidden;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.4em;
+}
+
+.room-card-body {
+  overflow-wrap: break-word;
+  width: 70%;
+}
