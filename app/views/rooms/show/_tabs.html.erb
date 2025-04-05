@@ -1,0 +1,48 @@
+<div class="tabs-div">
+  <!-- Nav Tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#hiveboard">
+        <i class="fa-solid fa-tag"></i> Hiveboard
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#resources">
+        <i class="fa-solid fa-tag"></i> Resources
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hivepoll">
+        <i class="fa-solid fa-tag"></i> HivePoll
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#settings">
+        <i class="fa-solid fa-tag"></i> Settings
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#members">
+        <i class="fa-solid fa-tag"></i> Members
+      </button>
+    </li>
+  </ul>
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="hiveboard">
+      <%= render "shared/tabs/hiveboard" %>
+    </div>
+    <div class="tab-pane fade" id="resources">
+      <%= render "shared/tabs/resources" %>
+    </div>
+    <div class="tab-pane fade" id="hivepoll">
+      <%= render "shared/tabs/poll_container" %>
+    </div>
+    <div class="tab-pane fade" id="settings">
+      <%= render "shared/tabs/settings" %>
+    </div>
+    <div class="tab-pane fade" id="members">
+      <%= render "shared/tabs/members" %>
+    </div>
+  </div>
+</div>

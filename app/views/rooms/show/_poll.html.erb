@@ -1,0 +1,24 @@
+<% if !poll.user_voted?(current_user) %>
+    <div id="poll_<%= poll.id %>" class="room-tab-poll">
+    <h3><%= poll.question %></h3>
+    <i style="color: grey;">Deadline: <%= poll.deadline %></i>
+    <%= form_with model: Ballot.new, url: room_poll_ballots_path(@room, poll), method: :post, data: { turbo: "true" } do |f| %>
+      <% poll.poll_options.each do |option| %>
+        <div class="polling-option">
+
+          <%= check_box_tag "ballot[poll_option_ids][]", option.id, false, id: "option_#{option.id}", class: "poll-checkbox" %>
+
+
+          <label for="<%= "option_#{option.id}" %>" class="poll-label">
+            <%= option.option_text %>
+          </label>
+        </div>
+      <% end %>
+
+
+    <%= f.submit "Submit", class: "poll-btn"%>
+    <% end %>
+  </div>
+<% else %>
+  <%= render partial: "rooms/show/old_poll", locals: { poll: poll, input_html: { data: { ballot_target: "message" } } } %>
+<% end %>

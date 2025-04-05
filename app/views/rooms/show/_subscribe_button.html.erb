@@ -1,0 +1,7 @@
+<% if current_user != @room.user %>
+  <% unless @spot_current_user %>
+    <%= button_to "Subscribe to this Hive!", spots_path(spot: { status: :accepted, active: true, room_id: @room.id, user_id: current_user.id }, redirect: room_path(@room)), method: :post, class: "room-show-btn" %>
+  <% else @spot_current_user %>
+    <%= button_to "Unsubsribe to this Hive!", spot_path(@spot_current_user, redirect: room_path(@room)), method: :delete, class: "room-show-btn", data: { confirm: "Are you sure you want to leave this room?" } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,64 @@
+/* 🟡 控制 .index-card 佔據 50% (兩張一排) */
+.index-card {
+  width: 320px; /* 每張卡片佔據一半寬度 */
+  height: 320px;
+  overflow: visible;
+  background-color: transparent;
+  background-size: 90% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-index-card {
+  width: 320px; /* 每張卡片佔據一半寬度 */
+  height: 320px;
+  overflow: visible;
+  background-color: transparent;
+  background-size: 90% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-animation-card {
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743782567/hex_room_A_alpha_fabsmv.png");
+}
+
+.room-animation-card:hover {
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743782590/hex_room_B_alpha_jmaver.gif");
+}
+
+[data-controller="hexagon"] {
+  position: relative;
+}
+
+.hex-container {
+  margin-bottom: 200px;
+}
+
+.hex-card {
+  width: 360px;
+  height: 311.76px; /* (sqrt(3)/2) * 120 */
+  // background-color: yellow;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.room-card-title {
+  width: 90%;
+  text-overflow: ellipsis;
+  // overflow: hidden;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.4em;
+}
+
+.room-card-body {
+  overflow-wrap: break-word;
+  width: 70%;
+}

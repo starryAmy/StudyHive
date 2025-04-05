@@ -1,0 +1,12 @@
+<div class="index-desk-bg d-flex flex-column align-items-center">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="blackboard-container">
+      <%= image_tag "https://res.cloudinary.com/dawxkhlcq/image/upload/v1743779624/blackboard1_idmlyr.png", class: "blackboard-img", alt: "Blackboard" %>
+      <div class="blackboard-text-container" data-controller="blackboard"></div>
+    </div>
+  </div>
+  <%= render "shared/searchbar", path: render_search_results_desks_path, title_name: "Desk Title", user_name: "Desk User" %>
+  <div class="d-flex flex-column align-items-center">
+      <%= render "search_results", all_desks: @all_desks, desks: @desks, online_status: @online_status %>
+  </div>
+</div>

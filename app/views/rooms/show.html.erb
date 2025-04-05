@@ -1,0 +1,36 @@
+<%= turbo_stream_from "room_#{@room.id}_chatmessages" %>
+<%= turbo_stream_from "room_#{@room.id}_resources/#{@participant_type}" %>
+
+<% if @spot_current_user.present? %>
+  <div data-controller="user-activity" data-user-activity-url-value="<%= spot_path(@spot_current_user) %>"></div>
+<% end %>
+
+<div class="container">
+  <div class="d-flex my-3 flex-column">
+    <div class="d-flex flex-row align-items-center">
+      <h1>🐝 <%= @room.title %></h1>
+      <div class="room-show-status"><%= @room.public ? "Public・" : "Private・" %><%= @room.spots.size %> members</div>
+        <%= render "rooms/show/subscribe_button" %>
+        <%= render "rooms/show/invitation_button" %>
+    </div>
+    <%= render "rooms/show/room_owner_info" %>
+
+  </div>
+  <div class="row">
+    <!-- Left side: 7-column flexbox -->
+    <div class="col-7 d-flex flex-column">
+      <div class="room-show-index mb-3 w-100">
+        <%= render "rooms/show/youtube" %>
+      </div>
+
+      <div class="tabs">
+        <%= render "rooms/show/tabs" %>
+      </div>
+    </div>
+
+    <!-- Right side: 5-column -->
+      <div class="col-5">
+        <%= render "rooms/show/roomchat" %>
+      </div>
+  </div>
+</div>
