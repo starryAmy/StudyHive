@@ -1,11 +1,11 @@
 <div class="card col-sm-6 col-md-4 room-index-card room-animation-card hex-card">
-  <div class="card-body text-center room-card-body">
-    <h5 class="card-title"><%=room.title%></h5>
-    <p class="card-text"><strong><%=room.user.username%></strong></p>
-    <p class="card-text"><strong><%=room.public ? "Public" : "Private"%></strong></p>
-    <p class="card-text"><strong><%=room.spots.length%> members</strong></p>
+  <div class="d-flex flex-column align-items-center room-card-body">
+    <div class="room-card-title d-flex align-items-center text-center justify-content-center mb-2 mt-2"><%=room.title%></div>
+    <div class="card-text"><strong><%=room.user.username%></strong></div>
+    <div class="card-text"><strong><%=room.public ? "Public" : "Private"%></strong></div>
+    <div class="card-text"><strong><%= room.spots.length > 1 ? "#{room.spots.length} members" : "#{room.spots.length} member" %></strong></div>
     <% if status_text.present? %>
-      <p class="card-text"><strong><%= status_text %></strong></p>
+      <div class="card-text"><strong><%= status_text %></strong></div>
     <% end %>
   </div>
 </div>
