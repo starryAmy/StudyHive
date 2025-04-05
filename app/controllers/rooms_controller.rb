@@ -88,9 +88,9 @@ class RoomsController < ApplicationController
       return
     end
 
-    Notification.create(category: "youtube", user: current_user, room: @room)
     if @room.update(youtube_id: youtube_info[:id], youtube_start_time: youtube_info[:time])
-      redirect_to @room
+      Notification.create(category: "youtube", user: current_user, room: @room)
+      redirect_to @room, notice: "YouTube video updated."
     else
       render :show
     end

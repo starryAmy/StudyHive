@@ -1,0 +1,28 @@
+
+<div class="room-show-tab-hiveboard">
+  <% if @max_likes && @max_likes > 0 && @chatmessages_most_liked %>
+  <% @chatmessages_most_liked.each do |chatmessage| %>
+  <div id="message-<%= chatmessage.id %>">
+    <small>
+      <strong><%= chatmessage.user.username %></strong>
+      <i><%= chatmessage.created_at.in_time_zone("Asia/Tokyo").strftime("%a %b %e at %H:%M") %></i>
+      <%= chatmessage.get_likes.size%> <i class="fas fa-heart" style="color: red"></i>
+    </small>
+    <><%= chatmessage.content %></p>
+  </div>
+  <% end %>
+  <% else %>
+      <%= turbo_stream_from "hiveboard_#{@room.id}" %>
+      <% if @notifications.present? %>
+        <% @notifications.each do |notification| %>
+          <% if notification.category == "poll" %>
+            <h4 class="notification"><%= notification.user.username %> created a poll <%= time_ago_in_words(notification.created_at) %> ago</h4>
+          <% elsif notification.category == "youtube" %>
+            <h4 class="notification"><%= notification.user.username %> shared a new video <%= time_ago_in_words(notification.created_at) %> ago</h4>
+          <% elsif notification.category == "ballot" %>
+            <h4 class="notification"><%= notification.user.username %> voted <%= time_ago_in_words(notification.created_at) %> ago</h4>
+          <% end %>
+        <% end %>
+      <% end %>
+  <% end %>
+</div>
