@@ -4,7 +4,7 @@
   // height: 70px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: between;
   align-items: center;
 }
 .nav-tabs .nav-link {
@@ -12,10 +12,11 @@
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #f3b700; /* 變更背景顏色 */
-  font-weight: bold; /* 變更文字粗細 */
-  color: black; /* 變更文字顏色 */
-  border-radius: 8px; /* 加點圓角讓 UI 更好看 */
+  background-color: #f3b700;
+  font-weight: bold;
+  color: black;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 }
 .tabs-div {
   width: 100%;
