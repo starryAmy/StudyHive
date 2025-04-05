@@ -3,7 +3,7 @@
     <div class="room-card-title d-flex align-items-center text-center justify-content-center mb-2 mt-2"><%=room.title%></div>
     <div class="card-text"><strong><%=room.user.username%></strong></div>
     <div class="card-text"><strong><%=room.public ? "Public" : "Private"%></strong></div>
-    <div class="card-text"><strong><%=room.spots.length%> members</strong></div>
+    <div class="card-text"><strong><%= room.spots.length > 1 ? "#{room.spots.length} members" : "#{room.spots.length} member" %></strong></div>
     <% if status_text.present? %>
       <div class="card-text"><strong><%= status_text %></strong></div>
     <% end %>
