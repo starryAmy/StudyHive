@@ -1,0 +1,13 @@
+<div class="tab-poll" data-controller="poll" >
+  <% if @room.user == current_user %>
+    <button data-action="click->poll#toggle" class="tab-poll-btn"><i class="fa-regular fa-square-plus"></i>&nbsp;Create a Poll</button>
+  <% end %>
+  <div data-poll-target="pollform" class="d-none">
+    <%= render "rooms/new_poll" %>
+  </div>
+  <% if @all_polls.present? %>
+    <% @all_polls.each do |poll| %>
+      <%= render "rooms/poll", poll: poll %>
+    <% end %>
+  <% end %>
+</div>

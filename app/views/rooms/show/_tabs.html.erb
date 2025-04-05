@@ -32,25 +32,11 @@
     <div class="tab-pane fade show active" id="hiveboard">
       <%= render "shared/tabs/hiveboard" %>
     </div>
-
     <div class="tab-pane fade" id="resources">
       <%= render "shared/tabs/resources" %>
     </div>
-
     <div class="tab-pane fade" id="hivepoll">
-      <div class="tab-poll" data-controller="poll" style="width: 700px; height: 800px; overflow-y: scroll">
-        <% if @room.user == current_user %>
-          <button data-action="click->poll#toggle" class="tab-poll-btn"><i class="fa-regular fa-square-plus"></i>&nbsp;Create a Poll</button>
-        <% end %>
-        <div data-poll-target="pollform" class="d-none">
-          <%= render "rooms/new_poll" %>
-        </div>
-        <% if @all_polls.present? %>
-          <% @all_polls.each do |poll| %>
-            <%= render "rooms/poll", poll: poll %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render "shared/tabs/poll_container" %>
     </div>
     <div class="tab-pane fade" id="settings">
       <%= render "shared/settings" %>
