@@ -1,7 +1,7 @@
 .nav-tabs {
   background-color: #f7f2e2;
-  width: 700px;
-  height: 70px;
+  width: 100%;
+  // height: 70px;
   border-radius: 10px;
   display: flex;
   justify-content: space-around;
@@ -16,4 +16,10 @@
   font-weight: bold; /* 變更文字粗細 */
   color: black; /* 變更文字顏色 */
   border-radius: 8px; /* 加點圓角讓 UI 更好看 */
+}
+.tabs-div {
+  width: 100%;
+}
+.tabs {
+  width: 100%;
 }
