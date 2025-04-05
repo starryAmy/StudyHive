@@ -19,9 +19,9 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = Room.all
+    raw_rooms = Room.all
     @desk = current_user.desk
-    show_all_rooms
+    @rooms = show_all_rooms(raw_rooms)
   end
 
   def render_search_results
@@ -30,14 +30,14 @@ class RoomsController < ApplicationController
     if query.present?
       case type
       when "title"
-        @rooms = Room.where("title ~* ?", "\\m#{params[:query]}\\M").all
+        raw_rooms = Room.where("title ~* ?", "\\m#{params[:query]}\\M").all
       when "user"
-        @rooms = Room.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
+        raw_rooms = Room.joins(:user).where("users.username  ~* ?", "\\m#{params[:query]}\\M").all
       end
     else
-        @rooms = Room.all
+        raw_rooms = Room.all
     end
-    show_all_rooms
+    @rooms = show_all_rooms(raw_rooms)
     respond_to do |format|
       # just in case user tried to type in the url manually
       format.html { render plain: "Wrong URL" }
@@ -128,11 +128,12 @@ class RoomsController < ApplicationController
   def my_rooms
     @rooms_member = []
     @rooms_owned = []
-    @is_entering_allowed = true
+    # @is_entering_allowed = true
     current_user.spots.each do |spot|
       room = spot.room
       room.user == current_user ? @rooms_owned << room : @rooms_member << room
     end
+    @rooms_owned = show_all_rooms(@rooms_owned)
   end
 
   def destroy
@@ -163,8 +164,8 @@ class RoomsController < ApplicationController
     (current_user == @room.user ? "owner" : "member")
   end
 
-  def show_all_rooms
-    @rooms = @rooms.map do |room|
+  def show_all_rooms(rooms)
+    rooms = rooms.map do |room|
       is_entering_allowed = false
       room_status_text = nil
 

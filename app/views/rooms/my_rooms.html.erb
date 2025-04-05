@@ -8,26 +8,14 @@
     <h1>🐝 You Are the Owner</h1>
     <div style="height: <%= (@rooms_owned.count / 2.8 * 312) + 104 %>px">
       <div class="row" data-controller="hexagon">
-        <% @rooms_owned.each do |room| %>
-          <% if (room.public == true && room.locked == false) || room.user == current_user %>
-            <% @is_entering_allowed = true %>
-          <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :pending) %>
-            <% @is_entering_allowed = false %>
-            <p>Join request has been sent.</p>
-          <% elsif room.public == false && room.locked == false && Spot.find_by(room: room, user: current_user, status: :accepted) %>
-            <% @is_entering_allowed = true %>
-          <% elsif room.public == false && room.locked == false %>
-            <% @is_entering_allowed = false %>
-          <% elsif room.locked == true %>
-            <% @is_entering_allowed = false %>
-            <p>Sorry this room is locked.</p>
-          <%end%>
-          <% if @is_entering_allowed %>
+        <% @rooms_owned.each do |room_struct| %>
+          <% room = room_struct.room %>
+          <% if room_struct.status %>
             <%= link_to room_path(room) do %>
-              <%=render "shared/roomcard", room: room%>
+              <%=render "shared/roomcard", room: room, status_text: room_struct.status_text %>
             <% end %>
           <% else %>
-            <%=render "shared/roomcard", room: room%>
+            <%=render "shared/roomcard", room: room, status_text: room_struct.status_text %>
           <% end %>
         <%end%>
       </div>
@@ -36,14 +24,10 @@
     <div style="height: <%= (@rooms_member.count / 1.5 * 312) + 104 %>px">
       <div class="row mb-3" data-controller="hexagon">
         <% @rooms_member.each do |room| %>
-          <% if @is_entering_allowed %>
-            <%= link_to room_path(room) do %>
-              <%=render "shared/roomcard", room: room%>
-            <% end %>
-          <% else %>
-            <%=render "shared/roomcard", room: room%>
+          <%= link_to room_path(room) do %>
+            <%=render "shared/roomcard", room: room, status_text: nil %>
           <% end %>
-        <%end%>
+        <% end %>
       </div>
     </div>
   </div>
