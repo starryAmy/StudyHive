@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :rooms do
     post "invite/:user_id", to: "invites#create", as: :invite
+    post "update_youtube", to: "rooms#update_youtube"
     resources :chatmessages, only: :create
     resources :polls, only: [:create, :edit, :update] do
       resources :ballots, only: :create

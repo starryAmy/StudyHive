@@ -20,5 +20,5 @@
     <% end %>
   </div>
 <% else %>
-  <%= render partial: "rooms/old_poll", locals: { poll: poll, input_html: { data: { ballot_target: "message" } } } %>
+  <%= render partial: "rooms/show/old_poll", locals: { poll: poll, input_html: { data: { ballot_target: "message" } } } %>
 <% end %>

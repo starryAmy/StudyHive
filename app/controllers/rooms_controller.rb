@@ -5,8 +5,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    puts "Current User: #{current_user.inspect}"
-
     @room = Room.new(rooms_params)
     @room.user_id = current_user.id
 
@@ -24,6 +22,7 @@ class RoomsController < ApplicationController
     @rooms = show_all_rooms(raw_rooms)
   end
 
+  # render all hives
   def render_search_results
     query = params[:query].strip if params[:query].present?
     type = params[:search_type]
@@ -72,22 +71,31 @@ class RoomsController < ApplicationController
     @spot_current_user.update(active: true) if @spot_current_user.present?
     @spots_accepted = Spot.where(status: :accepted, room: @room)
 
-
-    if params[:youtube_id].present?
-      Notification.create(category: "youtube", user: current_user, room: @room)
-      url = params[:youtube_id]
-      video_id = url[/[?&]v=([a-zA-Z0-9_-]+)/, 1]
-      time_stamp = url[/[?&](?:t|start)=([0-9]+)/, 1]
-      @youtube_id = time_stamp ? params[:youtube_id][/[?&]v=([a-zA-Z0-9_-]+)/, 1] : video_id
-    else
-      @youtube_id = "oJC8VIDSx_Q"
-    end
-    # raise
-
-    # ErPNkvLCDSQ&t=20s
-    puts params.inspect
   end
 
+  def update_youtube
+    @room = Room.find(params[:room_id])
+    youtube_url = params[:youtube_id]
+
+    unless youtube_url.present?
+      redirect_to @room, alert: "Please enter a YouTube link."
+      return
+    end
+
+    youtube_info = extract_youtube_id(youtube_url)
+    unless youtube_info
+      redirect_to @room, alert: "Invalid YouTube link."
+      return
+    end
+
+    if @room.update(youtube_id: youtube_info[:id], youtube_start_time: youtube_info[:time])
+      Notification.create(category: "youtube", user: current_user, room: @room)
+      redirect_to @room, notice: "YouTube video updated."
+    else
+      render :show
+    end
+
+  end
   def edit
     @room = Room.find(params[:id])
   end
@@ -144,7 +152,7 @@ class RoomsController < ApplicationController
   private
 
   def rooms_params
-    params.require(:room).permit(:title, :locked, :public, :res_list)
+    params.require(:room).permit(:title, :locked, :public, :res_list, :youtube_id)
   end
 
   def broadcast_update
@@ -184,4 +192,43 @@ class RoomsController < ApplicationController
       OpenStruct.new(room: room, status: is_entering_allowed, status_text: room_status_text)
     end
   end
+
+  def extract_youtube_id(url)
+    return nil if url.blank?
+
+    begin
+      # Parse the URL to extract the host, path, and query parameters
+      uri = URI.parse(url)
+    rescue URI::InvalidURIError
+      return nil
+    end
+
+    host = uri.host&.downcase
+    id = nil
+    time = nil
+
+    case host
+    when "youtu.be"
+      # e.g. https://youtu.be/abc123XYZ?t=90
+      id = uri.path[1..]
+      time = CGI.parse(uri.query.to_s)["t"]&.first
+    when "www.youtube.com", "youtube.com", "m.youtube.com"
+      params = CGI.parse(uri.query.to_s)
+
+      if uri.path == "/watch"
+        id = params["v"]&.first
+        time = params["t"]&.first || params["start"]&.first
+      elsif uri.path.start_with?("/embed/")
+        id = uri.path.split("/")[2]
+        time = params["start"]&.first
+      elsif uri.path.start_with?("/shorts/")
+        id = uri.path.split("/")[2]
+      end
+    end
+
+    return nil unless id
+
+    { id: id, time: time }
+  end
+
 end

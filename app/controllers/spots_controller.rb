@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
 
   def create
 
-    puts params.inspect
+    # puts params.inspect
     @spot = Spot.new(spot_params)
     if @spot.save
       puts "send the permission!"
