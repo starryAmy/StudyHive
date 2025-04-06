@@ -156,11 +156,7 @@ class RoomsController < ApplicationController
   end
 
   def broadcast_update
-    # @room.broadcast_replace_to("room_#{@room.id}_resources/owner",
-    #                     target: "resources-list",
-    #                     partial: "shared/resources_list",
-    #                     locals: { user: "owner", room: @room })
-
+    # broadcast to the page that has turbo_stream tag of below channel name
     @room.broadcast_replace_to("room_#{@room.id}_resources/member",
                         target: "resources-list",
                         partial: "shared/resources_list",
