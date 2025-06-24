@@ -1,7 +1,16 @@
-.alert {
+
+.flash-wrapper {
   position: fixed;
-  left: 50%;
   top: 0;
+  left: 0;
   z-index: 2000;
-  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.alert {
+  margin-top: 0.75rem;
+  pointer-events: auto;
+  max-width: 90%;
 }

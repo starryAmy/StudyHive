@@ -1,19 +1,8 @@
 // Specific CSS for your home-page
 
-.home-words {
-  color: $color-first;
-  position: absolute;
-  background-attachment: fixed;
-  right: 20px;
-  top: 40%;
-  width: 13em;
-    font-family: "Lobster", cursive;
-    font-size: 2.2em;
-}
 
 
 .home-background2{
-  position: relative;
   z-index: 1;
   width: 100vw;
   height: calc(100vh - 75px);
