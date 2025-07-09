@@ -67,13 +67,13 @@ Room.destroy_all
 puts "Clearing spots..."
 Spot.destroy_all
 
-room0 = Room.create!(title: "AI for Everday Lives", description: "Studying the use of AI for everyday lives involves exploring how artificial intelligence can simplify and enhance various aspects of daily activities. This research delves into the development of AI-powered technologies that can improve efficiency in tasks such as home automation, healthcare, transportation, and personal assistance.", user: user1, public: true, locked: false)
+room0 = Room.create!(title: "AI", description: "Studying the use of AI for everyday lives involves exploring how artificial intelligence can simplify and enhance various aspects of daily activities. This research delves into the development of AI-powered technologies that can improve efficiency in tasks such as home automation, healthcare, transportation, and personal assistance.", user: user1, public: true, locked: false)
 room1 = Room.create!(title: "Meeting", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: true, locked: false)
 room2 = Room.create!(title: "Movie", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room3 = Room.create!(title: "Algorithm", description: "Let's talk about Marvel movies, that will be fun!", user: user3, public: true, locked: false)
 room4 = Room.create!(title: "Boxing", description: "Let's talk about Marvel movies, that will be fun!", user: user2, public: true, locked: false)
 room5 = Room.create!(title: "Boxing2", description: "Let's talk about Marvel movies, that will be fun!", user: user1, public: false, locked: false)
-room6 = Room.create!(title: "Math for AI/ML", description: "Mathematics forms the backbone of AI, providing essential tools for building intelligent systems. Key areas include linear algebra (for data representation and transformations), probability and statistics (for decision-making and predictions), calculus (for optimizing models via gradient descent), and discrete mathematics (for algorithms and logic). Understanding these mathematical foundations is crucial for developing and improving AI models. 🚀", user: user2, public: true, locked: false)
+room6 = Room.create!(title: "ML", description: "Mathematics forms the backbone of AI, providing essential tools for building intelligent systems. Key areas include linear algebra (for data representation and transformations), probability and statistics (for decision-making and predictions), calculus (for optimizing models via gradient descent), and discrete mathematics (for algorithms and logic). Understanding these mathematical foundations is crucial for developing and improving AI models. 🚀", user: user2, public: true, locked: false)
 
 
 

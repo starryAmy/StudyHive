@@ -13,17 +13,20 @@
 }
 
 .room-index-card {
-  width: 320px;
-  height: 320px;
+  width: 280px !important;
+  height: 280px !important;
+  border: none !important;
+  background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743782567/hex_room_A_alpha_fabsmv.png");
   overflow: visible;
   background-color: transparent;
-  background-size: 90% auto;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border: none;
   display: flex;
   flex-direction: column;
 }
+
 
 .room-animation-card {
   background-image: url("https://res.cloudinary.com/dawxkhlcq/image/upload/v1743782567/hex_room_A_alpha_fabsmv.png");
@@ -42,10 +45,9 @@
 }
 
 .hex-card {
-  width: 360px;
-  height: 311.76px; /* (sqrt(3)/2) * 120 */
-  // background-color: yellow;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  // width: 360px;
+  // height: 311.76px; /* (sqrt(3)/2) * 120 */
+  // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   position: absolute;
   display: flex;
   align-items: center;
