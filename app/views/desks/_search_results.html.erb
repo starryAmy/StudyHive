@@ -1,15 +1,14 @@
-
 <div id="search_results">
-  <div id="desk_list" class="row d-flex flex-wrap justify-content-center" >
+  <div id="desk_list" class="d-flex flex-wrap justify-content-center">
     <% if desks.empty? %>
-      <div class="desk-index-no-results-text mb-4">No desks found</div>
+    <div class="desk-index-no-results-text mb-4">No desks found</div>
     <% else %>
-      <% desks.each do |desk| %>
-        <%= render "shared/card", desk: desk %>
-      <% end %>
+    <% desks.each do |desk| %>
+    <%= render "shared/card", desk: desk %>
+    <% end %>
     <% end %>
   </div>
   <% if @all_desks.count > @desks.count %>
-    <%= link_to "Load More 🐝", load_more_desks_path(page: 2, query: params[:query], search_type: params[:search_type]), data: { turbo_stream: true }, class: "btn btn-primary mt-3", id: "load_more_button" %>
+  <%= link_to "Load More 🐝", load_more_desks_path(page: 2, query: params[:query], search_type: params[:search_type]), data: { turbo_stream: true }, class: "btn btn-primary mt-3", id: "load_more_button" %>
   <% end %>
 </div>

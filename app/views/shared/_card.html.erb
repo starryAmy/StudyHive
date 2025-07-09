@@ -2,13 +2,13 @@
 <% d = desk_obj.desk %>
 <% status = desk_obj.status %>
 
-<div class="index-card col-3" data-controller="message" style="background-image: url('https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781242/desk2_mmzyzu.png');" data-message-target="clickable-card" data-action="click->message#toIndividualDesk" data-url="<%= desk_path(d) %>">
+<div class="index-card" data-controller="message" style="background-image: url('https://res.cloudinary.com/dawxkhlcq/image/upload/v1743781242/desk2_mmzyzu.png');" data-message-target="clickable-card" data-action="click->message#toIndividualDesk" data-url="<%= desk_path(d) %>">
   <div class="card-title"><%= d.title %></div>
-  <div class="card-username"><%= "@#{d.user.username}" %> | <%=d.points%> points <%= status %> </div>
+  <div class="card-username"><%= "@#{d.user.username}" %> <%= status %> </div>
   <div class="card-tasks">📚Interest: <%= d.interest %></div>
   <% if current_user %>
-    <% if current_user.favorited?(d) %>
-      <div class="desk-index-status">🐝 Followed</div>
-    <% end %>
+  <% if current_user.favorited?(d) %>
+  <div class="desk-index-status">🐝 Followed</div>
+  <% end %>
   <% end %>
 </div>

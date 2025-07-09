@@ -1,5 +1,5 @@
 class DesksController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_desk_and_user, only: [:show]
   before_action :set_basic_info, only: [:show]
   PER_PAGE = 4

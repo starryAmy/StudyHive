@@ -1,10 +1,10 @@
-/* 🟡 控制 .index-card 佔據 50% (兩張一排) */
+
 .index-card {
-  width: 320px; /* 每張卡片佔據一半寬度 */
+  width: 320px;
   height: 320px;
   overflow: visible;
   background-color: transparent;
-  background-size: 90% auto;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border: none;
@@ -13,7 +13,7 @@
 }
 
 .room-index-card {
-  width: 320px; /* 每張卡片佔據一半寬度 */
+  width: 320px;
   height: 320px;
   overflow: visible;
   background-color: transparent;
